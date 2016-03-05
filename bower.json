@@ -1,0 +1,24 @@
+{
+  "name": "public-transportation-app",
+  "description": "This is my second udacity project",
+  "main": "app/index.html",
+  "authors": [
+    "Dustin Gulley dlgulley411@gmail.com"
+  ],
+  "license": "BSD-3-Clause",
+  "moduleType": [
+    "globals"
+  ],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "material-design-lite": "^1.1.2",
+    "polymer": "Polymer/polymer#^1.3.1"
+  }
+}
