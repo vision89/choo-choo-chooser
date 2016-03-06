@@ -1,0 +1,94 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/neon-animation/neon-animatable-behavior.html">
+<link rel="import" href="../bower_components/neon-animation/animations/slide-from-left-animation.html">
+<link rel="import" href="../bower_components/neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="map-page">
+
+	<style>
+
+	    :host {
+	      display: block;
+	    }
+
+	</style>
+	
+	<template>
+		
+		<div class="flex layout vertical">
+
+			Maps Page!
+
+		</div>
+
+	</template>    
+
+</dom-module>
+
+<script>
+	'use strict';
+
+	Polymer({
+
+	    is: 'map-page',
+
+	    behaviors: [Polymer.NeonAnimatableBehavior],
+
+	    properties: {
+
+	    	animationConfig: {
+	    		value: function() {
+
+	    			return {
+
+	    				'entry': {
+	    					name: 'slide-from-left-animation',
+	    					node: this
+	    				},
+
+	    				'exit': {
+	    					name: 'fade-out-animation',
+	    					node: this
+	    				}
+
+	    			}
+
+	    		}
+	    	}
+
+	    },
+
+	    // Element Lifecycle
+
+	    ready: function() {
+	      // `ready` is called after all elements have been configured, but
+	      // propagates bottom-up. This element's children are ready, but parents
+	      // are not.
+	      //
+	      // This is the point where you should make modifications to the DOM (when
+	      // necessary), or kick off any processes the element wants to perform.
+
+	    },
+
+	    attached: function() {
+	      // `attached` fires once the element and its parents have been inserted
+	      // into a document.
+	      //
+	      // This is a good place to perform any work related to your element's
+	      // visual state or active behavior (measuring sizes, beginning animations,
+	      // loading resources, etc).
+
+	    },
+
+	    detached: function() {
+	      // The analog to `attached`, `detached` fires when the element has been
+	      // removed from a document.
+	      //
+	      // Use this to clean up anything you did in `attached`.
+
+	    }
+	    
+	});    	
+
+</script>

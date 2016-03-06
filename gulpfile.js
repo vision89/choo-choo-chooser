@@ -1,5 +1,4 @@
 var gulp = 			require('gulp');
-var connect = 		require('gulp-connect');
 var sass = 			require('gulp-sass');
 var concat = 		require('gulp-concat');
 var uglify = 		require('gulp-uglify');
@@ -7,18 +6,18 @@ var htmlmin =    	require('gulp-htmlmin');
 var mergeStream = 	require('merge-stream');
 var babel = 		require('gulp-babel');
 var sourcemaps = 	require('gulp-sourcemaps');
-var inject = 		require('gulp-inject');
 var shell = 		require('gulp-shell');
 var jshint = 		require('gulp-jshint');
 var stylish = 		require('jshint-stylish');
 var rimraf = 		require('gulp-rimraf');
 var browserSync = 	require('browser-sync').create();
+var runSequence = require('run-sequence');
 
 /**************
   Lint
 ***************/   
 gulp.task('lint', function() {
-  return gulp.src('./app/**/*.js')
+  return gulp.src('./app/js/**/*.js')
     .pipe(jshint().on('error', function(err) {
       console.log('Lint: ', err);
     }))
@@ -36,27 +35,27 @@ gulp.task('js-doc', shell.task(['./node_modules/jsdoc/jsdoc.js -r ./app/js -d ./
 gulp.task('serve-docs', function() {
   	browserSync.init({
 	    server: {
-	        baseDir: "./docs",
-	        port: 8800
-	    }
+	        baseDir: "./docs"
+	    },
+	    port: 8800
 	});
 });
  
 gulp.task('serve', function() {
   browserSync.init({
         server: {
-            baseDir: "./dev",
-            port: 8080
-        }
+            baseDir: "./dev"
+        },
+        port: 8080
     });
 });
 
 gulp.task('serve-dist', function() {
 	browserSync.init({
 	    server: {
-	        baseDir: "./dist",
-	        port: 8880
-	    }
+	        baseDir: "./dist"
+	    },
+	    port: 8880
 	});
 });
 
@@ -91,6 +90,7 @@ gulp.task('dist-clean', function() {
 var copyTask = function(dir) {
 
 	return mergeStream(
+		gulp.src('./app/elements/**/*').pipe(gulp.dest('./' + dir + '/elements')),
 		gulp.src('./app/assets/**/*').pipe(gulp.dest('./' + dir + '/assets')),
 		gulp.src('./bower_components/**/*').pipe(gulp.dest('./' + dir + '/bower_components'))
 		.pipe(browserSync.stream())
@@ -174,30 +174,14 @@ gulp.task('dist-js', function() {
 *******************/
 gulp.task('dev-concat-minify', function() {
 
-	return gulp.src('./public/index.html')
-		.pipe(inject(gulp.src(['./app/partials/**/*.html']), {
-		  starttag: '<!-- inject:body:{{ext}} -->',
-		  transform: function(filePath, file) {
-		    return file.contents.toString('utf8')
-		  }
-		}).on('error', function(e) {
-		  console.log('Inject Error: ', e)
-		}))
+	return gulp.src('./app/index.html')
 		.pipe(htmlmin())
 		.pipe(gulp.dest('./dev'))
 		.pipe(browserSync.stream());
 });
 
 gulp.task('dist-concat-minify', function() {
-	return gulp.src('./public/index.html')
-		.pipe(inject(gulp.src(['./public/partials/**/*.html']), {
-		  starttag: '<!-- inject:body:{{ext}} -->',
-		  transform: function(filePath, file) {
-		    return file.contents.toString('utf8')
-		  }
-		}).on('error', function(e) {
-		  console.log('Inject Error: ', e)
-		}))
+	return gulp.src('./app/index.html')
 		.pipe(htmlmin({collapseWhitespace: true}))
 		.pipe(gulp.dest('./dist'))
 });
@@ -205,11 +189,26 @@ gulp.task('dist-concat-minify', function() {
 /******************
 	tasks
 *******************/
-gulp.task('dev', ['dev-clean'], ['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-concat-minify', 'js-doc', 'watch']);
-gulp.task('dist', ['dist-clean'], ['dist-copy', 'dist-styles', 'lint', 'dist-js', 'dist-concat-minify']);
-gulp.task('default', ['dev', 'serve', 'serve-docs']);
+gulp.task('dev', ['dev-clean'], function(cb) {
+
+	runSequence(
+		['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-concat-minify', 'js-doc', 'watch'],
+		cb
+	)	
+
+});
+gulp.task('dist', ['dist-clean'], function(cb) {
+
+	runSequence(
+		['dist-copy', 'dist-styles', 'lint', 'dist-js', 'dist-concat-minify'],
+		cb
+	)	
+	
+
+});
+gulp.task('default', ['dev', 'serve']);
 gulp.task('watch', ['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-concat-minify', 'js-doc'], function() {
 
-	gulp.watch(['./public/**/*'], ['dev']);
+	gulp.watch(['./app/**/*'], ['dev']);
 
 });
