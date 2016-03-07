@@ -13,9 +13,6 @@
 
 		<!--Local Styles -->
 		<link rel="stylesheet" href="css/styles.css">
-
-		<!-- Material Design Lite -->
-		<script src="https://code.getmdl.io/1.1.0/material.min.js"></script>
 		
 		<!-- Elements -->
 		<link rel="import" href="elements/elements.html">
@@ -26,51 +23,79 @@
 
 	<body class="fullbleed layout vertical" unresolved>
 
-		<div id="content" class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<template id="app" is="dom-bind">
 
-			<header class="mdl-layout__header">
+			<paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
 
-				<div class="mdl-layout__header-row">
+				<paper--header-panel drawer>
 
-					<!-- Title -->
-					<span class="mdl-layout-title">Choo Choo Chooser!</span>
+					<!-- Drawer Toolbar -->
+					<paper-toolbar id="drawerToolbar">
 
-					<!-- Add spacer, to align navigation to the right -->
-					<div class="mdl-layout-spacer"></div>
+						<span>Menu</span>
 
-					<!-- Navigation -->
-					<nav class="mdl-navigation">
+					</paper-toolbar>
+					
+					<!-- Selectable stations go here -->
+					<paper-listbox>
 
-					</nav>
+						<paper-item>Item 1</paper-item>
+						<paper-item>Item 2</paper-item>
 
-				</div>
+					</paper-listbox>
 
-			</header>
+				</paper--header-panel>
+				
+				<!-- Top Header -->
+				<paper--header-panel main>
 
-			<main class="mdl-layout__content">
+					<paper-toolbar id="main-toolbar">
 
-				<template id="app" is="dom-bind">
+						<div class="middle middle-container">
 
-					<div class="menu-selector shadow">
+							<div class="app-name">Choo Choo Chooser!</div>
 
-						<paper-button on-click="viewMap" raised>Map</paper-button>
-						<paper-button on-click="viewSchedule" raised>Schedule</paper-button>
+						</div>
+
+					</paper-toolbar>
+
+					<div class="content">
+
+						<div class="menu-selector shadow">
+
+							<p>
+
+								<paper-input id="departure" label="Departure Station" disabled="true">
+
+								</paper-input><paper-button paper-drawer-toggle raised>Select Departure Station</paper-button>
+
+							</p>
+
+							<p>
+
+								<paper-input id="destination" label="Destination Station" disabled="true"></paper-input>
+
+								<paper-button paper-drawer-toggle raised>Select Destination Station</paper-button>
+
+							</p>
+							
+						</div>
+
+						<neon-animated-pages class="flex" selected="[[selected]]">
+
+							<map-page></map-page>
+
+							<schedule-page></schedule-page>
+						    
+						</neon-animated-pages>
 
 					</div>
 
-					<neon-animated-pages class="flex" selected="[[selected]]">
+				</paper--header-panel>
 
-						<map-page></map-page>
+			</paper-drawer-panel>	
 
-						<schedule-page></schedule-page>
-					    
-					</neon-animated-pages>
-
-				</template>
-
-			</main>
-
-		</div>
+		</template>
 
 		<!-- Web Components -->
 		<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
