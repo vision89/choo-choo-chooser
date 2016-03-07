@@ -25,7 +25,7 @@
 
 		<template id="app" is="dom-bind">
 
-			<paper-drawer-panel id="paperDrawerPanel" force-narrow="true">
+			<paper-drawer-panel id="paperDrawerPanel" force-narrow="true" disable-edge-swipe="true">
 
 				<paper--header-panel drawer>
 
@@ -63,21 +63,37 @@
 
 						<div class="menu-selector shadow">
 
-							<p>
+							<div class="mdl-grid">
 
-								<paper-input id="departure" label="Departure Station" disabled="true">
+								<div class="mdl-cell mdl-cell--11-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 
-								</paper-input><paper-button paper-drawer-toggle raised>Select Departure Station</paper-button>
+									<paper-input id="departure" label="Select Departure Station" disabled="true"></paper-input>
 
-							</p>
+								</div>
 
-							<p>
+								<div class="mdl-cell mdl-cell--1-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 
-								<paper-input id="destination" label="Destination Station" disabled="true"></paper-input>
+									<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateDeparture"></paper-fab>
 
-								<paper-button paper-drawer-toggle raised>Select Destination Station</paper-button>
+								</div>
 
-							</p>
+							</div>
+
+							<div class="mdl-grid">	
+
+								<div class="mdl-cell mdl-cell--11-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+									
+									<paper-input id="destination" label="Select Destination Station" disabled="true"></paper-input>
+
+								</div>
+
+								<div class="mdl-cell mdl-cell--1-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
+									
+									<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateDestination"></paper-fab>
+
+								</div>
+
+							</div>
 							
 						</div>
 

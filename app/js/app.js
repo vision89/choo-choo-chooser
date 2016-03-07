@@ -29,9 +29,31 @@
 		 * @function viewSchedule
 		 *
 		 */
-  		_app.viewSchedule = function () {
+  		_app.viewSchedule = function() {
 
   			_app.selected = 1;
+
+  		};
+
+  		/**
+		 * Populate drawer with departure info
+		 * @function populateDeparture
+		 *
+		 */
+  		_app.populateDeparture = function() {
+
+  			console.log('Populating departure');
+
+  		};
+
+  		/**
+		 * Populate drawer with destination info
+		 * @function populateDeparture
+		 *
+		 */
+  		_app.populateDestination = function() {
+
+  			console.log('Populating destination');
 
   		};
   		

@@ -8,7 +8,7 @@ body {
 
 	.menu-selector {
 		
-		min-height: 13em;
+		min-height: 18em;
 		background-color: $light-menu-color;
 		padding: 1em;
 
@@ -16,8 +16,7 @@ body {
 
 	.google-map {
 
-		height: 32em;
-		z-index: -1;
+		min-height: 50em;
 
 	}
 
@@ -25,13 +24,14 @@ body {
 
 		-moz-box-shadow: 0 0 30px 5px #999;
 		-webkit-box-shadow: 0 0 30px 5px #999;
+		z-index: 1000;
 
 	}
-	
-	paper-button {
 
-		width: 16em;
-		float: right;
+	.content {
+
+		overflow: scroll;
+		min-height: 100%;
 
 	}
 
@@ -40,7 +40,12 @@ body {
 		.google-map {
 
 			height: 28em;
-			z-index: -1;
+
+		}
+
+		paper-fab {
+
+			float: right;
 
 		}
 

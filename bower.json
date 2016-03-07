@@ -27,6 +27,10 @@
     "paper-drawer-panel": "PolymerElements/paper-drawer-panel#^1.0.7",
     "paper-header-panel": "PolymerElements/paper-header-panel#^1.1.4",
     "paper-toolbar": "PolymerElements/paper-toolbar#^1.1.4",
-    "paper-listbox": "polymerelements/paper-listbox#^1.1.2"
+    "paper-listbox": "polymerelements/paper-listbox#^1.1.2",
+    "iron-iconset": "PolymerElements/iron-iconset#^1.0.4",
+    "iron-icons": "PolymerElements/iron-icons#^1.1.3",
+    "material-design-lite": "^1.1.2",
+    "paper-fab": "PolymerElements/paper-fab#^1.2.0"
   }
 }
