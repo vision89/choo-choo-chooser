@@ -11,12 +11,14 @@ body {
 		min-height: 18em;
 		background-color: $light-menu-color;
 		padding: 1em;
+		border-bottom: 1px solid #fafafa;
 
 	}
 
 	.google-map {
 
 		min-height: 50em;
+		/*z-index: -1;*/
 
 	}
 
@@ -24,7 +26,6 @@ body {
 
 		-moz-box-shadow: 0 0 30px 5px #999;
 		-webkit-box-shadow: 0 0 30px 5px #999;
-		z-index: 1000;
 
 	}
 
@@ -40,6 +41,7 @@ body {
 		.google-map {
 
 			height: 28em;
+			z-index: -1;
 
 		}
 

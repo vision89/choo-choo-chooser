@@ -17,6 +17,10 @@
 		<!-- Elements -->
 		<link rel="import" href="elements/elements.html">
 
+		<!-- Polyfills -->
+		<!--[if IE 8]><script src="/bower_components/EventListener/EventListener.js"></script><!--<![endif]-->
+		<!--[if lt IE 8]><script src="/bower_components/EventListener/EventListener.oldie.js"></script><!--<![endif]-->
+
 		<title>Choo Choo Chooser!</title>
 
 	</head>
@@ -61,45 +65,9 @@
 
 					<div class="content">
 
-						<div class="menu-selector shadow">
-
-							<div class="mdl-grid">
-
-								<div class="mdl-cell mdl-cell--11-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-
-									<paper-input id="departure" label="Select Departure Station" disabled="true"></paper-input>
-
-								</div>
-
-								<div class="mdl-cell mdl-cell--1-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-
-									<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateDeparture"></paper-fab>
-
-								</div>
-
-							</div>
-
-							<div class="mdl-grid">	
-
-								<div class="mdl-cell mdl-cell--11-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-									
-									<paper-input id="destination" label="Select Destination Station" disabled="true"></paper-input>
-
-								</div>
-
-								<div class="mdl-cell mdl-cell--1-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
-									
-									<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateDestination"></paper-fab>
-
-								</div>
-
-							</div>
-							
-						</div>
-
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
-							<map-page></map-page>
+							<map-page on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}"></map-page>
 
 							<schedule-page></schedule-page>
 						    
@@ -109,7 +77,7 @@
 
 				</paper--header-panel>
 
-			</paper-drawer-panel>	
+			</paper-drawer-panel>
 
 		</template>
 

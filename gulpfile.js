@@ -11,7 +11,8 @@ var jshint = 		require('gulp-jshint');
 var stylish = 		require('jshint-stylish');
 var rimraf = 		require('gulp-rimraf');
 var browserSync = 	require('browser-sync').create();
-var runSequence = require('run-sequence');
+var runSequence = 	require('run-sequence');
+var modernizr = 	require('gulp-modernizr');
 
 /**************
   Lint
