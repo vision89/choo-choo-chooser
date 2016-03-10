@@ -143,7 +143,7 @@ gulp.task('dist-styles', function() {
 *******************/
 gulp.task('dev-js', function() {
 
-    gulp.src('./app/js/**/*.js')
+    gulp.src(['./app/js/**/*.js', '!./app/js/sw/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(babel({comments: false}).on('error', function(e){
             console.log('Bablify Error: ', e);
@@ -157,7 +157,7 @@ gulp.task('dev-js', function() {
 
 gulp.task('dist-js', function() {
 
-    gulp.src('./app/js/**/*.js')
+    gulp.src(['./app/js/**/*.js', '!./app/js/sw/**/*.js'])
     .pipe(babel({comments: false}).on('error', function(e){
             console.log('Bablify Error: ', e);
          }))
@@ -166,6 +166,36 @@ gulp.task('dist-js', function() {
          }))
     .pipe(concat('all.js'))
     .pipe(gulp.dest('./dist/js'))
+    .pipe(browserSync.stream())
+
+});
+
+/******************
+	sw js
+*******************/
+gulp.task('dev-sw-js', function() {
+
+    gulp.src(['./app/js/sw/**/*.js'])
+    .pipe(sourcemaps.init())
+    .pipe(babel({comments: false}).on('error', function(e){
+            console.log('Bablify Error: ', e);
+         }))
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('./dev/js/sw'))
+    .pipe(browserSync.stream())
+
+});
+
+gulp.task('dist-sw-js', function() {
+
+    gulp.src(['./app/js/sw/**/*.js'])
+    .pipe(babel({comments: false}).on('error', function(e){
+            console.log('Bablify Error: ', e);
+         }))
+    .pipe(uglify().on('error', function(e){
+            console.log('Uglify Error: ', e);
+         }))
+    .pipe(gulp.dest('./dist/js/sw'))
     .pipe(browserSync.stream())
 
 });
@@ -193,7 +223,7 @@ gulp.task('dist-concat-minify', function() {
 gulp.task('dev', ['dev-clean'], function(cb) {
 
 	runSequence(
-		['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-concat-minify', 'js-doc', 'watch'],
+		['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-sw-js', 'dev-concat-minify', 'js-doc', 'watch'],
 		cb
 	)	
 
@@ -201,14 +231,14 @@ gulp.task('dev', ['dev-clean'], function(cb) {
 gulp.task('dist', ['dist-clean'], function(cb) {
 
 	runSequence(
-		['dist-copy', 'dist-styles', 'lint', 'dist-js', 'dist-concat-minify'],
+		['dist-copy', 'dist-styles', 'lint', 'dist-js', 'dist-sw-js', 'dist-concat-minify'],
 		cb
 	)	
 	
 
 });
 gulp.task('default', ['dev', 'serve']);
-gulp.task('watch', ['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-concat-minify', 'js-doc'], function() {
+gulp.task('watch', ['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-sw-js', 'dev-concat-minify', 'js-doc'], function() {
 
 	gulp.watch(['./app/**/*'], ['dev']);
 

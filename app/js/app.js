@@ -69,7 +69,7 @@
 
 	  			}
 
-	  			_app.$.paperDrawerPanel.togglePanel()
+	  			_app.$.paperDrawerPanel.togglePanel();
 
 	  		};
 
@@ -88,7 +88,7 @@
 	  				
 	  			}
 
-	  			_app.$.paperDrawerPanel.togglePanel()
+	  			_app.$.paperDrawerPanel.togglePanel();
 
 	  		};
 
@@ -96,5 +96,49 @@
   		
   	});
 
+  	if(navigator.serviceWorker) {
+
+  		console.log('winning!');
+
+		navigator.serviceWorker.register('/js/sw/sw.js').then(function(reg) {
+
+			console.log('reg: ', reg);
+
+		    if (!navigator.serviceWorker.controller) {
+
+		      return;
+
+		    }
+
+		    if (reg.waiting) {
+
+		      //indexController._updateReady(reg.waiting);
+		      console.log('Waiting');
+		      return;
+
+		    }
+
+		    if (reg.installing) {
+
+		      //indexController._trackInstalling(reg.installing);
+		      //console.log('Installing');
+		      return;
+
+		    }
+
+		    reg.addEventListener('updatefound', function() {
+
+		      //indexController._trackInstalling(reg.installing);
+		      console.log('Update Found');
+
+		    });
+
+		}).catch(function(err) {
+
+			console.log('Service Worker Error', err);
+
+		});
+
+	}
 
 })(document);	
