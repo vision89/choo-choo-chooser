@@ -181,7 +181,7 @@ gulp.task('dev-sw-js', function() {
             console.log('Bablify Error: ', e);
          }))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('./dev/js/sw'))
+    .pipe(gulp.dest('./dev'))
     .pipe(browserSync.stream())
 
 });
@@ -195,7 +195,7 @@ gulp.task('dist-sw-js', function() {
     .pipe(uglify().on('error', function(e){
             console.log('Uglify Error: ', e);
          }))
-    .pipe(gulp.dest('./dist/js/sw'))
+    .pipe(gulp.dest('./dist'))
     .pipe(browserSync.stream())
 
 });

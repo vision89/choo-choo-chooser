@@ -98,15 +98,9 @@
 
   	if(navigator.serviceWorker) {
 
-  		console.log('winning!');
+		navigator.serviceWorker.register('/sw.js').then(function(reg) {
 
-		navigator.serviceWorker.register('/js/sw/sw.js').then(function(reg) {
-
-			console.log('reg: ', reg);
-
-			console.log('navigator.serviceWorker: ', navigator.serviceWorker);
-
-			console.log('navigaor.serviceWorker.controller: ', navigator.serviceWorker.controller);
+			console.log('ServiceWorker registration successful with scope: ',    registration.scope);
 
 		    if (!navigator.serviceWorker.controller) {
 
@@ -136,8 +130,6 @@
 		      console.log('Update Found');
 
 		    });
-
-		    fetch('')
 
 		}).catch(function(err) {
 
