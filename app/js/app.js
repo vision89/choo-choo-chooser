@@ -104,6 +104,10 @@
 
 			console.log('reg: ', reg);
 
+			console.log('navigator.serviceWorker: ', navigator.serviceWorker);
+
+			console.log('navigaor.serviceWorker.controller: ', navigator.serviceWorker.controller);
+
 		    if (!navigator.serviceWorker.controller) {
 
 		      return;
@@ -132,6 +136,8 @@
 		      console.log('Update Found');
 
 		    });
+
+		    fetch('')
 
 		}).catch(function(err) {
 
