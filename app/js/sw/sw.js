@@ -49,16 +49,38 @@ self.addEventListener('install', function(event) {
 
 });
 
+//https://maps.googleapis.com/maps/api/js?callback=https___maps_googleapis_co…ization_api_loaded&v=3.exp&libraries=drawing,geometry,places,visualization
+//If this route fails we are not connected to get the map
+
 self.addEventListener('fetch', function(event) {
 
-	if(event.request.url.endsWith('.jpg')) {
+	if(event.request.url.indexOf('https://maps.googleapis.com/maps/api/js') > -1) {
 
-		console.log('Getting the image!!!!');
+		return fetch(event.request).then(function(response) {
 
-		event.respondWith(
-			fetch('/assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg')
-		);
+			return response;
+
+		}).catch(function() {
+
+			console.log('Yo dawg you failed 2');
+			//Try using message channel to recover https://miguelmota.com/blog/getting-started-with-service-workers/
+
+		});
 
 	}
+
+	event.respondWith(
+
+		caches.match(event.request).then(function(response) {
+
+			if(response) {
+
+				return response;
+
+			}
+
+			return fetch(event.request);
+
+		}));
 
 });
