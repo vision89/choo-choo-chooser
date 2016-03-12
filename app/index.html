@@ -7,6 +7,9 @@
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+		<!-- Web Components -->
+		<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+
 		<!-- MDL -->
 		<link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -21,6 +24,8 @@
 		<!--[if IE 8]><script src="/bower_components/EventListener/EventListener.js"></script><!--<![endif]-->
 		<!--[if lt IE 8]><script src="/bower_components/EventListener/EventListener.oldie.js"></script><!--<![endif]-->
 		<script src="/bower_components/cache-polyfill/index.js"></script>
+
+		<style is="custom-style" include="shared-styles"></style>
 
 		<title>Choo Choo Chooser!</title>
 
@@ -68,7 +73,7 @@
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
-							<map-page on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}"></map-page>
+							<map-page class="choosey-card-offline" on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}"></map-page>
 
 							<schedule-page></schedule-page>
 						    
@@ -81,9 +86,6 @@
 			</paper-drawer-panel>
 
 		</template>
-
-		<!-- Web Components -->
-		<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
 		<!-- App Logic -->
 		<script src="js/all.js"></script>

@@ -12,22 +12,18 @@
 	      display: block;
 	    }
 
-	    .chooser-card {
-
-			position: absolute;
-			top: 5em;
-			right: 2em;
-			z-index: 1;
-
+	    .choosy-card {
+			
 			--paper-card-header-color: white;
+	    	@apply(--choosy-card-theme);
 
-		}
+	    }
 
 	</style>
 	
 	<template>
 
-		<paper-card heading="Choose a departure and destination" class="chooser-card" image="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
+		<paper-card heading="Choose a departure and destination" class="choosy-card" image="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
 
 			<div class="card-content">
 				

@@ -137,6 +137,14 @@
 
 		});
 
+		navigator.serviceWorker.addEventListener('message', (event) => {
+
+			if(event.data === 'Map Error') {
+
+			}
+
+		});
+
 	}
 
 })(document);	

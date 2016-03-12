@@ -34,6 +34,7 @@ self.addEventListener('install', function(event) {
 				'bower_components/google-map/google-map-point.html',
 				'elements/map-page.html',
 				'elements/schedule-page.html',
+				'elements/shared-styles.html',
 				'bower_components/EventListener/EventListener.js',
 				'bower_components/EventListener/EventListener.oldie.js',
 				'bower_components/webcomponentsjs/webcomponents-lite.js',
@@ -54,7 +55,7 @@ self.addEventListener('install', function(event) {
 
 self.addEventListener('fetch', function(event) {
 
-	if(event.request.url.indexOf('https://maps.googleapis.com/maps/api/js') > -1) {
+	if(event.request.url.indexOf('maps.googleapis.com') > -1) {
 
 		return fetch(event.request).then(function(response) {
 
@@ -62,8 +63,16 @@ self.addEventListener('fetch', function(event) {
 
 		}).catch(function() {
 
-			console.log('Yo dawg you failed 2');
-			//Try using message channel to recover https://miguelmota.com/blog/getting-started-with-service-workers/
+			// Broadcast to all open clients
+			self.clients.matchAll().then((clients) => {
+
+				clients.map((client) => {
+
+					return client.postMessage('Map Error');
+
+				});
+
+			});
 
 		});
 
