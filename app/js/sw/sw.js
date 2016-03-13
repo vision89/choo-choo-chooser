@@ -3,12 +3,15 @@
 	'use strict';
 
 	let staticCacheName = 'public-transportation-static-v1';
-	//Awesomeness
+
+	//Awesomeness 6
 	self.addEventListener('install', function(event) {
 
 		event.waitUntil(
 
 			caches.open('public-transportation-static-v1').then(function(cache) {
+
+				console.log('Service Worker Installing');
 
 				return cache.addAll([
 
@@ -47,7 +50,8 @@
 					'js/all.js',
 					'bower_components/EventListener/EventListener.js',
 					'bower_components/es6-promise/es6-promise.min.js',
-					'bower_components/paper-toast/paper-toast.html'
+					'bower_components/paper-toast/paper-toast.html',
+					'assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg'
 
 				]);
 
@@ -87,6 +91,20 @@
 	//If this route fails we are not connected to get the map
 
 	self.addEventListener('fetch', function(event) {
+
+		/**
+		let requestUrl = new URL(event.request.url);
+
+		if (requestUrl.origin === location.origin) {
+
+			if (requestUrl.pathname === '/') {
+				event.respondWith(caches.match('index.html'));
+				return;
+
+			}
+
+		}
+		**/
 
 		if(event.request.url.indexOf('maps.googleapis.com') > -1) {
 
@@ -131,7 +149,27 @@
 
 				}
 
-				return fetch(event.request);
+				let fetchRequest = event.request.clone();
+
+				return fetch(fetchRequest).then(function(response) {
+
+					if(!response || response.status !== 200 || response.type !== 'basic') {
+
+						return response;
+
+					}
+
+					var responseToCache = response.clone();
+
+					caches.open(staticCacheName).then(function(cache) {
+
+						cache.put(event.request, responseToCache);
+						
+					});
+
+					return response;
+
+				});
 
 			}));
 

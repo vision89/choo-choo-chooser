@@ -23,6 +23,27 @@
 
 		}
 
+		/**
+		 * Show the toast!
+		 * @param  {object} worker 
+		 * 
+		 */
+		function updateToast(worker) {
+
+			_app.reloadPage = function() {
+
+				worker.postMessage({action: 'skipWaiting'});
+
+				_app.$.reloadtoast.close();
+
+				window.location.reload();
+
+			};
+
+			_app.$.reloadtoast.open();
+
+		}
+
 		//Load the needed scripts
 		loadScripts(neededScripts, function() {
 
@@ -106,13 +127,7 @@
 
 				    if (reg.waiting) {
 
-				    	_app.reloadPage = function() {
-
-							reg.waiting.postMessage({action: 'skipWaiting'});
-
-						};
-
-						_app.$.reloadtoast.toggle();
+				    	updateToast(reg.waiting);
 
 				     	return;
 
@@ -120,16 +135,35 @@
 
 				    if (reg.installing) {
 
-				      //indexController._trackInstalling(reg.installing);
-				      //console.log('Installing');
-				      return;
+				      	reg.installing.addEventListener('statechange', function() {
+
+							if (reg.installing.state == 'installed') {
+
+								updateToast(reg.installing);
+
+							}
+
+						});
+
+				      	return;
 
 				    }
 
 				    reg.addEventListener('updatefound', function() {
 
-				      //indexController._trackInstalling(reg.installing);
-				      console.log('Update Found');
+				    	if (reg.installing) {
+
+				    		reg.installing.addEventListener('statechange', function() {
+
+								if (reg.installing.state == 'installed') {
+
+									updateToast(reg.installing);
+
+								}
+
+							});
+
+				    	}	
 
 				    });
 
