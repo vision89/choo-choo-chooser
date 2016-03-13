@@ -15,14 +15,15 @@
 
 	    .choosy-card-mobile-online {
 			
-			--paper-card-header-color: white;
+			--paper-card-header-color: #000000;
 	    	@apply(--choosy-card-theme-mobile-online);
+	    	width: 100%;
 
 	    }
 
 	    .choosy-card-mobile-offline {
 			
-			--paper-card-header-color: white;
+			--paper-card-header-color: #FFFFFF;
 			top: 5em;
 			z-index: 1;
 			width: 90%;
@@ -35,7 +36,7 @@
 
 	    .choosy-card-wide-online {
 			
-			--paper-card-header-color: white;
+			--paper-card-header-color: #FFFFFF;
 	    	position: absolute;
 			top: 5em;
 			right: 2em;
@@ -46,7 +47,7 @@
 
 	    .choosy-card-wide-offline {
 			
-			--paper-card-header-color: white;
+			--paper-card-header-color: #FFFFFF;
 			top: 5em;
 			z-index: 1;
 			width: 50%;
@@ -61,7 +62,7 @@
 	
 	<template>
 
-		<paper-card id="inputcard" heading="Choose a departure and destination" class$="[[_cardClass]]" image="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
+		<paper-card id="inputcard" heading="Choose a departure and destination" class$="[[_cardClass]]" image="[[_image]]">
 
 			<div class="card-content">
 				
@@ -120,181 +121,205 @@
 </dom-module>
 
 <script>
-	'use strict';
 
-	Polymer({
+	(function(document) {
+		'use strict';
 
-	    is: 'map-page',
+		var imagePath = '../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg';
 
-	    behaviors: [Polymer.NeonAnimatableBehavior],
+		Polymer({
 
-	    properties: {
+		    is: 'map-page',
 
-	    	/**
-	    	 * Helps with loading/unloading card
-	    	 * @type {Object}
-	    	 */
-	    	animationConfig: {
-	    		value: function() {
+		    behaviors: [Polymer.NeonAnimatableBehavior],
 
-	    			return {
+		    properties: {
 
-	    				'entry': {
-	    					name: 'slide-from-left-animation',
-	    					node: this
-	    				},
+		    	/**
+		    	 * Helps with loading/unloading card
+		    	 * @type {Object}
+		    	 */
+		    	animationConfig: {
+		    		value: function() {
 
-	    				'exit': {
-	    					name: 'slide-left-animation',
-	    					node: this
-	    				}
+		    			return {
 
-	    			}
+		    				'entry': {
+		    					name: 'slide-from-left-animation',
+		    					node: this
+		    				},
 
-	    		}
-	    	},
+		    				'exit': {
+		    					name: 'slide-left-animation',
+		    					node: this
+		    				}
 
-	    	/**
-	    	 * Departure train
-	    	 * @type {string}
-	    	 */
-	    	departure: {
+		    			}
 
-	    		type: String,
-		        notify: true,
-		        value: ''
+		    		}
+		    	},
 
-	    	},
+		    	/**
+		    	 * Departure train
+		    	 * @type {string}
+		    	 */
+		    	departure: {
 
-	    	/**
-	    	 * Destination train
-	    	 * @type {string}
-	    	 */
-	    	destination: {
+		    		type: String,
+			        notify: true,
+			        value: ''
 
-	    		type: String,
-		        notify: true,
-		        value: ''
+		    	},
 
-	    	},
+		    	/**
+		    	 * Destination train
+		    	 * @type {string}
+		    	 */
+		    	destination: {
 
-	    	/**
-	    	 * Are we a mobile device?
-	    	 * @type {Boolan}
-	    	 */
-	    	isMobile: {
+		    		type: String,
+			        notify: true,
+			        value: ''
 
-	    		type: Boolean,
-	    		notify: false,
-	    		value: false,
-	    		observer: '_setStyle'
+		    	},
 
-	    	},
+		    	/**
+		    	 * Are we a mobile device?
+		    	 * @type {Boolan}
+		    	 */
+		    	isMobile: {
 
-	    	/**
-	    	 * Are we online?
-	    	 * @type {Boolean}
-	    	 */
-	    	isOnline: {
+		    		type: Boolean,
+		    		notify: false,
+		    		value: false,
+		    		observer: '_setStyle'
 
-	    		type: Boolean,
-	    		notify: false,
-	    		value: true,
-	    		observer: '_setStyle'
+		    	},
 
-	    	},
+		    	/**
+		    	 * Are we online?
+		    	 * @type {Boolean}
+		    	 */
+		    	isOnline: {
 
-	    	/**
-	    	 * Class name to apply to the card
-	    	 * @type {String}
-	    	 */
-	    	_cardClass: {
+		    		type: Boolean,
+		    		notify: false,
+		    		value: true,
+		    		observer: '_setStyle'
 
-	    		type: String,
-	    		notify: false,
-	    		value: 'choosy-card-wide-online'
+		    	},
 
-	    	}
+		    	/**
+		    	 * Class name to apply to the card
+		    	 * @type {String}
+		    	 */
+		    	_cardClass: {
 
-	    },
+		    		type: String,
+		    		notify: false,
+		    		value: 'choosy-card-wide-online'
 
-	    /**
-	     * Called on destination button press
-	     * 
-	     */
-	    populateDestination: function() {
+		    	},
 
-	    	this.fire('destination-pressed');
+		    	/**
+		    	 * Path the the image for the card
+		    	 * @type {String}
+		    	 */
+		    	_image: {
 
-	    },
+		    		type: String,
+		    		notify: false,
+		    		value: imagePath
 
-	    /**
-	     * Called on departure button press
-	     * 
-	     */
-	    populateDeparture: function() {
+		    	}
 
-	    	this.fire('departure-pressed');
+		    },
 
-	    },
+		    /**
+		     * Called on destination button press
+		     * 
+		     */
+		    populateDestination: function() {
 
-	    /**
-	     * Called when width is set
-	     */
-	    _setStyle: function() {
+		    	this.fire('destination-pressed');
 
-	    	if(this.isMobile && this.isOnline) {
+		    },
 
-	    		this._cardClass = 'choosy-card-mobile-online';
+		    /**
+		     * Called on departure button press
+		     * 
+		     */
+		    populateDeparture: function() {
 
-	    	} else if(this.isMobile && !this.isOnline) {
+		    	this.fire('departure-pressed');
 
-	    		this._cardClass = 'choosy-card-mobile-offline';
+		    },
 
-	    	} else if(!this.isMobile && this.isOnline) {
+		    /**
+		     * Called when width is set
+		     */
+		    _setStyle: function() {
 
-	    		this._cardClass = 'choosy-card-wide-online';
+		    	if(this.isMobile && this.isOnline) {
 
-	    	} else {
+		    		this._cardClass = 'choosy-card-mobile-online';
+		    		this._image = '';
 
-	    		this._cardClass = 'choosy-card-wide-offline';
+		    	} else if(this.isMobile && !this.isOnline) {
 
-	    	}
+		    		this._cardClass = 'choosy-card-mobile-offline';
+		    		this._image = imagePath;
 
-	    	this.$.inputcard.updateStyles();
+		    	} else if(!this.isMobile && this.isOnline) {
 
-	    },
+		    		this._cardClass = 'choosy-card-wide-online';
+		    		this._image = imagePath;
 
-	    // Element Lifecycle
 
-	    ready: function() {
-	      // `ready` is called after all elements have been configured, but
-	      // propagates bottom-up. This element's children are ready, but parents
-	      // are not.
-	      //
-	      // This is the point where you should make modifications to the DOM (when
-	      // necessary), or kick off any processes the element wants to perform.
+		    	} else {
 
-	    },
+		    		this._cardClass = 'choosy-card-wide-offline';
+		    		this._image = imagePath;
 
-	    attached: function() {
-	      // `attached` fires once the element and its parents have been inserted
-	      // into a document.
-	      //
-	      // This is a good place to perform any work related to your element's
-	      // visual state or active behavior (measuring sizes, beginning animations,
-	      // loading resources, etc).
 
-	    },
+		    	}
 
-	    detached: function() {
-	      // The analog to `attached`, `detached` fires when the element has been
-	      // removed from a document.
-	      //
-	      // Use this to clean up anything you did in `attached`.
+		    	this.$.inputcard.updateStyles();
 
-	    }
-	    
-	});    	
+		    },
+
+		    // Element Lifecycle
+
+		    ready: function() {
+		      // `ready` is called after all elements have been configured, but
+		      // propagates bottom-up. This element's children are ready, but parents
+		      // are not.
+		      //
+		      // This is the point where you should make modifications to the DOM (when
+		      // necessary), or kick off any processes the element wants to perform.
+
+		    },
+
+		    attached: function() {
+		      // `attached` fires once the element and its parents have been inserted
+		      // into a document.
+		      //
+		      // This is a good place to perform any work related to your element's
+		      // visual state or active behavior (measuring sizes, beginning animations,
+		      // loading resources, etc).
+
+		    },
+
+		    detached: function() {
+		      // The analog to `attached`, `detached` fires when the element has been
+		      // removed from a document.
+		      //
+		      // Use this to clean up anything you did in `attached`.
+
+		    }
+		    
+		});
+
+	})(document);
 
 </script>
