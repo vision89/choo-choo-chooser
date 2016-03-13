@@ -8,7 +8,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Web Components -->
-		<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
 		<!-- MDL -->
 		<link rel="stylesheet" href="/bower_components/material-design-lite/material.min.css">
@@ -24,7 +24,8 @@
 		<!--[if IE 8]><script src="/bower_components/EventListener/EventListener.js"></script><!--<![endif]-->
 		<!--[if lt IE 8]><script src="/bower_components/EventListener/EventListener.oldie.js"></script><!--<![endif]-->
 		<script src="/bower_components/cache-polyfill/index.js"></script>
-
+		
+		<!-- Any styles were sharing -->
 		<style is="custom-style" include="shared-styles"></style>
 
 		<title>Choo Choo Chooser!</title>
@@ -63,7 +64,7 @@
 
 						<div class="middle middle-container">
 
-							<div class="app-name">Choo Choo Chooser!</div>
+							<div class="app-name">Choo Choo Chooser! Mobile: <span>[[mobile]]</span></div>
 
 						</div>
 
@@ -73,7 +74,7 @@
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
-							<map-page class="choosey-card-offline" on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}"></map-page>
+							<map-page class="choosey-card-offline" on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}" is-mobile="[[mobile]]" is-online="[[online]]"></map-page>
 
 							<schedule-page></schedule-page>
 						    
@@ -84,6 +85,8 @@
 				</paper--header-panel>
 
 			</paper-drawer-panel>
+
+			<iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
 
 		</template>
 

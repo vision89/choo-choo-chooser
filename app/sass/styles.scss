@@ -1,7 +1,7 @@
 $light-menu-color: #ffffff;	
 
 body {
-
+	background-color: #fafafa;
 	background: #fafafa;
 	font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	color: #333;
@@ -17,7 +17,7 @@ body {
 
 	.google-map {
 
-		min-height: 50em;
+		height: 70em;
 		/*z-index: -1;*/
 
 	}
@@ -40,7 +40,7 @@ body {
 
 		.google-map {
 
-			height: 28em;
+			min-height: 70em;
 			z-index: -1;
 
 		}

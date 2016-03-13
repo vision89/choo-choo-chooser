@@ -139,7 +139,15 @@
 
 		navigator.serviceWorker.addEventListener('message', (event) => {
 
-			if(event.data === 'Map Error') {
+			//If we get a map error we know we are in offline mode
+			switch(event.data) {
+
+				case 'Map Error':
+					_app.online = false;
+					break;
+				case 'Map Good':
+					_app.online = true;
+					break;
 
 			}
 
