@@ -3,7 +3,7 @@
 	'use strict';
 
 	let staticCacheName = 'public-transportation-static-v1';
-
+	//Awesomeness
 	self.addEventListener('install', function(event) {
 
 		event.waitUntil(
@@ -46,7 +46,8 @@
 					'bower_components/webcomponentsjs/webcomponents-lite.js',
 					'js/all.js',
 					'bower_components/EventListener/EventListener.js',
-					'bower_components/es6-promise/es6-promise.min.js'
+					'bower_components/es6-promise/es6-promise.min.js',
+					'bower_components/paper-toast/paper-toast.html'
 
 				]);
 
@@ -56,7 +57,7 @@
 
 	});
 
-	self.addEventListener('activate' function(event) {
+	self.addEventListener('activate', function(event) {
 
 		event.waitUntil(
 
@@ -72,11 +73,11 @@
 
 						return cache.delete(cacheName);
 
-					});
+					})
 
 				);
 
-			});
+			})
 
 		);
 
@@ -133,6 +134,20 @@
 				return fetch(event.request);
 
 			}));
+
+	});
+
+	/**
+	 * Get messages from the front
+	 * @param  {object} event
+	 */
+	self.addEventListener('message', function(event) {
+
+		if (event.data.action === 'skipWaiting') {
+
+			self.skipWaiting();
+		
+		}
 
 	});
 

@@ -92,67 +92,77 @@
 
 	  		};
 
-		});
-  		
-  	});
+	  		if(navigator.serviceWorker) {
 
-  	if(navigator.serviceWorker) {
+				navigator.serviceWorker.register('./sw.js').then(function(reg) {
 
-		navigator.serviceWorker.register('/sw.js').then(function(reg) {
+					console.log('ServiceWorker registration successful with scope: ', reg.scope);
 
-			console.log('ServiceWorker registration successful with scope: ',    registration.scope);
+				    if (!navigator.serviceWorker.controller) {
 
-		    if (!navigator.serviceWorker.controller) {
+				      return;
 
-		      return;
+				    }
 
-		    }
+				    if (reg.waiting) {
 
-		    if (reg.waiting) {
+				    	_app.reloadPage = function() {
 
-		      //indexController._updateReady(reg.waiting);
-		      console.log('Waiting');
-		      return;
+							reg.waiting.postMessage({action: 'skipWaiting'});
 
-		    }
+						};
 
-		    if (reg.installing) {
+						_app.$.reloadtoast.toggle();
 
-		      //indexController._trackInstalling(reg.installing);
-		      //console.log('Installing');
-		      return;
+				     	return;
 
-		    }
+				    }
 
-		    reg.addEventListener('updatefound', function() {
+				    if (reg.installing) {
 
-		      //indexController._trackInstalling(reg.installing);
-		      console.log('Update Found');
+				      //indexController._trackInstalling(reg.installing);
+				      //console.log('Installing');
+				      return;
 
-		    });
+				    }
 
-		}).catch(function(err) {
+				    reg.addEventListener('updatefound', function() {
 
-			console.log('Service Worker Error', err);
+				      //indexController._trackInstalling(reg.installing);
+				      console.log('Update Found');
 
-		});
+				    });
 
-		navigator.serviceWorker.addEventListener('message', (event) => {
+				}).catch(function(err) {
 
-			//If we get a map error we know we are in offline mode
-			switch(event.data) {
+					console.log('Service Worker Error', err);
 
-				case 'Map Error':
-					_app.online = false;
-					break;
-				case 'Map Good':
-					_app.online = true;
-					break;
+				});
+
+				navigator.serviceWorker.addEventListener('message', (event) => {
+
+					//If we get a map error we know we are in offline mode
+					switch(event.data) {
+
+						case 'Map Error':
+							_app.online = false;
+							break;
+						case 'Map Good':
+							_app.online = true;
+							break;
+						case 'skipWaiting':
+							console.log('Calling skipwaiting');
+							navigator.serviceWorker.skipWaiting();
+							break;
+
+					}
+
+				});
 
 			}
 
 		});
-
-	}
+  		
+  	});
 
 })(document);	
