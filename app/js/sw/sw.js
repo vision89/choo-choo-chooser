@@ -51,7 +51,9 @@
 					'bower_components/EventListener/EventListener.js',
 					'bower_components/es6-promise/es6-promise.min.js',
 					'bower_components/paper-toast/paper-toast.html',
-					'assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg'
+					'assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg',
+					'bower_components/IndexedDBShim/dist/indexeddbshim.min.js',
+					'bower_components/indexeddb-promised/lib/idb.js'
 
 				]);
 

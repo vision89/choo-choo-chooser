@@ -87,12 +87,21 @@
 			</paper-drawer-panel>
 
 			<iron-media-query query="(max-width: 767px)" query-matches="{{mobile}}"></iron-media-query>
-
+			
+			<!-- Load a new serice worker -->
 			<paper-toast id="reloadtoast" duration="13000" text="A new version of Choo Choo Chooser is available, ">
+
 				<paper-button class="pink-button" onclick="[[reloadPage]]">Update!</paper-button>
+
 			</paper-toast>
 
 		</template>
+
+		<!-- indexeddb shim -->
+		<script src="bower_components/IndexedDBShim/dist/indexeddbshim.min.js"></script>
+
+		<!-- IndexedDB Promised -->
+		<script src="bower_components/indexeddb-promised/lib/idb.js"></script>
 
 		<!-- App Logic -->
 		<script src="js/all.js"></script>
