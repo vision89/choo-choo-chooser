@@ -95,6 +95,10 @@
 
 			</paper-toast>
 
+			
+			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-json-updated="updatedJsonFiles" on-error="gtfsErrorFiles"></gtfs-feed>
+
+
 		</template>
 
 		<!-- indexeddb shim -->

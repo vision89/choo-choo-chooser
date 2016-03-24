@@ -5,25 +5,35 @@
 	let _app = document.querySelector('#app');
 	let _isOpening = false;
 
+	_app.files = [
+		'../../assets/GTFS Caltrain Devs/agency.txt',
+		'../../assets/GTFS Caltrain Devs/calendar.txt',
+		'../../assets/GTFS Caltrain Devs/calendar_dates.txt',
+		'../../assets/GTFS Caltrain Devs/fare_attributes.txt',
+		'../../assets/GTFS Caltrain Devs/fare_rules.txt',
+		'../../assets/GTFS Caltrain Devs/feed_info.txt',
+		'../../assets/GTFS Caltrain Devs/routes.txt',
+		'../../assets/GTFS Caltrain Devs/stop_times.txt',
+		'../../assets/GTFS Caltrain Devs/stops.txt',
+		'../../assets/GTFS Caltrain Devs/trips.txt'
+	];
+
+	_app.updatedJsonFiles = function() {
+
+		console.log('Json from files: ', _app.filesJson);
+
+	};
+
+	_app.gtfsErrorFiles = function(err) {
+
+		console.log('Error updating json from files: ', err);
+
+	};
+
 	// See https://github.com/Polymer/polymer/issues/1381
   	window.addEventListener('WebComponentsReady', function() {
 
-  		let neededScripts = [];
-
-		//These should already be shimemed for IE but in case were on a non IE browser that doesn't support them
-		if(!('CustomEvent' in self)) {
-
-			neededScripts.push('/bower_components/EventListener/EventListener.js');
-
-		}
-
-		if(!('Promise' in self)) {
-
-			neededScripts.push('/bower_components/es6-promise/es6-promise.min.js');
-
-		}
-
-		/**
+  		/**
 		 * Show the toast!
 		 * @param  {object} worker 
 		 * 
@@ -44,8 +54,23 @@
 
 		}
 
+  		let neededScripts = [];
+
+		//These should already be shimemed for IE but in case were on a non IE browser that doesn't support them
+		if(!('CustomEvent' in self)) {
+
+			neededScripts.push('/bower_components/EventListener/EventListener.js');
+
+		}
+
+		if(!('Promise' in self)) {
+
+			neededScripts.push('/bower_components/es6-promise/es6-promise.min.js');
+
+		}
+
 		//Load the needed scripts
-		loadScripts(neededScripts, function() {
+		App.ScriptLoader.loadScripts(neededScripts, function() {
 
 			/**
 			 * Selected view
@@ -87,6 +112,27 @@
 	  			if(_isOpening) {
 
 	  				//Get the departure data
+	  				fetch('http://services.my511.org/Transit2.0/GetAgencies.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223',{
+	  					method: 'GET',
+						mode: 'cors',
+						headers: new Headers({
+							'Content-Type': 'text/xml; charset=utf-8'
+						})
+					}).then(function(response) {
+
+						console.log('Response: ', response);
+
+	  					response.text().then(function(data) {
+
+	  						console.log('Data: ', data);
+
+	  					});
+
+	  				}).catch(function(error) {
+
+	  					console.log('Error! ', error);
+
+	  				});
 
 	  			}
 
@@ -113,11 +159,26 @@
 
 	  		};
 
+	  		/**
+	  		 * Received the agencies
+	  		 * @param  {object} response list of agencies
+	  		 */
+	  		_app.agencyResponse = function(response) {
+
+	  			console.log('Agencies: ', response);
+
+	  		};
+
+	  		/**
+	  		 * Parse the gtfs files
+	  		 */
+	  		_app.$.gtfsfiles.parseFiles();
+
+			/**
+
 	  		if(navigator.serviceWorker) {
 
 				navigator.serviceWorker.register('./sw.js').then(function(reg) {
-
-					console.log('ServiceWorker registration successful with scope: ', reg.scope);
 
 				    if (!navigator.serviceWorker.controller) {
 
@@ -194,6 +255,8 @@
 				});
 
 			}
+
+			**/
 
 		});
   		
