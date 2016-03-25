@@ -95,8 +95,11 @@
 
 			</paper-toast>
 
-			
+			<!-- Make json data from gtfs files -->
 			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-json-updated="updatedJsonFiles" on-error="gtfsErrorFiles"></gtfs-feed>
+			
+			<!-- Make json data from agency xml -->
+			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{agencyJson}}" on-json-updated="updatedAgencyXML" on-error="gtfsErrorXML"></gtfs-feed>
 
 
 		</template>

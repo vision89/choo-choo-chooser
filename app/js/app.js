@@ -2,10 +2,13 @@
 (function(document) {
 	'use strict';
 
-	let _app = document.querySelector('#app');
+	let app = document.querySelector('#app');
+	app.agencytext = '';
+	app.agencyjson = Object.create(null);
+
 	let _isOpening = false;
 
-	_app.files = [
+	app.files = [
 		'../../assets/GTFS Caltrain Devs/agency.txt',
 		'../../assets/GTFS Caltrain Devs/calendar.txt',
 		'../../assets/GTFS Caltrain Devs/calendar_dates.txt',
@@ -18,13 +21,13 @@
 		'../../assets/GTFS Caltrain Devs/trips.txt'
 	];
 
-	_app.updatedJsonFiles = function() {
+	app.updatedJsonFiles = function() {
 
-		console.log('Json from files: ', _app.filesJson);
+		console.log('Json from files: ', app.filesJson);
 
 	};
 
-	_app.gtfsErrorFiles = function(err) {
+	app.gtfsErrorFiles = function(err) {
 
 		console.log('Error updating json from files: ', err);
 
@@ -40,17 +43,17 @@
 		 */
 		function updateToast(worker) {
 
-			_app.reloadPage = function() {
+			app.reloadPage = function() {
 
 				worker.postMessage({action: 'skipWaiting'});
 
-				_app.$.reloadtoast.close();
+				app.$.reloadtoast.close();
 
 				window.location.reload();
 
 			};
 
-			_app.$.reloadtoast.open();
+			app.$.reloadtoast.open();
 
 		}
 
@@ -76,14 +79,14 @@
 			 * Selected view
 			 * @type {number}
 			 */
-	  		_app.selected = 0;
+	  		app.selected = 0;
 
 	  		/**
 			 * Show the map view
 			 * @function viewMap
 			 *
 			 */
-	  		_app.viewMap = function() {
+	  		app.viewMap = function() {
 
 	  			app.selected = 0;
 
@@ -94,9 +97,9 @@
 			 * @function viewSchedule
 			 *
 			 */
-	  		_app.viewSchedule = function() {
+	  		app.viewSchedule = function() {
 
-	  			_app.selected = 1;
+	  			app.selected = 1;
 
 	  		};
 
@@ -105,7 +108,7 @@
 			 * @function populateDeparture
 			 *
 			 */
-	  		_app.populateDeparture = function() {
+	  		app.populateDeparture = function() {
 
 	  			_isOpening = !_isOpening;
 
@@ -120,11 +123,11 @@
 						})
 					}).then(function(response) {
 
-						console.log('Response: ', response);
-
 	  					response.text().then(function(data) {
 
-	  						console.log('Data: ', data);
+	  						app.set('agencytext', String(data));
+
+	  						app.$.gtfsagency.parseXML();
 
 	  					});
 
@@ -136,7 +139,7 @@
 
 	  			}
 
-	  			_app.$.paperDrawerPanel.togglePanel();
+	  			app.$.paperDrawerPanel.togglePanel();
 
 	  		};
 
@@ -145,7 +148,7 @@
 			 * @function populateDeparture
 			 *
 			 */
-	  		_app.populateDestination = function() {
+	  		app.populateDestination = function() {
 
 	  			_isOpening = !_isOpening;
 
@@ -155,24 +158,25 @@
 	  				
 	  			}
 
-	  			_app.$.paperDrawerPanel.togglePanel();
+	  			app.$.paperDrawerPanel.togglePanel();
 
 	  		};
 
 	  		/**
 	  		 * Received the agencies
-	  		 * @param  {object} response list of agencies
 	  		 */
-	  		_app.agencyResponse = function(response) {
+	  		app.updatedAgencyXML = function(e) {
 
-	  			console.log('Agencies: ', response);
+	  			e.stopPropagation();
+
+	  			console.log('Agency JSON: ', app.agencyJson);
 
 	  		};
 
 	  		/**
 	  		 * Parse the gtfs files
 	  		 */
-	  		_app.$.gtfsfiles.parseFiles();
+	  		app.$.gtfsfiles.parseFiles();
 
 			/**
 
@@ -240,10 +244,10 @@
 					switch(event.data) {
 
 						case 'Map Error':
-							_app.online = false;
+							app.online = false;
 							break;
 						case 'Map Good':
-							_app.online = true;
+							app.online = true;
 							break;
 						case 'skipWaiting':
 							console.log('Calling skipwaiting');
