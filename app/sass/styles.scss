@@ -43,6 +43,19 @@ body {
 
 	}
 
+	.horizontal_center {
+
+		text-align: center;
+
+	}
+
+	.vertical_center {
+
+		padding-top: 30px;
+		padding-bottom: 30px;
+
+	}
+
 	@media screen and (max-width: 767px) {
 
 		.google-map {

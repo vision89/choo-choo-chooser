@@ -5,6 +5,7 @@
 	let app = document.querySelector('#app');
 	app.agencytext = '';
 	app.agencyjson = Object.create(null);
+	app.loading = false;
 
 	let _isOpening = false;
 
@@ -114,6 +115,8 @@
 
 	  			if(_isOpening) {
 
+	  				app.loading = true;
+
 	  				//Get the departure data
 	  				fetch('http://services.my511.org/Transit2.0/GetAgencies.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223',{
 	  					method: 'GET',
@@ -129,11 +132,15 @@
 
 	  						app.$.gtfsagency.parseXML();
 
+	  						app.loading = false;
+
 	  					});
 
 	  				}).catch(function(error) {
 
 	  					console.log('Error! ', error);
+
+	  					app.loading = false;
 
 	  				});
 
@@ -169,7 +176,7 @@
 
 	  			e.stopPropagation();
 
-	  			console.log('Agency JSON: ', app.agencyJson);
+	  			console.log('Agency JSON: ', app.gtfsJson);
 
 	  		};
 

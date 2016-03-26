@@ -47,13 +47,32 @@
 
 					</paper-toolbar>
 					
-					<!-- Selectable stations go here -->
-					<paper-listbox>
+					<!-- Were grabbing values -->
+					<template is="dom-if" if="[[loading]]">
+						
+						<div class="horizontal_center vertical_center">
 
-						<paper-item>Item 1</paper-item>
-						<paper-item>Item 2</paper-item>
+							<paper-spinner active></paper-spinner>
 
-					</paper-listbox>
+						</div>
+
+					</template>
+
+					<!-- We have the values -->
+					<template is="dom-if" if="[[!loading]]">
+
+						<!-- Selectable stations go here -->
+						<paper-listbox selected="0">
+
+							<template is="dom-repeat" items="[[gtfsJson.agencyList]]">
+
+								<paper-item>[[item._attr.Name._value]]</paper-item>
+
+							</template>
+
+						</paper-listbox>
+
+					</template>
 
 				</paper--header-panel>
 				
@@ -99,7 +118,7 @@
 			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-json-updated="updatedJsonFiles" on-error="gtfsErrorFiles"></gtfs-feed>
 			
 			<!-- Make json data from agency xml -->
-			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{agencyJson}}" on-json-updated="updatedAgencyXML" on-error="gtfsErrorXML"></gtfs-feed>
+			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-json-updated="updatedAgencyXML" on-error="gtfsErrorXML"></gtfs-feed>
 
 
 		</template>
