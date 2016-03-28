@@ -5,7 +5,9 @@
 	let app = document.querySelector('#app');
 	app.agencytext = '';
 	app.agencyjson = Object.create(null);
+	app.isDeparture = false;
 	app.loading = false;
+	app.routes = [];
 
 	let _isOpening = false;
 
@@ -21,12 +23,6 @@
 		'../../assets/GTFS Caltrain Devs/stops.txt',
 		'../../assets/GTFS Caltrain Devs/trips.txt'
 	];
-
-	app.updatedJsonFiles = function() {
-
-		console.log('Json from files: ', app.filesJson);
-
-	};
 
 	app.gtfsErrorFiles = function(err) {
 
@@ -74,7 +70,9 @@
 		}
 
 		//Load the needed scripts
-		App.ScriptLoader.loadScripts(neededScripts, function() {
+		appmods.ScriptLoader.loadScripts(neededScripts, function() {
+
+			let _realTimeData = new appmods.RealTimeData();
 
 			/**
 			 * Selected view
@@ -116,25 +114,15 @@
 	  			if(_isOpening) {
 
 	  				app.loading = true;
+	  				app.isDeparture = true;
 
-	  				//Get the departure data
-	  				fetch('http://services.my511.org/Transit2.0/GetAgencies.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223',{
-	  					method: 'GET',
-						mode: 'cors',
-						headers: new Headers({
-							'Content-Type': 'text/xml; charset=utf-8'
-						})
-					}).then(function(response) {
+	  				_realTimeData.getAgencies().then(function(data) {
 
-	  					response.text().then(function(data) {
+	  					app.set('agencytext', String(data));
 
-	  						app.set('agencytext', String(data));
+  						app.$.gtfsagency.parseXML();
 
-	  						app.$.gtfsagency.parseXML();
-
-	  						app.loading = false;
-
-	  					});
+  						app.loading = false;
 
 	  				}).catch(function(error) {
 
@@ -155,13 +143,30 @@
 			 * @function populateDeparture
 			 *
 			 */
-	  		app.populateDestination = function() {
+	  		app.populateRoutes = function() {
 
 	  			_isOpening = !_isOpening;
 
 	  			if(_isOpening) {
 
-	  				//Get the departure data
+	  				app.loading = true;
+	  				app.isDeparture = false;
+
+	  				_realTimeData.getRoutes(app.departure).then(function(data) {
+
+	  					app.set('routestext', String(data));
+
+  						app.$.gtfsroutes.parseXML();
+
+  						app.loading = false;
+
+	  				}).catch(function(error) {
+
+	  					console.log('Error! ', error);
+
+	  					app.loading = false;
+
+	  				});
 	  				
 	  			}
 
@@ -169,14 +174,83 @@
 
 	  		};
 
-	  		/**
-	  		 * Received the agencies
-	  		 */
-	  		app.updatedAgencyXML = function(e) {
+	  		app.updatedAgenciesXML = function(e) {
 
 	  			e.stopPropagation();
 
-	  			console.log('Agency JSON: ', app.gtfsJson);
+	  			console.log('Agencies: ', app.gtfsJson.agencyList);
+
+	  		};
+
+	  		/**
+	  		 * Received the routes
+	  		 */
+	  		app.updatedRoutesXML = function(e) {
+
+	  			e.stopPropagation();
+
+	  			app.set('routes', []);
+
+	  			try {
+
+	  				app.set('routes', app.gtfsRoutesJson.agencyList[0].RouteList[0].Route);
+
+	  			} catch (e) {
+
+	  				console.log('Error: ', e);
+
+	  			}
+
+	  		};
+
+	  		app.updatedStopsXML = function(e) {
+
+	  			e.stopPropagation();
+
+	  			console.log('Stops: ', app.gtfsStopsJson);
+
+	  		};
+
+	  		/**
+	  		 * Selected an agency from the map card
+	  		 * @param  {object} e event
+	  		 */
+	  		app.agencySelected = function(e, val) {
+
+	  			e.stopPropagation();
+
+	  			app.departure = val.item.value._attr.Name._value;
+
+	  			app.$.paperDrawerPanel.closeDrawer();
+	  			_isOpening = false;
+
+	  		};
+
+	  		/**
+	  		 * Selected route from the card
+	  		 * @param  {object} e   event
+	  		 * @param  {object} val selected value
+	  		 */
+	  		app.routeSelected = function(e, val) {
+
+	  			e.stopPropagation();
+
+	  			app.set('selectedRoute', val.item.value._attr.Name._value);
+
+	  			app.$.paperDrawerPanel.closeDrawer();
+	  			_isOpening = false;
+
+	  			_realTimeData.getStops(app.departure, val.item.value._attr.Code._value).then(function(data) {
+
+  					app.set('stopstext', String(data));
+
+					app.$.gtfsstops.parseXML();
+
+  				}).catch(function(error) {
+
+  					console.log('Error! ', error);
+
+  				});
 
 	  		};
 
@@ -184,8 +258,6 @@
 	  		 * Parse the gtfs files
 	  		 */
 	  		app.$.gtfsfiles.parseFiles();
-
-			/**
 
 	  		if(navigator.serviceWorker) {
 
@@ -266,8 +338,6 @@
 				});
 
 			}
-
-			**/
 
 		});
   		

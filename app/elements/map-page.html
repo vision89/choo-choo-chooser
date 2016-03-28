@@ -10,7 +10,6 @@
 
 	    :host {
 	      display: block;
-	      height: 70em;
 	    }
 
 	    .choosy-card-mobile-online {
@@ -62,7 +61,7 @@
 	
 	<template>
 
-		<paper-card id="inputcard" heading="Choose a departure and destination" class$="[[_cardClass]]" image="[[_image]]">
+		<paper-card id="inputcard" heading="Choose an agency and a route" class$="[[_cardClass]]" image="[[_image]]">
 
 			<div class="card-content">
 				
@@ -71,7 +70,7 @@
 
 					<div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 
-						<paper-input id="departure" label="Click + to select a departure station" disabled="true" error-message="Required" required></paper-input>
+						<paper-input id="departure" label="Click + to select an agency" disabled="true" error-message="Required" value="[[departure]]" required></paper-input>
 
 					</div>
 
@@ -88,13 +87,13 @@
 
 					<div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 						
-						<paper-input id="destination" label="Click + to select a destination station" disabled="true" error-message="Required" required></paper-input>
+						<paper-input id="destination" label="Click + to select a route" disabled="true" error-message="Required" value="[[route]]" required></paper-input>
 
 					</div>
 
 					<div class="mdl-cell mdl-cell--2-col mdl-cell--12-col-tablet mdl-cell--12-col-phone">
 						
-						<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateDestination"></paper-fab>
+						<paper-fab suffix icon="add" paper-drawer-toggle on-click="populateRoutes" disabled="[[!departure]]"></paper-fab>
 
 					</div>
 
@@ -172,10 +171,10 @@
 		    	},
 
 		    	/**
-		    	 * Destination train
+		    	 * Route
 		    	 * @type {string}
 		    	 */
-		    	destination: {
+		    	route: {
 
 		    		type: String,
 			        notify: true,
@@ -239,9 +238,9 @@
 		     * Called on destination button press
 		     * 
 		     */
-		    populateDestination: function() {
+		    populateRoutes: function() {
 
-		    	this.fire('destination-pressed');
+		    	this.fire('routes-pressed');
 
 		    },
 

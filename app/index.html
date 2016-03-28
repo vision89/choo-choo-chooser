@@ -38,7 +38,7 @@
 
 			<paper-drawer-panel id="paperDrawerPanel" force-narrow="true" disable-edge-swipe="true">
 
-				<paper--header-panel drawer>
+				<paper-header-panel drawer>
 
 					<!-- Drawer Toolbar -->
 					<paper-toolbar id="drawerToolbar">
@@ -61,47 +61,66 @@
 					<!-- We have the values -->
 					<template is="dom-if" if="[[!loading]]">
 
-						<!-- Selectable stations go here -->
-						<paper-listbox selected="0">
+						<template is="dom-if" if="[[isDeparture]]"> 
 
-							<template is="dom-repeat" items="[[gtfsJson.agencyList]]">
+							<!-- Selectable stations go here -->
+							<paper-listbox on-iron-select="agencySelected">
 
-								<paper-item>[[item._attr.Name._value]]</paper-item>
+								<template is="dom-repeat" items="[[gtfsJson.agencyList]]">
 
-							</template>
+									<paper-item value="[[item]]">[[item._attr.Name._value]]</paper-item>
 
-						</paper-listbox>
+								</template>
+
+							</paper-listbox>
+
+						</template>
+
+						<template is="dom-if" if="[[!isDeparture]]">
+
+							<!-- Selectable stations go here -->
+							<paper-listbox id="routelist" on-iron-select="routeSelected">
+
+								<template is="dom-repeat" items="[[routes]]">
+
+									<paper-item value="[[item]]">[[item._attr.Name._value]]</paper-item>
+
+								</template>
+
+							</paper-listbox>
+
+						</template>
 
 					</template>
 
-				</paper--header-panel>
+				</paper-header-panel>
 				
 				<!-- Top Header -->
-				<paper--header-panel main>
+				<paper-header-panel main>
 
 					<paper-toolbar id="main-toolbar">
 
 						<div class="middle middle-container">
 
-							<div class="app-name">Choo Choo Chooser!</div>
+							Choo Choo Chooser!
 
 						</div>
 
 					</paper-toolbar>
 
-					<div class="content">
+					<div>
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
-
-							<map-page class="choosey-card-offline" on-destination-pressed="populateDestination" on-departure-pressed="populateDeparture" departure="{{departure}}" destination="{{destination}}" is-mobile="[[mobile]]" is-online="[[online]]"></map-page>
+							
+							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture" departure="{{departure}}" route="{{selectedRoute}}" is-mobile="[[mobile]]" is-online="[[online]]"></map-page>
 
 							<schedule-page></schedule-page>
 						    
 						</neon-animated-pages>
-
+					
 					</div>
 
-				</paper--header-panel>
+				</paper-header-panel>
 
 			</paper-drawer-panel>
 
@@ -115,11 +134,16 @@
 			</paper-toast>
 
 			<!-- Make json data from gtfs files -->
-			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-json-updated="updatedJsonFiles" on-error="gtfsErrorFiles"></gtfs-feed>
+			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
 			
 			<!-- Make json data from agency xml -->
-			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-json-updated="updatedAgencyXML" on-error="gtfsErrorXML"></gtfs-feed>
+			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-json-updated="updatedAgenciesXML" on-error="gtfsErrorXML"></gtfs-feed>
 
+			<!-- Make json data from routes xml -->
+			<gtfs-feed id="gtfsroutes" xml="[[routestext]]" json="{{gtfsRoutesJson}}" on-json-updated="updatedRoutesXML" on-error="gtfsErrorXML"></gtfs-feed>
+
+			<!-- Make json data from stops xml -->
+			<gtfs-feed id="gtfsstops" xml="[[stopstext]]" json="{{gtfsStopsJson}}" on-json-updated="updatedStopsXML" on-error="gtfsErrorXML"></gtfs-feed>
 
 		</template>
 

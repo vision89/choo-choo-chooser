@@ -205,7 +205,6 @@ gulp.task('dist-sw-js', function() {
 gulp.task('dev-concat-minify', function() {
 
 	return gulp.src('./app/index.html')
-		.pipe(htmlmin())
 		.pipe(gulp.dest('./dev'))
 		.pipe(browserSync.stream());
 });

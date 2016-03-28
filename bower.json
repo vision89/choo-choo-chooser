@@ -43,7 +43,6 @@
     "iron-media-query": "PolymerElements/iron-media-query#^1.0.8",
     "paper-toast": "PolymerElements/paper-toast#^1.2.0",
     "indexeddb-promised": "jakearchibald/indexeddb-promised",
-    "iron-ajax": "PolymerElements/iron-ajax#^1.2.0",
     "gtfs-feed": "vision89/gtfs-feed#^0.0.8",
     "paper-item": "PolymerElements/paper-item#^1.1.4",
     "paper-spinner": "PolymerElements/paper-spinner#^1.1.1"

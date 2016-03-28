@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
-var App = App || Object.create(null);
+var appmods = appmods || Object.create(null);
 
-App.ScriptLoader = (function(document) {
+appmods.ScriptLoader = (function(document) {
   'use strict';
 
   //Based this on the loadScripts from the wittr udacity app

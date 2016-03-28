@@ -15,7 +15,7 @@
 
 				return cache.addAll([
 
-					'/',
+					'index.html',
 					'bower_components/material-design-lite/material.min.css',
 					'https://fonts.googleapis.com/icon?family=Material+Icons',
 					'css/styles.css',
@@ -26,6 +26,7 @@
 					'bower_components/iron-icons/iron-icons.html',
 					'bower_components/iron-input/iron-input.html',
 					'bower_components/iron-label/iron-label.html',
+					'bower_components/iron-list/iron-list.html',
 					'bower_components/iron-media-query/iron-media-query.html',
 					'bower_components/neon-animation/neon-animated-pages.html',
 					'bower_components/paper-button/paper-button.html',
@@ -36,6 +37,8 @@
 					'bower_components/paper-fab/paper-fab.html',
 					'bower_components/paper-card/paper-card.html',
 					'bower_components/paper-icon-button/paper-icon-button.html',
+					'bower_components/paper-item/paper-item.html',
+					'bower_components/paper-spinner/paper-spinner.html',
 					'bower_components/paper-input/paper-input.html',
 					'bower_components/google-map/google-map.html',
 					'bower_components/google-map/google-map-directions.html',
@@ -54,8 +57,7 @@
 					'assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg',
 					'bower_components/IndexedDBShim/dist/indexeddbshim.min.js',
 					'bower_components/indexeddb-promised/lib/idb.js',
-					'bower_components/iron-ajax/iron-ajax.html',
-					'bower_components/gtfs-feed/dist/gtfs-feed.html'
+					'bower_components/gtfs-feed/dev/gtfs-feed.html'
 
 				]);
 

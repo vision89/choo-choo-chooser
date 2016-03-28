@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
-var App = App || Object.create(null);
+var appmods = appmods || Object.create(null);
 
-App.PublicTransportationDB = (function() {
+appmods.PublicTransportationDB = (function() {
 	'use strict';
 
 	const dbname = 'public-transportation-db-v1';
