@@ -255,6 +255,22 @@
 	  		};
 
 	  		/**
+	  		 * Get the users location
+	  		 * @param  {object} data users location
+	  		 * 
+	  		 */
+	  		appmods.LocationUtility.getLocation().then(function(data) {
+
+	  			app.set('loc', data);
+
+	  		}).catch(function(error) {
+
+	  			//If we can't get the users location assume we are offline
+	  			app.set('online', false);
+
+	  		});
+
+	  		/**
 	  		 * Parse the gtfs files
 	  		 */
 	  		app.$.gtfsfiles.parseFiles();

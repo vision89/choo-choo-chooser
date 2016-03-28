@@ -98,16 +98,6 @@
 
 	self.addEventListener('fetch', function(event) {
 
-		/**
-		let requestUrl = new URL(event.request.url);
-		if (requestUrl.origin === location.origin) {
-			if (requestUrl.pathname === '/') {
-				event.respondWith(caches.match('index.html'));
-				return;
-			}
-		}
-		**/
-
 		if(event.request.url.indexOf('maps.googleapis.com') > -1) {
 
 			return fetch(event.request).then(function(response) {
