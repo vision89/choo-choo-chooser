@@ -1,0 +1,157 @@
+agency_id,route_id,route_short_name,route_long_name,route_type
+AC Transit,1-124,1,Bayfair Bart- Dtn. Berkeley,3
+AC Transit,11-123,11,Piedmont - Fruitvale Ave.,3
+AC Transit,12-123,12,Dtn. Oakland /Dtn. Berkeley,3
+AC Transit,14-123,14,11th Jefferson/ Fruitvale Bart,3
+AC Transit,18-123,18,San Pablo & Monroe - Moraga & Mountain,3
+AC Transit,1R-124,1R,Univ/Calif - BYBA,3
+AC Transit,20-123,20,Fruitvale Ave /Alameda /11th M.L.K. JR WY,3
+AC Transit,200-124,200,Union City BART-Newpark Mall-Fremont BART,3
+AC Transit,21-123,21,Fruitvale Ave /Alameda/ Oakland Airport,3
+AC Transit,210-124,210,Union Landing - Frmt. Blvd. - Ohlone,3
+AC Transit,212-124,212,Fremont BART-Newpark Mall-Pacific Commons,3
+AC Transit,215-124,215,Fremont BART-Mission-Warm Springs-Industrial Area,3
+AC Transit,216-124,216,U.C. BART- Niles -Fremont BART-Ohlone Newark,3
+AC Transit,217-124,217,Frmt BART - Mission - Milpitas - Alder,3
+AC Transit,22-124,22,Hayward Bart -South Hayward Bart - Chabot,3
+AC Transit,232-124,232,Fremont BART-U.C. BART-Mission-Ohlone Newark,3
+AC Transit,239-124,239,Fremont BART-Warm Springs,3
+AC Transit,25-123,25,El Cerrito BART-Cntr & Shatt-UC Village,3
+AC Transit,251-124,251,Fremont BART-Mowry-Thornton,3
+AC Transit,26-123,26,Emeryville/14th Bdwy/lLakeshore,3
+AC Transit,275-124,275,U.C.BART- Thornton- Lido Faire,3
+AC Transit,31-123,31,Alameda Point/ W. Oakland/MACA BART,3
+AC Transit,314-123,314,Alameda Senior Shuttle,3
+AC Transit,32-124,32,Hayward Bart-C.V. Bart-Hwd. Bart-Cherryland,3
+AC Transit,339-123,339,Fruitvale Bart - Chabot Observatory,3
+AC Transit,356-123,356,Alameda Senior Shuttle,3
+AC Transit,37-124,37,HWD. BART-WHITMAN-SO. HWD. BART,3
+AC Transit,376-123,376,North Richmond Shuttle,3
+AC Transit,386-124,386,Hayw. BART -  Winton (SS ONLY),3
+AC Transit,39-123,39,Fruitvale Bart /Skyline High School,3
+AC Transit,40-123,40,Dtn. Oakland/Bayfair Bart,3
+AC Transit,45-123,45,Eastmont T. C./Foothill Sq.,3
+AC Transit,46-123,46,Coliseum Bart/Knowland Zoo,3
+AC Transit,46L-123,46L,Coliseum BART-Mountain -Golf Links Rd-Dunkirk Ave,3
+AC Transit,47-123,47,Fruitvale Bart - Maxwell Park,3
+AC Transit,48-124,48,Bayfair BART- Castro Valley- Hayward bart,3
+AC Transit,49-123,49,Rockridge Bart / Dwight S.P.,3
+AC Transit,51A-123,51A,RockRidge to FBBA,3
+AC Transit,51B-123,51B,RockRidge - 3RUN,3
+AC Transit,52-123,52,U.C. Village - U.C. Campus,3
+AC Transit,54-123,54,Fruitvale BART - Merritt College,3
+AC Transit,57-123,57,San Pablo Ave to Foothill Sq,3
+AC Transit,58L-123,58L,Eastmont T.C. - Oakland Amtrak,3
+AC Transit,60-124,60,CSUEB / HAYWARD BART SHUTTLE,3
+AC Transit,604-123,604,Berkeley - Oakland - H.Royce School,3
+AC Transit,605-123,605,Berkeley - Oakland - H.Royce School,3
+AC Transit,606-123,606,Berkeley - Oakland - H.Royce School,3
+AC Transit,607-123,607,Richmond H.S. - Point Richmond,3
+AC Transit,618-123,618,Montera J.H.S. - Skyline High School,3
+AC Transit,62-123,62,West  Oakland - Fruitvale Bart,3
+AC Transit,620-124,620,Cedar Blvd.,3
+AC Transit,621-124,621,Fremont - American H.S.,3
+AC Transit,623-124,623,Horner JH - P. Padre Pkwy & Mission,3
+AC Transit,624-124,624,Paseo Padre - Mission S.J. High School,3
+AC Transit,625-124,625,Centerville JHS - Niles & El Portal,3
+AC Transit,626-124,626,Newark Blvd.,3
+AC Transit,628-124,628,Cedar Blvd.,3
+AC Transit,629-124,629,Cherry St.,3
+AC Transit,631-123,631,Alameda - Encinal High School,3
+AC Transit,638-123,638,73rd International Blvd - Skyline High,3
+AC Transit,641-123,641,Fremont High- Frick Middle - 106th Bancroft,3
+AC Transit,642-123,642,Montera M.S./ Snake Rd.,3
+AC Transit,643-123,643,Skyline High - Fruitvale & Montana,3
+AC Transit,646-123,646,Montera -Skyline High- Coliseum Bart,3
+AC Transit,648-123,648,Fruitvale Bart - Skyline High,3
+AC Transit,649-123,649,Skyline High - Grass Valley,3
+AC Transit,65-123,65,Spruce St. - Euclid Ave.,3
+AC Transit,650-123,650,Skyline High - Montera Middle School,3
+AC Transit,651-123,651,Holy Names H.S./ 9th Broadway,3
+AC Transit,652-123,652,Skyline H.S./ Sequoyah Rd/ 90th. & Inter Blvd,3
+AC Transit,653-123,653,Montera M.S./ Macarthur Blvd/ 40th San Pablo Ave,3
+AC Transit,654-123,654,Skyline H.S./ 35th Ave/ Fruitvale Bart,3
+AC Transit,655-123,655,Montera M.S./ 35th Ave/ Fruitvale Bart,3
+AC Transit,657-123,657,Oakland Tech. H.S./ Macarthur Blvd/ Coliseum Bart,3
+AC Transit,658-123,658,Skyline H.S./ Macarthur Blvd/ 40th San Pablo Ave,3
+AC Transit,660-123,660,Montera M.S./ 40th San Pablo Ave,3
+AC Transit,662-123,662,Skyline H.S./ 40th San Pablo Ave,3
+AC Transit,663-123,663,Encianal H.S./  Island H.S./ Broadway Blanding,3
+AC Transit,667-123,667,N.Richmond - Rich. BART - El Cerrito,3
+AC Transit,668-123,668,21st & Macdonald Ave. - El Cerrito,3
+AC Transit,669-123,669,CCC - DeAnza HS/Crespi MS,3
+AC Transit,67-123,67,Berkeley Bart - Grizzly Peak Blvd.,3
+AC Transit,671-123,671,CCC - De Anza HS/Crespi MS,3
+AC Transit,672-123,672,N.Richmond - San Pablo - El Sobrante,3
+AC Transit,675-123,675,21st & Macdonald Ave. - El Cerrito,3
+AC Transit,676-123,676,N.Richmond - San Pablo - El Sobrante,3
+AC Transit,677-123,677,Montera M.S./ Skyline Rd.,3
+AC Transit,679-123,679,Crespi MS & DeAnza High Schools,3
+AC Transit,680-123,680,Bishop O'Dowd H.S./ Macarthur Blvd,3
+AC Transit,681-123,681,Rich Pkwy & W.Macd - DeJean M.S.,3
+AC Transit,682-123,682,Bishop O'Dowd H.S./ Montclair/ 40th Broadway,3
+AC Transit,684-123,684,Rich. BART /El Cerrito HS,3
+AC Transit,687-123,687,Bay Farm Is. / Lincoln Middle Sch.,3
+AC Transit,688-123,688,St. Marys H.S./ Montclair/ Lakeshore Ave,3
+AC Transit,691-123,691,Skyline Rd/ Montclair/ Snake Rd,3
+AC Transit,696-123,696,Oakland Tech H.S./ Montclair/ Redwood Rd,3
+AC Transit,7-123,7,D.NORTE BART/BERKELEY BART,3
+AC Transit,70-123,70,Richmond Pkwy. TC. - Richmond BART,3
+AC Transit,71-123,71,Richmond Pkwy TC - El Cerrito Plaza BART,3
+AC Transit,72-123,72,Richmond - Downtown Oakland,3
+AC Transit,72M-123,72M,Richmond - Downtown Oakland,3
+AC Transit,72R-123,72R,San Pablo Rapid BUS,3
+AC Transit,73-123,73,Eastmont T.C. - Oakland Airport,3
+AC Transit,74-123,74,CCC/Richmond BART/Ford Pt.,3
+AC Transit,75-124,75,Bayfair Bart-Washington Manor-S. L. Bart,3
+AC Transit,76-123,76,Hilltop Mall - CCC - del Norte BART,3
+AC Transit,800-123,800,OWL-DTN.OAKLAND/RICHMOND,3
+AC Transit,801-124,801,OWL-DTN.OAKLAND/FREMONT BART,3
+AC Transit,802-123,802,OWL- Berkeley-Emeryville/Dnt-Oak,3
+AC Transit,805-123,805,OWL-Dtn. Oakland - Oakland  Airport,3
+AC Transit,83-124,83,Hayward BART - S. Hayward BART,3
+AC Transit,840-123,840,OWL-Dtn. Oakland - Eastmont T. C.,3
+AC Transit,85-124,85,San Leandro BART - Union Landing,3
+AC Transit,851-123,851,OWL - ALAMEDA/DNT BERK,3
+AC Transit,86-124,86,Hayward BART - S. Hayward BART,3
+AC Transit,88-123,88,Berkeley BART - Downtown Oakland,3
+AC Transit,89-124,89,San Leandro Bart-S. L. Marina-Bayfair Bart,3
+AC Transit,93-124,93,Hayward Bart-Bayfair Bart-San Lorenzo,3
+AC Transit,94-124,94,Hayward Bart-Hayward Hills,3
+AC Transit,95-124,95,Kelly Hill - Hayward BART,3
+AC Transit,97-124,97,Union City BART - Hesperian Blvd.,3
+AC Transit,98-123,98,Coliseum Bart - 98th Ave.,3
+AC Transit,99-124,99,Bayfair Bart - Hwd.BART- UC  Bart - Fmt Bart,3
+AC Transit,B-123,B,San Francisco - Trestle Glen,3
+AC Transit,BSD-123,BSD,BROADWAY SHUTTLE DAY,3
+AC Transit,BSN-123,BSN,BROADWAY SHUTTLE NIGHT,3
+AC Transit,C-123,C,San Francisco - Piedmont,3
+AC Transit,CB-123,CB,San Francisco - Montclair,3
+AC Transit,DB-107,DB,Dumbarton Express,3
+AC Transit,DB1-107,DB1,Dumbarton Express,3
+AC Transit,E-123,E,San Francisco - Claremont -Parkwood,3
+AC Transit,F-123,F,San Francisco - Berkeley,3
+AC Transit,FS-123,FS,San Francisco - Berkeley,3
+AC Transit,G-123,G,San Francisco - El Cerrito,3
+AC Transit,H-123,H,San Francisco - Richmond,3
+AC Transit,J-123,J,Berkeley - San Francisco,3
+AC Transit,L-123,L,San Francisco - El Sobrante,3
+AC Transit,LA-123,LA,San Francisco - El Sobrante,3
+AC Transit,LC-123,LC,SF/Hilltop Park & Ride (L/LA Sweeper),3
+AC Transit,M-124,M,Hayward BART- Hillsdale Mall- Oracle,3
+AC Transit,NL-123,NL,San Francisco - Eastmont T.C.,3
+AC Transit,NX-123,NX,East Oakland - San Francisco,3
+AC Transit,NX1-123,NX1,San Francisco - East Oakland,3
+AC Transit,NX2-123,NX2,San Francisco - East Oakland,3
+AC Transit,NX3-123,NX3,San Francisco - San Leandro,3
+AC Transit,NX4-123,NX4,San Francisco - Castro Valley,3
+AC Transit,NXC-123,NXC,SF - Oakland (N/NX Sweeper),3
+AC Transit,O-123,O,San Francisco - Alameda - Fruitvale Bart,3
+AC Transit,OX-123,OX,San Francisco - Alameda - Bay Farm Is.,3
+AC Transit,P-123,P,San Francisco - Piedmont,3
+AC Transit,S-124,S,San Francisco - San Lorenzo- Hayward,3
+AC Transit,SB-124,SB,San Francisco - Hayward - Newark,3
+AC Transit,U-124,U,Frmt. BART- Stanford University,3
+AC Transit,V-123,V,San Francisco - Montclair,3
+AC Transit,W-123,W,San Francisco - Alameda,3
+AC Transit,Z-123,Z,San Francisco - Albany,3

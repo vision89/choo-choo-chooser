@@ -1,0 +1,19 @@
+route_id,route_short_name,route_long_name,route_type
+1,1,Mendocino Ave,3
+2,2,Bennett Valley,3
+3,3,West Ninth St,3
+4,4,Rincon Valley,3
+5,5,Santa Rosa Ave,3
+6,6,West Third St,3
+7,7,Montgomery Village / Rincon Valley,3
+8,8,Sonoma Ave,3
+9,9,Sebastapol Rd,3
+10,10,Coddingtown,3
+11,11,Fulton Rd,3
+12,12,Roseland,3
+13,14,County Center,3
+14,15,Stony Point Rd,3
+16,17,Piner Rd,3
+17,18,Southwest Circulator,3
+18,16,Oakmont,3
+21,19,South City Connector,3

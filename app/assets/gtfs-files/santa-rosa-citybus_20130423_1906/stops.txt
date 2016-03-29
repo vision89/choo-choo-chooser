@@ -1,0 +1,459 @@
+stop_id,stop_name,stop_lat,stop_lon,location_type
+1,Santa Rosa Junior College,38.453194,-122.717285,0
+2,Sutter Hospital,38.468216,-122.707825,0
+3,Round Barn Blvd,38.479164,-122.723106,0
+4,Kaiser Hospital,38.472481,-122.725761,0
+5,Santa Rosa Transit Mall,38.43869,-122.713715,0
+6,Montgomery Village,38.444778,-122.686287,0
+8,Bennett Valley Shopping Center,38.426273,-122.666687,0
+9,West 9 St & Dutton Ave,38.441689,-122.728546,0
+10,Westside Transit Center,38.444843,-122.751862,0
+11,West College Ave & Dutton Rd,38.446785,-122.730431,0
+13,Montecito Center,38.475506,-122.673027,0
+14,St. Francis Shopping Center,38.466362,-122.653671,0
+15,YMCA,38.445454,-122.707176,0
+16,Aston Ave & Hendley,38.4258,-122.702751,0
+17,Kawana Springs Rd @ Santa Rosa Ave,38.416546,-122.711784,0
+18,Southwest Community Park,38.41349,-122.733185,0
+19,Senior Center,38.43066,-122.710312,0
+20,West 3 St & Stony Point Rd,38.433987,-122.742813,0
+21,College Ave & 4th St,38.445206,-122.70549,0
+22,Roseland Shops,38.429928,-122.728745,0
+23,NorthPoint Pkwy & Corporate Center,38.416039,-122.753853,0
+24,Sebastopol Rd & Fresno,38.42498,-122.759689,0
+25,Coddingtown Mall Transfer Center,38.457172,-122.732452,0
+26,West Steele Ln & Marlow Rd,38.459908,-122.750687,0
+28,Piner Rd & Marlow Rd,38.46682,-122.75135,0
+29,Corby Ave & Barham,38.426559,-122.717934,0
+30,Sebastopol Rd & Dutton Ave,38.430603,-122.724846,0
+31,Hopper Ave & Airway,38.479633,-122.737755,0
+33,Elsie Allen High School,38.401993,-122.733864,0
+35,Coffey Ln & Bluebell,38.465748,-122.741623,0
+36,Dutton Ave & Kingwood,38.444172,-122.730675,0
+37,Colgan Ave & Santa Rosa Ave,38.421726,-122.711197,0
+38,Yolanda Ave & Santa Rosa Ave,38.413216,-122.712761,0
+39,Farmers Lane Plaza,38.434464,-122.687752,0
+40,4th St & College Ave,38.445732,-122.703766,0
+41,West College Ave & Cleveland,38.445744,-122.726204,0
+43,Finley & Wright,38.419842,-122.768661,0
+44,Garage,38.442753,-122.749786,0
+54,Delport && West,38.424202,-122.728676,0
+57,Lewis Road @ Slater Street,38.46133,-122.715904,0
+58,Franklin Ave. @ Lewis Road,38.462845,-122.712509,0
+60,Mendocino Ave. @ Steele Ln.,38.461643,-122.717583,0
+61,Chanate Rd. @ County Farm Rd.,38.469528,-122.703957,0
+62,Parker Hill Rd. @ Chanate Rd.,38.471966,-122.703392,0
+63,Parker Hill Rd. @ Parker Hill Ct.,38.478729,-122.704773,0
+64,Stagecoach Rd. @ Fountaingrove Pkwy.,38.486214,-122.710556,0
+65,Hearn Ave. @ Dutton Ave.,38.414433,-122.724365,0
+66,Fountaingrove Pkwy @ Thomas Harris,38.479946,-122.720078,0
+67,Chanate Rd. @ Terra Linda,38.467434,-122.712967,0
+68,HWY 12 @ 4620 (Downey Savings & Loan),38.45977,-122.672333,0
+69,Parker Hill Rd. @ Hidden Pine Ct.,38.480835,-122.704742,0
+70,Mendocino Ave. @ Administration Dr.,38.464714,-122.719368,0
+71,Mendocino Ave. @ Schurman Dr.,38.462849,-122.718239,0
+72,Mendocino Ave. @ Clement St.,38.459324,-122.717369,0
+74,Fountaingrove Pkwy @ Varena Apts.,38.483891,-122.712387,0
+75,Mendocino Ave. @ Ridgway Ave. (SRHS),38.450958,-122.717659,0
+76,Mendocino Ave. @ Benton St.,38.448051,-122.717751,0
+77,Healdsburg Ave. @ 10th St.,38.444061,-122.717888,0
+78,B Street @ Macy's,38.440865,-122.716667,0
+79,Santa Rosa Ave. @ Burt St. (SR Town Center) n,38.410152,-122.713379,0
+81,Sonoma Ave. @ Gray Ct.,38.439232,-122.706566,0
+82,Sonoma Ave. @ Brookwood Ave.,38.440441,-122.702171,0
+83,Sonoma Ave. @ Doyle Park Dr.,38.441528,-122.698219,0
+84,Sonoma Ave. @ Hoen Ave.,38.442505,-122.694641,0
+85,Sonoma Ave. @ Doctor's Park,38.443287,-122.691772,0
+86,Sonoma Ave. @ Church St.,38.444016,-122.689133,0
+88,Hahman Dr. @ Patio Ct.,38.441998,-122.685188,0
+89,Hahman Dr. @ Hoen Ave. (MHS),38.438835,-122.685478,0
+90,Hoen Ave. @ Cypress Way,38.437477,-122.681221,0
+91,Hoen Ave. @ Moore Rd.,38.437481,-122.67746,0
+92,Hoen Ave. @ Cypress / Woodward Wy.,38.438572,-122.674011,0
+93,Montgomery Dr. @ Shortt Rd.,38.445553,-122.691986,0
+94,Hearn Ave. @ West Ave.,38.414379,-122.726425,0
+95,Yulupa Ave. @ Douglas Dr.,38.438229,-122.670456,0
+96,Yulupa Ave. @ Hoen,38.43988,-122.671715,0
+97,Yulupa Ave. @ Mayette Dr.,38.442169,-122.6735,0
+98,Stony Point Rd. @ Giffen Ave.,38.417801,-122.740051,0
+99,Yulupa Ave. @ Claremont Dr.,38.446781,-122.677048,0
+100,Santa Rosa Ave. @ Burt St. (SR Town Center) s,38.408871,-122.713684,0
+101,Sonoma Ave. @ Yulupa Ave.,38.447205,-122.678169,0
+102,Sonoma Ave. @ Franquette Ave.,38.446049,-122.68235,0
+104,Sonoma Ave. @ Shortt Rd.,38.443718,-122.690941,0
+105,Sonoma Ave. @ Rosedale St.,38.442719,-122.694603,0
+106,Sonoma Ave. @ Doyle Park Dr.,38.441772,-122.698074,0
+107,Sonoma Ave. @ Sotoyome St. (1111),38.441261,-122.699913,0
+108,Sonoma Ave. @ Brookwood Ave.,38.440357,-122.7033,0
+109,Sonoma Ave. @ Gray Ct.,38.439686,-122.705658,0
+110,Sonoma Ave. @ E St.,38.438694,-122.708908,0
+111,Yulupa Ave. @ Neotoma Ave. (7-11 Store),38.428303,-122.668175,0
+112,5th St. @ Morgan St.,38.438961,-122.719467,0
+113,Wilson St. @ 6th St.,38.438911,-122.721725,0
+114,West 8th St. @ Donahue St.,38.439777,-122.723846,0
+115,Donahue St. @ West 9th St.,38.441628,-122.725288,0
+117,West 9th St. @ Kingwood,38.441765,-122.731689,0
+118,West 9th St. @ Link Ln.,38.441807,-122.734138,0
+119,West 9th St. @ Simpson Pl.,38.441666,-122.73806,0
+120,West 9th St. @ Agnew Pl.,38.441528,-122.741356,0
+121,West 9th St. @ Stony Point Rd.,38.441063,-122.74427,0
+122,Stony Point Rd. @ Finley Park,38.44239,-122.748306,0
+123,West College Ave. @ Finley Center,38.445091,-122.74939,0
+124,West College Ave. @ Ridley Ave.,38.445141,-122.745903,0
+125,West College Ave. @ Monroe Hall,38.445118,-122.743767,0
+126,West College Ave. @ Clover Dr.,38.445313,-122.73967,0
+127,West College Ave. @ Link Ln.,38.44553,-122.734421,0
+128,West College Ave. @ Maxwell Ct.,38.445713,-122.729881,0
+130,College Ave. @ Glenn St.,38.445625,-122.720642,0
+131,Hoen Ave. @ Tahoe St.,38.440102,-122.669708,0
+132,Hoen Ave. @ Sierra Creek (London House),38.441368,-122.666122,0
+133,Mendocino Ave. @ 7th St.,38.442581,-122.715416,0
+134,Mendocino Ave. @ Cherry St.,38.444542,-122.716873,0
+135,Mendocino Ave. @ College Ave.,38.445938,-122.71756,0
+136,Mendocino Ave. @ Benton St.,38.447754,-122.717499,0
+137,Mendocino Ave. @ Nason St.,38.449978,-122.717415,0
+139,Pacific Ave. @ Beaver St.,38.453148,-122.711617,0
+140,Pacific Ave. @ North St.,38.453041,-122.707664,0
+141,Pacific Ave. @ Spring St.,38.452908,-122.702744,0
+142,Bryden Lane @ Austin Ct.,38.451073,-122.698181,0
+143,4th St. @ Rogers Way,38.450115,-122.692825,0
+144,4th St. @ Farmers Ln.,38.449429,-122.689156,0
+145,Hahman Dr. @ Midway Dr.,38.446514,-122.686104,0
+146,Montgomery Dr. @ Yulupa Ave.,38.449509,-122.678993,0
+147,Montgomery Dr. @ Franquette Ave.,38.448021,-122.682373,0
+148,Montgomery Dr. @ Yulupa Ave.,38.449352,-122.679512,0
+149,Montgomery Dr. @ Jacqueline Dr.,38.452019,-122.675056,0
+150,Montgomery Dr. @ Summerfield Rd.,38.454342,-122.672218,0
+151,Mission Blvd. @ Quigg  (Walgreens),38.45829,-122.673035,0
+152,Mission Blvd. @ HWY 12 (far side),38.459126,-122.674812,0
+153,Mission Blvd. @ Sherbrook Dr.,38.463123,-122.675674,0
+154,Mission Blvd. @ Culebra Dr.,38.46574,-122.676186,0
+155,Mission Blvd. @ Yukon Dr.,38.467396,-122.676666,0
+156,Mission Blvd. @ Montecito Blvd.,38.471897,-122.676781,0
+157,Montecito Blvd. @ Benicia Dr.,38.473526,-122.675377,0
+159,Montecito Blvd. @ Benjamins Rd.,38.476849,-122.668297,0
+160,Montecito Blvd. @ St. Mary's Dr.,38.478157,-122.664452,0
+161,Montecito Blvd. @ Brookwood MHP (MCHS),38.478493,-122.661102,0
+162,Santa Rosa Ave. @ ToysRus mall,38.411201,-122.713654,0
+163,Calistoga Rd. @ Parkhurst MHP,38.477806,-122.655464,0
+164,Calistoga Rd. @ San Luis,38.475143,-122.654716,0
+165,Calistoga Rd. @ Yerba Buena Dr.,38.473553,-122.654518,0
+166,Calistoga Rd. @ Monte Verde Dr.,38.471828,-122.65432,0
+167,Calistoga Rd. @ Dupont Dr.,38.469437,-122.654037,0
+169,HWY 12 @ Boas Dr.,38.465199,-122.658363,0
+170,HWY 12 @ Jack London Dr.,38.464733,-122.661598,0
+171,HWY 12 @ Middle Rincon Rd.,38.464088,-122.664406,0
+172,HWY 12 @ Cardinal Wy. (MHP),38.461006,-122.671089,0
+173,HWY 12 @ Mission Blvd.,38.45858,-122.675262,0
+174,HWY 12 @ Santa Rosa Village MHP,38.455738,-122.679497,0
+175,Piner Rd. @ Range Ave.,38.47197,-122.7342,0
+176,4th St. @ Safeway Center,38.449921,-122.690758,0
+177,Bryden Lane @ Grosse / Geary,38.451164,-122.69809,0
+178,Pacific Ave. @ Elizabeth Wy.,38.453041,-122.702873,0
+179,Pacific Ave. @ North St.,38.453194,-122.708557,0
+180,Pacific Ave. @ Beaver St.,38.453293,-122.712273,0
+181,Pacific Ave. @ Slater St. (SRJC),38.453377,-122.715561,0
+182,Court St. @ Santa Rosa Ave.,38.406704,-122.712791,0
+183,HWY 12 @ Acacia Ln.,38.462318,-122.668762,0
+184,HWY 12 @ Middle Rincon Rd.,38.463573,-122.665443,0
+185,HWY 12 @ Maria Ln.,38.464733,-122.660461,0
+186,HWY 12 @ South Boas Dr.,38.46489,-122.657471,0
+188,Calistoga Rd. @ DuPont Dr.,38.469616,-122.653816,0
+189,Calistoga Rd. @ Monte Verde Dr.,38.472279,-122.654099,0
+190,Calistoga Rd. @ San Luis Ave.,38.475281,-122.65448,0
+191,Calistoga Rd. @ Piedmont,38.479523,-122.65641,0
+192,Montecito Blvd. @ Library (Maria Carillo HS),38.478745,-122.661255,0
+193,Montecito Blvd. @ St. Mary Dr.,38.478058,-122.665337,0
+194,Montecito Blvd. @ Swift Ct.,38.47683,-122.669441,0
+196,Montecito Blvd. @ Benicia Dr.,38.473492,-122.675674,0
+197,Mission Blvd. @ Vine St.,38.470661,-122.676888,0
+198,Mission Blvd. @ Yukon Dr.,38.467552,-122.676903,0
+199,Mission Blvd. @ Culebra Ave.,38.465519,-122.676338,0
+200,Mission Blvd. @ Sherbrook Dr.,38.463146,-122.675949,0
+201,South E St. @ Sonoma Ave.,38.438461,-122.708328,0
+202,South E St. @ Tupper St.,38.43745,-122.707115,0
+203,Tupper St. @ Hendley St. (Bethlehem Tower),38.436932,-122.708076,0
+204,Brown St. @ Charles St.,38.435764,-122.709656,0
+205,Brown St. @ Mill St.,38.434238,-122.709351,0
+206,Brown St. @ Oak St.,38.432667,-122.709038,0
+207,Petaluma Hill Rd. @ Barham Ave.,38.4277,-122.710564,0
+208,Petaluma Hill Rd. @ Colgan Ave.,38.423061,-122.707855,0
+209,South E St. @ Stevenson St.,38.433933,-122.704628,0
+210,Petaluma Hill Rd. @ Santa Ana Wy.,38.421982,-122.706757,0
+214,Aston Ave. @ Whitesgate Apts.,38.424961,-122.705177,0
+215,Kawana Springs Rd. @ Petaluma Hill Rd.,38.416599,-122.70504,0
+216,Kawana Springs Rd. @ Meadow Wy.,38.416546,-122.708328,0
+217,Maple St. @ Fairgrounds,38.433125,-122.702225,0
+218,South E St. @ Wheeler St.,38.435593,-122.705566,0
+219,Santa Rosa Ave. @ Colgan Ave.,38.421406,-122.713356,0
+220,Santa Rosa Ave. @ Flower Ave.,38.424137,-122.713356,0
+221,Santa Rosa Ave. @ Barham Ave.,38.427525,-122.712784,0
+222,Petaluma Hill Rd. @ Pressley St.,38.427837,-122.710342,0
+223,Bennett Valley Rd. @ Temple St.,38.431728,-122.70649,0
+224,South E St. @ Clark St.,38.437199,-122.706505,0
+225,Mendocino Ave. @ Jouney's End MHP,38.473804,-122.727631,0
+228,Mendocino Ave. @ Russell Ave.,38.469784,-122.722603,0
+229,Steele Ln. @ Rowe Dr.,38.46093,-122.718163,0
+230,West 3rd @ Wilson St.,38.436623,-122.720337,0
+231,West 3rd @ Pierson St.,38.435677,-122.722336,0
+232,West 3rd @ Dutton Ave.,38.434029,-122.727745,0
+233,West 3rd @ Surrey Dr.,38.433422,-122.735924,0
+234,West 3rd @ Westbrook Dr.,38.433712,-122.740005,0
+236,West 3rd @ Chadwick,38.434944,-122.749504,0
+237,West 3rd @ Brittain Ln.,38.435463,-122.753448,0
+238,West 3rd @ Arboleda Dr.,38.436272,-122.755821,0
+239,West 3rd @ Valley West Dr.,38.437145,-122.758675,0
+240,West 3rd @ Senna Dr. (P-t-P Park),38.438122,-122.761887,0
+241,West 3rd @ Darla Dr.,38.438118,-122.766487,0
+242,West 3rd @ Fulton Rd.,38.438133,-122.769623,0
+243,Fulton Rd. @ Placer Dr.,38.440865,-122.769485,0
+244,Fulton Rd. @ Chatham,38.444054,-122.769455,0
+245,West College @ Fulton Rd.,38.445221,-122.768791,0
+246,West College @ Dorrit Dr.,38.445202,-122.763031,0
+247,West College @ Putney Dr.,38.445213,-122.759125,0
+248,West College @ Navarro Dr.,38.445194,-122.754425,0
+251,Stony Point Rd. @ Stony Circle,38.440502,-122.745201,0
+252,Stony Point Rd. @ Glenbrook Dr.,38.436974,-122.74292,0
+253,Steele Ln. @ Meyers Dr. (Rec. Center),38.460289,-122.722198,0
+255,West 3rd @ Rusch Ct.,38.432991,-122.733658,0
+256,West 3rd @ Dutton Ave.,38.433907,-122.726913,0
+257,West 3rd @ Roberts Ave.,38.435036,-122.722862,0
+258,West 3rd @ Railroad Ave.,38.43671,-122.719437,0
+259,Santa Rosa Ave. @ Apple Ln.,38.407543,-122.713303,0
+260,College Ave. @ Orchard St.,38.445629,-122.713737,0
+261,4th St. @ Talbot Ave.,38.447273,-122.701057,0
+262,4th St. @ Alderbrook Dr.,38.449612,-122.698166,0
+263,College Ave. @ King St.,38.445557,-122.710579,0
+266,4th St. @ Proctor Dr.,38.448448,-122.699623,0
+267,Hahman Dr. @ Patio Ct.,38.442364,-122.68483,0
+268,2nd Street @ E Street,38.440571,-122.709419,0
+269,2nd Street @ Montgomery Drive,38.442665,-122.704689,0
+270,Montgomery Dr. @ Sotoyome St.,38.442989,-122.700508,0
+271,Montgomery Dr. @ Talbot St.,38.443771,-122.69767,0
+272,Montgomery Dr. @ Alderbrook Dr.,38.444561,-122.694901,0
+273,Montgomery Dr. @ Shortt Rd.,38.445438,-122.69178,0
+274,Montgomery Dr. @ Yates Dr.,38.446217,-122.688866,0
+275,Sonoma Ave. @ Franquette Ave.,38.446106,-122.681664,0
+276,Sonoma Ave. @ Yulupa Ave.,38.447422,-122.676834,0
+277,Sonoma Ave. @ Carley Dr. (HSMS),38.448662,-122.672318,0
+278,Sonoma Ave. @ Summerfield Rd.,38.449635,-122.668739,0
+279,Summerfield Rd. @ Texas Ave.,38.447308,-122.666046,0
+280,Summerfield Rd. @ Mayette Ave.,38.444263,-122.663834,0
+282,Hoen Ave. @ Sierra Creek Dr. (London House),38.441875,-122.665314,0
+283,Hoen Ave. @ Mariposa Dr. / Tahoe Dr.,38.440445,-122.669319,0
+284,Hoen Ave. @ Hilliard Ct.,38.439312,-122.672516,0
+285,Hoen Ave. @ Camden Ct.,38.438419,-122.675041,0
+286,Yulupa Ave. @ Princeton Dr.,38.443668,-122.674644,0
+287,Hoen Ave. @ Hoen Frontage Rd.,38.437679,-122.681244,0
+288,Hahman Dr. @ Hoen Ave. (MHS),38.4398,-122.685318,0
+289,Hoen Ave. @ Franquette Ave.,38.437675,-122.678886,0
+290,Santa Rosa Ave. @ Yolanda Ave.,38.411953,-122.713432,0
+291,McMinn Ave. @ Sunset Ave.,38.42646,-122.732018,0
+292,Montgomery Dr. @ Yates Dr.,38.44619,-122.689621,0
+293,Montgomery Dr. @ California St.,38.444614,-122.695442,0
+294,Montgomery Dr. @ Talbot St.,38.443943,-122.69796,0
+295,Montgomery Dr. @ Doyle Park Dr. (Hosp),38.443054,-122.701065,0
+296,Montgomery Dr. @ 2nd Street,38.443012,-122.704643,0
+297,3rd St. @ Brookwood Ave.,38.442673,-122.706909,0
+298,3rd St. @ E Street,38.440754,-122.711166,0
+299,Railroad Ave. @ West 3rd St.,38.435871,-122.720154,0
+300,Olive St. @ Laurel St.,38.433117,-122.719009,0
+301,Sebastopol Rd. @ Chestnut St.,38.432022,-122.719604,0
+302,Sebastopol Rd. @ Dutton Ave.,38.430756,-122.725029,0
+304,Stony Point Rd. @ Giffen Ave.,38.417717,-122.73999,0
+305,Sebastopol Rd. @ Romani Ct. (Roseland MHP),38.428577,-122.734299,0
+306,Sebastopol Rd. @ Hampton Wy.,38.427654,-122.738144,0
+307,Stony Point Rd. @ Sebastopol Rd.,38.426472,-122.741371,0
+308,Stony Point Rd. @ Mesa Way,38.424675,-122.741096,0
+309,Stony Point Rd. @ Marble St.,38.420956,-122.740685,0
+310,Northpoint Pkwy. @ Stony Point Rd.,38.41605,-122.740891,0
+311,Northpoint Pkwy. @ Lombardi Ln.,38.416286,-122.747002,0
+312,Northpoint Pkwy. @ Mariner Ln.,38.416119,-122.749657,0
+314,Corporate Center Pkwy. @ Mercury Wy.,38.421028,-122.752686,0
+315,Corporate Center Pkwy @ Challenger Wy.,38.424519,-122.752998,0
+316,Sebastopol Rd. @ Corporate Center Pkwy.,38.425976,-122.75119,0
+317,Sebastopol Rd. @ Lombardi Ln.,38.426235,-122.747658,0
+318,Sebastopol Rd. @ Cook Middle School,38.426434,-122.745003,0
+319,Sebastopol Rd. @ Kenmore Ln. (Food Maxx),38.426609,-122.743454,0
+320,Sebastopol Rd. @ Hampton Wy.,38.427555,-122.737747,0
+321,Sebastopol Rd. @ Burbank Ave.,38.428417,-122.734009,0
+322,Sebastopol Rd. @ McMinn (Roseland Elem. School),38.429024,-122.731613,0
+323,Sebastopol Rd. @ West Ave. (Roseland Shops),38.429935,-122.727699,0
+325,West Ave. @ Sebastopol Rd.,38.429428,-122.728935,0
+326,Sebastopol Rd. @ Boyd St.,38.431778,-122.719917,0
+327,West Ave. @ Sunset Ave.,38.427734,-122.728745,0
+328,Olive St. @ Hazel St.,38.434177,-122.719215,0
+329,Finley Ave. @ Leddy Ave.,38.420044,-122.765991,0
+330,Mendocino Ave. @ McConnell Ave.,38.455029,-122.717216,0
+331,Mendocino Ave. @ Dexter St.,38.457207,-122.717133,0
+332,Mendocino Ave. @ Silva Ave.,38.458492,-122.717072,0
+333,Edwards Ave. @ Cleveland Ave.,38.455635,-122.727348,0
+334,Edwards Ave. @ Range Ave.,38.454834,-122.730659,0
+335,Range Ave. @ mid-block,38.454788,-122.732193,0
+336,Range Ave. @ Katy Ct.,38.463577,-122.732559,0
+337,Range Ave. @ West Steele Ln.,38.460663,-122.732384,0
+338,Range Ave. @ State Farm Dr.,38.466644,-122.732552,0
+339,Range Ave. @ Russell Ave.,38.469658,-122.732521,0
+340,Piner Rd. @ Opal Ave. (Coddingtown MHP),38.472103,-122.733589,0
+341,Piner Rd. @ Piner Pl.,38.472095,-122.736122,0
+342,Piner Rd. @ Industrial Dr. (GG Transit),38.470863,-122.740494,0
+343,Piner Rd. @ Valley Oil Change (1675),38.469917,-122.741646,0
+344,Coffey Ln. @ Empire Industrial Ct.,38.4702,-122.74527,0
+345,Hopper Ave. @ Banyan Pl.,38.479618,-122.741478,0
+346,Coffey Ln. @ Dogwood Dr.,38.476803,-122.746964,0
+347,Hopper Ave. @ Coffey Ln.,38.479591,-122.74659,0
+348,Coffey Ln. @ San Miguel Rd.,38.47393,-122.746689,0
+350,West Ave. @ McMaster Ln.,38.425034,-122.728256,0
+351,Cleveland Ave. @ K-Mart Shopping Ctr.,38.478287,-122.733231,0
+352,Marlow Rd. @ Guerneville Rd.,38.45306,-122.751442,0
+354,Santa Rosa Ave. @ Sebastopol Ave.,38.433945,-122.711899,0
+355,Santa Rosa Ave. @ South A St.,38.431717,-122.711418,0
+356,Steele Ln. @ Berkeley St.,38.460194,-122.721504,0
+357,Steele Ln. @ Mendocino Ave.,38.460648,-122.718697,0
+358,County Center Dr. @ Professional Dr. (S),38.46096,-122.724922,0
+359,County Center Dr. @ Professional Dr. (N),38.462948,-122.725807,0
+360,Administration Dr. @ County Center Dr.,38.464035,-122.725487,0
+361,North Dutton @ West 3rd St.,38.434769,-122.726891,0
+362,North Dutton @ Hewitt St.,38.437965,-122.728546,0
+363,North Dutton @ Decker St. (West 9th),38.441032,-122.728546,0
+365,North Dutton @ Tesconi Cir. (s),38.448559,-122.732117,0
+366,North Dutton @ Tesconi Cir. (n),38.450424,-122.734116,0
+367,North Dutton @ Guyamas Ct.,38.452301,-122.735184,0
+368,North Dutton @ Guerneville Rd.,38.455128,-122.737404,0
+369,Guerneville Rd. @ Coffey Ln.,38.456554,-122.735962,0
+370,Coffey Ln. @ Plata,38.457123,-122.737091,0
+371,Coffey Ln. @ Guerneville Rd.,38.45694,-122.737129,0
+372,Guerneville Rd. @ Ridley Ave.,38.452717,-122.745941,0
+373,Guerneville Rd. @ Gamay St.,38.452705,-122.756508,0
+374,Guerneville Rd. @ Burgundy Pl.,38.452721,-122.759331,0
+375,Guerneville Rd. @ Peterson Ln.,38.452686,-122.763901,0
+376,Fulton Rd. @ Guerneville Rd.,38.453007,-122.769485,0
+377,Fulton Rd. @ Appletree Dr.,38.455181,-122.769501,0
+378,Fulton Rd. @ Piner H.S.,38.460499,-122.769485,0
+379,Fulton Rd. @ Quail Hollow Dr.,38.463463,-122.769562,0
+380,Fulton Rd. @ Piner Rd.,38.466526,-122.769585,0
+381,Piner Rd. @ Pinercrest Dr.,38.467026,-122.766434,0
+382,Piner Rd. @ Peterson Ln.,38.467022,-122.762321,0
+383,Piner Rd. @ Waltzer Rd.,38.466965,-122.755959,0
+385,Marlow Rd. @ Marsh Rd.,38.462139,-122.751328,0
+386,West Steele Lane @ Rochele St.,38.459698,-122.750008,0
+387,West Steele Lane @ Comstock MS,38.459839,-122.745262,0
+388,West Steele Lane @ Coffey Ln.,38.459888,-122.740982,0
+389,Coffey Ln. @ West Steele Ln.,38.459347,-122.739601,0
+390,West Steele Lane @ Dorado Ct.,38.459976,-122.73735,0
+391,West Steele Lane @ Range Ave.,38.459892,-122.733246,0
+392,Coffey Ln. @ Piner Rd.,38.467556,-122.744446,0
+393,Guerneville Rd. @ Gateway Ctr.,38.457855,-122.734375,0
+394,Coffey Ln. @ Piner Rd.,38.467667,-122.744347,0
+395,North Dutton @ El Cerrito Ct.,38.454609,-122.737152,0
+396,North Dutton @ Jennings Ave.,38.451969,-122.735245,0
+397,North Dutton @ Tesconi Cir. (n),38.450546,-122.734505,0
+398,North Dutton @ Tesconi Cir. (s),38.448555,-122.732483,0
+400,North Dutton @ West 9th St.,38.441818,-122.729126,0
+401,North Dutton @ West 8th St.,38.439358,-122.728889,0
+402,North Dutton @ Hewitt St.,38.437126,-122.728737,0
+403,North Dutton @ West 3rd St.,38.435535,-122.728012,0
+404,Earle St. @ Corby Ave.,38.42931,-122.718529,0
+406,Corby Ave. @ Myrtlewood Dr.,38.42321,-122.717445,0
+407,Corby Ave. @ Baker Ave. (7-11 Store),38.421268,-122.717461,0
+408,Corby Ave. @ Cottonwood Dr.,38.417294,-122.717575,0
+409,Hearn Ave. @ Corby Ave. (D.M.V.),38.414494,-122.71801,0
+410,Hearn Ave. @ Victoria Dr.,38.414516,-122.721977,0
+411,West Ave. @ Valerie Wy.,38.416206,-122.727142,0
+412,West Ave. @ Leo Dr.,38.418648,-122.727516,0
+413,West Ave. @ South Ave.,38.423225,-122.728043,0
+415,Delport Ave. @ McMinn Ave.,38.423649,-122.731033,0
+416,McMinn Ave. @ Hughes Ave. (Chelsea Garden apts.),38.425251,-122.731812,0
+418,Elsa Dr. @ Santa Rosa Ave.,38.405697,-122.712738,0
+419,Coffey Ln. @ Becky Ct.,38.462234,-122.741692,0
+420,Coffey Ln. @ Terry Ln.,38.462986,-122.741768,0
+421,Ventura Ave. @ Administration Dr. (Jail),38.466553,-122.724213,0
+423,Guerneville Rd. @ Lance Dr.,38.454811,-122.739197,0
+424,Santa Rosa Ave. @ Barham Ave.,38.427399,-122.713234,0
+425,Range Ave. @ Russell Ave.,38.468582,-122.732735,0
+427,Range Ave. @ Katy Ct.,38.463177,-122.732727,0
+428,Range Ave. @ West Steele Ln.,38.460533,-122.732582,0
+430,South E St. @ Wheeler St.,38.435493,-122.705696,0
+431,South E St. @ Maple St.,38.433582,-122.704605,0
+433,Montgomery Dr. @ Summerfield Rd.,38.454472,-122.672417,0
+435,Mission Blvd. @ HWY 12,38.459217,-122.675209,0
+436,Montgomery Dr. @ Jacqueline Dr.,38.45203,-122.675438,0
+437,Montgomery Dr. @ Franquette Ave.,38.448021,-122.683052,0
+438,Petaluma Hill Rd. @ Kawana Springs Rd.,38.416985,-122.704201,0
+439,South E St. @ Hendley St.,38.431744,-122.705208,0
+440,Hendley St. @ Martin Luther King Park,38.428398,-122.703644,0
+441,Piner Rd. @ Industrial Dr.,38.470318,-122.740875,0
+442,Dutton Meadow @ Meadow View School,38.412426,-122.729378,0
+443,Dutton Meadow @ Cass Rd.,38.407703,-122.729485,0
+444,Dutton Meadow @ Bellevue Ave.,38.402382,-122.725929,0
+446,Bellevue Ave. @ Stony Point Rd.,38.402355,-122.74131,0
+447,Stony Point Rd. @ Bellevue Ranch,38.407516,-122.741219,0
+448,Stony Point Rd. @ Old Stony Point Rd.,38.414177,-122.739998,0
+449,Stony Point Rd. @ Trombetta St.,38.422527,-122.740654,0
+450,Stony Point Rd. @ Mesa Ave.,38.424648,-122.740898,0
+451,Stony Point Rd. @ Sebastopol Rd.,38.427631,-122.741257,0
+452,Stony Point Rd. @ West 3rd St.,38.43277,-122.741898,0
+453,Stony Point Rd. @ Glenbrook Dr.,38.437183,-122.742683,0
+454,Stony Point Rd. @ West 9th St.,38.441265,-122.746597,0
+455,Marlow Rd. @ West College Ave.,38.445923,-122.751175,0
+456,Marlow Rd. @ Guerneville Rd.,38.451824,-122.751289,0
+457,West Steele Ln. @ Hardies Ln.,38.460056,-122.734619,0
+458,West Steele Ln. @ Heidi Pl.,38.460052,-122.736885,0
+459,West Steele Ln. @ Coffey Ln.,38.460018,-122.741089,0
+460,West Steele Ln. @ Apache St.,38.459827,-122.74556,0
+462,Marlow Rd. @ Crosspoint Ave.,38.455357,-122.752129,0
+463,Marlow Rd. @ Zinfandel Wy.,38.450954,-122.751427,0
+464,Stony Point Rd. @ West 3rd St.,38.434277,-122.742592,0
+465,Stony Point Rd. @ Stony Point Plaza,38.428757,-122.74173,0
+466,Sebastopol Rd. @ Kenmore Ln. (Food Maxx),38.426891,-122.742668,0
+467,Sebastopol Rd. @ Cook Middle School,38.426662,-122.745628,0
+468,Sebastopol Rd. @ Lombardi Ct.,38.426395,-122.749069,0
+469,Corporate Center Pkwy. @ Sebastopol Rd.,38.425423,-122.753479,0
+470,Corporate Center Pkwy. @ Circadian Wy.,38.419762,-122.753258,0
+472,Northpoint Pkwy. @ Mariner Wy.,38.415684,-122.752205,0
+473,Northpoint Pkwy. @ Thunderbolt Wy.,38.416023,-122.74733,0
+474,Northpoint Pkwy. @ Kingfisher Way,38.416023,-122.744087,0
+475,Stony Point Rd. @ Pearblossom Dr.,38.414497,-122.740196,0
+476,Hearn Ave. @ Stony Point Rd.,38.412098,-122.740517,0
+477,Hearn Ave. @ Arrowhead Dr.,38.412476,-122.738197,0
+478,Round Barn Blvd. @ Hilton Hotel,38.476795,-122.727287,0
+479,Round Barn Blvd. @ Kaiser offices,38.478142,-122.728073,0
+480,Round Barn Blvd. @ Vineyard Commons,38.480755,-122.727112,0
+482,Santa Rosa Ave. @ Flower,38.423977,-122.7136,0
+483,Hearn Ave. @ Dowd St.,38.414326,-122.720467,0
+484,Sebastopol Rd. @ 3951 Sebastopol Rd.,38.425049,-122.764687,0
+486,Piner Rd. @ Airway Dr.,38.471935,-122.737099,0
+487,College Ave. @ Mendocino Ave.,38.445534,-122.717018,0
+488,College Ave. @ E St. (SR Middle School),38.445351,-122.710541,0
+489,College Ave. @ Orchard St.,38.445435,-122.713264,0
+490,College Ave. @ Brookwood Ave.,38.445286,-122.708366,0
+491,E Street @ Cherry St. (SRMS),38.444305,-122.711052,0
+492,Summerfield Rd.  @ Shade Tree,38.440548,-122.661148,0
+493,Summerfield Rd. @ Carissa Ave.,38.437229,-122.659515,0
+494,Summerfield Rd. @ Horseshoe (south),38.432022,-122.660507,0
+495,Santa Rosa Ave. @ Maple Ave.,38.432068,-122.711288,0
+496,Bethards Dr. @ Tachevah St.,38.428143,-122.6642,0
+497,9th St. @ Davis St.,38.442387,-122.722229,0
+498,Summerfield Rd. @ Hoen (Warrack Hosp),38.441959,-122.66214,0
+499,Santa Rosa Ave. @ Mill St.,38.434116,-122.711739,0
+501,Summerfield Rd. @ Horseshoe (north),38.435047,-122.659607,0
+503,Yulupa Ave. @ Tacheva St.,38.431465,-122.668175,0
+504,Yulupa Ave. @ Sacramento Ave.,38.435921,-122.66864,0
+507,Kawana Springs Rd. @ Meadow Wy.,38.416328,-122.708183,0
+510,Santa Rosa Ave. @ 1993 (Cross to SR Marketplace),38.418957,-122.713669,0
+511,Santa Rosa Ave. @ Kawana Springs Rd.,38.416,-122.713432,0
+512,Sebastopol Rd. @ Doubles Dr.,38.425323,-122.760262,0
+513,Sebastopol Rd. @ Mattson Rd. (Pacific Bell),38.425728,-122.755013,0
+514,Bennett Valley Rd. @ Fairgrounds,38.432812,-122.70208,0
+515,Bennett Valley Rd. @ Gordon Ln.,38.433533,-122.695976,0
+516,Farmers Ln. @ Neotomas Ave. (s),38.433796,-122.68821,0
+517,Santa Rosa Ave. @ SR Marketplace,38.419453,-122.713409,0
+518,Neotomas @ 1430 (Orenda Center),38.433559,-122.686279,0
+519,Post Ranch Rd. @ Townview Ave.,38.435089,-122.683372,0
+520,Petaluma Hill Rd. @ Aston Ave.,38.423634,-122.707916,0
+521,Guerneville Rd. @ Ridley Ave.,38.452576,-122.745972,0
+522,Townview Ave. @ Vista Sonoma Apts.,38.435757,-122.685471,0
+523,Townview Ln. @ Neotomas Ave.,38.43396,-122.687279,0
+524,Patio Ct. @ Hahman Dr.,38.442051,-122.685295,0
+525,Wright Rd. @ Catholic school,38.423286,-122.768845,0
+527,Yolanda Ave. @ Petaluma Hill Rd. (Goodwill),38.413292,-122.70639,0

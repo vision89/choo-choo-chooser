@@ -133,8 +133,34 @@
 
 			</paper-toast>
 
-			<!-- Make json data from gtfs files -->
-			<gtfs-feed id="gtfsfiles" files="[[files]]" json="{{filesJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
+			<!-- DATA Elements Below -->
+
+			<!-- Bart GTFS File -->
+			<gtfs-feed id="bartgtfsfiles" files="[[bartFiles]]" json="{{bartJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- County Connection GTFS File -->
+			<gtfs-feed id="countyconnectiongtfsfiles" files="[[countyConnectionFiles]]" json="{{countyConnectionJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- Make caltrain json data from gtfs files -->
+			<gtfs-feed id="calgtfsfiles" files="[[calTrainFiles]]" json="{{calJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
+			
+			<!-- AC Transit GTFS Files -->
+			<gtfs-feed id="actransitgtfsfiles" files="[[acTransitFiles]]" json="{{acTransitJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
+
+			<!-- Lavta GTFS Files -->
+			<gtfs-feed id="lavtagtfsfiles" files="[[lavtaFiles]]" json="{{lavtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- Marin GTFS Files -->
+			<gtfs-feed id="maringtfsfiles" files="[[marinFiles]]" json="{{marinJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- Sam Trans GTFS Files -->
+			<gtfs-feed id="samtransgtfsfiles" files="[[samTransFiles]]" json="{{samTransJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- SFMTA GTFS Files -->
+			<gtfs-feed id="sfmtagtfsfiles" files="[[sfmtaFiles]]" json="{{sfmtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
+
+			<!-- VTA GTFS Files -->
+			<gtfs-feed id="vtagtfsfiles" files="[[vtaFiles]]" json="{{vtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>				
 			
 			<!-- Make json data from agency xml -->
 			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-json-updated="updatedAgenciesXML" on-error="gtfsErrorXML"></gtfs-feed>

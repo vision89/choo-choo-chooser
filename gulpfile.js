@@ -221,7 +221,7 @@ gulp.task('dist-concat-minify', function() {
 gulp.task('dev', ['dev-clean'], function(cb) {
 
 	runSequence(
-		['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-sw-js', 'dev-concat-minify', 'js-doc', 'watch'],
+		['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-sw-js', 'dev-concat-minify', 'js-doc'],
 		cb
 	)	
 
@@ -235,7 +235,13 @@ gulp.task('dist', ['dist-clean'], function(cb) {
 	
 
 });
-gulp.task('default', ['dev', 'serve']);
+
+gulp.task('default', ['dev'], function(cb) {
+
+	runSequence(['watch', 'serve'], cb);
+
+});
+
 gulp.task('watch', ['dev-copy', 'dev-styles', 'lint', 'dev-js', 'dev-sw-js', 'dev-concat-minify', 'js-doc'], function() {
 
 	gulp.watch(['./app/**/*'], ['dev']);
