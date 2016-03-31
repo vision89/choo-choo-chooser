@@ -12,6 +12,7 @@ appmods.PublicTransportationDB = (function() {
 	const _stop_times_store = 		'public-transportation-stop-times';
 	const _stops_store = 			'public-transportations-stops';
 	const _trips_store = 			'public-transportation-trips';
+	const _version_store =			'public-transportation-version';
 
 	let _dbPromise;
 
@@ -113,6 +114,19 @@ appmods.PublicTransportationDB = (function() {
 		}
 
 		/**
+		 * Version Store Name
+		 * @return {string} versionStore
+		 * @memberof PublicTransportationDB
+		 * @type {string}
+		 * 
+		 */
+		static get versionStore() {
+
+			return _version_store;
+
+		}
+
+		/**
 		 * Open the db
 		 * @function
 		 * @public
@@ -126,13 +140,14 @@ appmods.PublicTransportationDB = (function() {
 				switch(upgradeDb.oldVersion) {
 
 					case 0:
-						upgradeDB.createObjectStore(_agency_store, {keyPath: 'agency_id'});
-						upgradeDB.createObjectStore(_calendar_store, {keyPath: 'service_id'});
-						upgradeDB.createObjectStore(_calendar_dates_store);
-						upgradeDB.createObjectStore(_routes_store, {keyPath: 'route_id'});
-						upgradeDB.createObjectStore(_stop_times_store);
-						upgradeDB.createObjectStore(_stops_store, {keyPath: 'stop_id'});
-						upgradeDB.createObjectStore(_trips_store);
+						upgradeDb.createObjectStore(_agency_store, {keyPath: 'agency_id'});
+						upgradeDb.createObjectStore(_calendar_store, {keyPath: 'service_id'});
+						upgradeDb.createObjectStore(_calendar_dates_store);
+						upgradeDb.createObjectStore(_routes_store, {keyPath: 'route_id'});
+						upgradeDb.createObjectStore(_stop_times_store);
+						upgradeDb.createObjectStore(_stops_store, {keyPath: 'stop_id'});
+						upgradeDb.createObjectStore(_trips_store);
+						upgradeDb.createObjectStore(_version_store, {keyPath: 'version'});
 
 				}
 				
@@ -145,16 +160,56 @@ appmods.PublicTransportationDB = (function() {
 		 * Insert a value
 		 * @function
 		 * @public
+		 * @param  {string} storeNamme The object store
+		 * @param  {string} key   The object key
+		 * @param  {string} value The value to be stored
+		 * @return {object}       promise
 		 * 
 		 */
-		put(store, key, value) {
+		put(storeName, key, value) {
 
 			return _dbPromise.then(function(db) {
 
-				let tx = db.transaction(store, 'write');
-				let store = tx.objectStore(store);
+				let tx = db.transaction(storeName, 'readwrite');
+				let store = tx.objectStore(storeName);
 				store.put(value, key);
 				return tx.complete;
+
+			});
+
+		}
+
+		/**
+		 * Check number of records in the store
+		 * @param  {string} storeName The object store
+		 * @return {object}       promise
+		 */
+		count(storeName) {
+
+			return _dbPromise.then(function(db) {
+
+				let tx = db.transaction(storeName, 'readwrite');
+				let store = tx.objectStore(storeName);
+				
+				return store.count();
+
+			});
+
+		}
+
+		/**
+		 * Get all the values
+		 * @param  {string} storeName The object store
+		 * @return {object}       promise
+		 */
+		getAll(storeName) {
+
+			return _dbPromise.then(function(db) {
+
+				let tx = db.transaction(storeName, 'readwrite');
+				let store = tx.objectStore(storeName);
+
+				return store.getAll();
 
 			});
 

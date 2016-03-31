@@ -151,6 +151,10 @@
 
 			let _realTimeData = new appmods.RealTimeData();
 
+			let _db = new appmods.PublicTransportationDB();
+
+			_db.open();
+
 			/**
 			 * Selected view
 			 * @type {number}
@@ -347,24 +351,23 @@
 
 	  		});
 
-	  		/**
-	  		 * Parse the gtfs files
-	  		 */
-	  		/**
-	  		Promise.all([app.$.bartgtfsfiles.parseFiles(), app.$.countyconnectiongtfsfiles.parseFiles(), 
-	  			app.$.calgtfsfiles.parseFiles(), app.$.actransitgtfsfiles.parseFiles(), 
-	  			app.$.lavtagtfsfiles.parseFiles(), app.$.maringtfsfiles.parseFiles(),
-	  			app.$.samtransgtfsfiles.parseFiles(), app.$.sfmtagtfsfiles.parseFiles(), 
-	  			app.$.vtagtfsfiles.parseFiles()]).then(function() {
+	  		_db.getAll(appmods.PublicTransportationDB.versionStore).then(function(data) {
 
-	  				console.log('Promises Resolved');
+	  			if(data.length === 0) {
+
+	  				Promise.all([app.$.bartgtfsfiles.parseFiles(), app.$.countyconnectiongtfsfiles.parseFiles(), 
+			  			app.$.calgtfsfiles.parseFiles(), app.$.actransitgtfsfiles.parseFiles(), 
+			  			app.$.lavtagtfsfiles.parseFiles(), app.$.maringtfsfiles.parseFiles(),
+			  			app.$.samtransgtfsfiles.parseFiles(), app.$.sfmtagtfsfiles.parseFiles(), 
+			  			app.$.vtagtfsfiles.parseFiles()]).then(function() {
+
+			  				console.log('Promises Resolved');
+
+			  		});
+
+	  			}
 
 	  		});
-	  		**/
-
-	  		let db = new appmods.PublicTransportationDB();
-
-	  		db.open();
 
 	  		if(navigator.serviceWorker) {
 
