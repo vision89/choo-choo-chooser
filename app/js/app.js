@@ -283,9 +283,23 @@
 
 	  					app.set('agencytext', String(data));
 
-  						app.$.gtfsagency.parseXML();
+  						app.$.gtfsagency.parseXML().then(function() {
 
-  						app.loading = false;
+  							app.set('agencyList', []);
+
+  							app.gtfsJson.agencyList.forEach(agency => {
+
+  								let agencyObj = Object.create(null);
+
+  								agencyObj.agency_name = agency._attr.Name._value;
+
+  								app.push('agencyList', agencyObj);
+
+  							});
+
+  							app.loading = false;
+
+  						});
 
 	  				}).catch(function(error) {
 
@@ -293,9 +307,11 @@
 
 	  						console.log('Got agencies from the db: ', agencies);
 
-	  					});
+	  						app.set('gtfsJson', agencies);
 
-	  					app.loading = false;
+	  						app.loading = false;
+
+	  					});
 
 	  				});
 
@@ -307,7 +323,7 @@
 
 	  		/**
 			 * Populate drawer with destination info
-			 * @function populateDeparture
+			 * @function populateRoutes
 			 *
 			 */
 	  		app.populateRoutes = function() {
@@ -341,43 +357,6 @@
 
 	  		};
 
-	  		app.updatedAgenciesXML = function(e) {
-
-	  			e.stopPropagation();
-
-	  			console.log('Agencies: ', app.gtfsJson.agencyList);
-
-	  		};
-
-	  		/**
-	  		 * Received the routes
-	  		 */
-	  		app.updatedRoutesXML = function(e) {
-
-	  			e.stopPropagation();
-
-	  			app.set('routes', []);
-
-	  			try {
-
-	  				app.set('routes', app.gtfsRoutesJson.agencyList[0].RouteList[0].Route);
-
-	  			} catch (e) {
-
-	  				console.log('Error: ', e);
-
-	  			}
-
-	  		};
-
-	  		app.updatedStopsXML = function(e) {
-
-	  			e.stopPropagation();
-
-	  			console.log('Stops: ', app.gtfsStopsJson);
-
-	  		};
-
 	  		/**
 	  		 * Selected an agency from the map card
 	  		 * @param  {object} e event
@@ -386,7 +365,7 @@
 
 	  			e.stopPropagation();
 
-	  			app.departure = val.item.value._attr.Name._value;
+	  			app.departure = val.item.value.agency_name;
 
 	  			app.$.paperDrawerPanel.closeDrawer();
 	  			_isOpening = false;

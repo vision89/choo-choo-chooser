@@ -66,9 +66,9 @@
 							<!-- Selectable stations go here -->
 							<paper-listbox on-iron-select="agencySelected">
 
-								<template is="dom-repeat" items="[[gtfsJson.agencyList]]">
+								<template is="dom-repeat" items="[[agencyList]]">
 
-									<paper-item value="[[item]]">[[item._attr.Name._value]]</paper-item>
+									<paper-item value="[[item]]">[[item.agency_name]]</paper-item>
 
 								</template>
 
@@ -166,13 +166,13 @@
 			<gtfs-feed id="vtagtfsfiles" files="[[vtaFiles]]" json="{{vtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>				
 			
 			<!-- Make json data from agency xml -->
-			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-json-updated="updatedAgenciesXML" on-error="gtfsErrorXML"></gtfs-feed>
+			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
 
 			<!-- Make json data from routes xml -->
-			<gtfs-feed id="gtfsroutes" xml="[[routestext]]" json="{{gtfsRoutesJson}}" on-json-updated="updatedRoutesXML" on-error="gtfsErrorXML"></gtfs-feed>
+			<gtfs-feed id="gtfsroutes" xml="[[routestext]]" json="{{gtfsRoutesJson}}" on-error="gtfsErrorXML"></gtfs-feed>
 
 			<!-- Make json data from stops xml -->
-			<gtfs-feed id="gtfsstops" xml="[[stopstext]]" json="{{gtfsStopsJson}}" on-json-updated="updatedStopsXML" on-error="gtfsErrorXML"></gtfs-feed>
+			<gtfs-feed id="gtfsstops" xml="[[stopstext]]" json="{{gtfsStopsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
 
 		</template>
 
