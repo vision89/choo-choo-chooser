@@ -213,13 +213,18 @@
 
 					}
 
-					var responseToCache = response.clone();
+					let responseToCache = response.clone();
+					let fetchRequest = event.request.clone();
 
-					caches.open(staticCacheName).then(function(cache) {
+					if(fetchRequest.method === 'GET') {
 
-						cache.put(event.request, responseToCache);
-						
-					});
+						caches.open(staticCacheName).then(function(cache) {
+
+							cache.put(event.request, responseToCache);
+							
+						});
+
+					}
 
 					return response;
 

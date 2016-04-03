@@ -13,6 +13,7 @@ appmods.PublicTransportationDB = (function() {
 	const _stops_store = 			'public-transportations-stops';
 	const _trips_store = 			'public-transportation-trips';
 	const _version_store =			'public-transportation-version';
+	const _agency_name_index =		'agency_name';
 
 	let _dbPromise;
 
@@ -127,6 +128,19 @@ appmods.PublicTransportationDB = (function() {
 		}
 
 		/**
+		 * Agency Name Index
+		 * @return {string} agencyNameIndex
+		 * @memberof PublicTransportationDB
+		 * @type {string}
+		 * 
+		 */
+		static get agencyNameIndex() {
+
+			return _agency_name_index;
+
+		}
+
+		/**
 		 * Open the db
 		 * @function
 		 * @public
@@ -134,20 +148,30 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		open() {
 
-			_dbPromise = idb.open(_dbname, 1, upgradeDb => {
+			_dbPromise = idb.open(_dbname, 2, upgradeDb => {
 
+				let agencyStore;
+				let calendarStore;
+				let calendarDatesStore;
+				let routeStore;
+				let stopTimesStore;
+				let stopsStore;
+				let tripsStore;
+				let versionStore;
 				
 				switch(upgradeDb.oldVersion) {
 
 					case 0:
-						upgradeDb.createObjectStore(_agency_store, {keyPath: 'id', autoIncrement:true});
-						upgradeDb.createObjectStore(_calendar_store, {keyPath: 'service_id'});
-						upgradeDb.createObjectStore(_calendar_dates_store, {keyPath: 'id', autoIncrement:true});
-						upgradeDb.createObjectStore(_routes_store, {keyPath: 'route_id'});
-						upgradeDb.createObjectStore(_stop_times_store, {keyPath: 'id', autoIncrement:true});
-						upgradeDb.createObjectStore(_stops_store, {keyPath: 'stop_id'});
-						upgradeDb.createObjectStore(_trips_store, {keyPath: 'id', autoIncrement:true});
-						upgradeDb.createObjectStore(_version_store, {keyPath: 'version'});
+						agencyStore = 			upgradeDb.createObjectStore(_agency_store, {keyPath: 'id', autoIncrement:true});
+						calendarStore = 		upgradeDb.createObjectStore(_calendar_store, {keyPath: 'service_id'});
+						calendarDatesStore = 	upgradeDb.createObjectStore(_calendar_dates_store, {keyPath: 'id', autoIncrement:true});
+						routeStore = 			upgradeDb.createObjectStore(_routes_store, {keyPath: 'route_id'});
+						stopTimesStore = 		upgradeDb.createObjectStore(_stop_times_store, {keyPath: 'id', autoIncrement:true});
+						stopsStore = 			upgradeDb.createObjectStore(_stops_store, {keyPath: 'stop_id'});
+						tripsStore = 			upgradeDb.createObjectStore(_trips_store, {keyPath: 'id', autoIncrement:true});
+						versionStore = 			upgradeDb.createObjectStore(_version_store, {keyPath: 'version'});
+					case 1:
+						routeStore.createIndex("agency_name", "agency_name", { unique: false });
 
 				}
 				
@@ -168,8 +192,6 @@ appmods.PublicTransportationDB = (function() {
 		put(storeName, value) {
 
 			return _dbPromise.then(function(db) {
-
-				console.log('db: ', db);
 
 				if (!db) return;
 
@@ -217,6 +239,29 @@ appmods.PublicTransportationDB = (function() {
 				let store = tx.objectStore(storeName);
 
 				return store.getAll();
+
+			});
+
+		}
+
+		/**
+		 * Get where
+		 * @param  {string} storeName 	The object store
+		 * @param  {string} indexName 	The index for the store
+		 * @param  {string} value 		The value to match
+		 * @return {object}       promise
+		 */
+		getAllByIndex(storeName, indexName, value) {
+
+			return _dbPromise.then(function(db) {
+
+				if (!db) return;
+
+				let tx = db.transaction(storeName, 'readwrite');
+				let store = tx.objectStore(storeName);
+				let index = store.index(indexName);
+
+				return index.getAll(value);
 
 			});
 
