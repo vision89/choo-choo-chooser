@@ -14,6 +14,7 @@ appmods.PublicTransportationDB = (function() {
 	const _trips_store = 			'public-transportation-trips';
 	const _version_store =			'public-transportation-version';
 	const _agency_name_index =		'agency_name';
+	const _calendar_agency_index =	'calendar_agency_index';
 
 	let _dbPromise;
 
@@ -141,6 +142,19 @@ appmods.PublicTransportationDB = (function() {
 		}
 
 		/**
+		 * Calendar Agency Index
+		 * @return {string} calendarAgencyIndex
+		 * @memberof PublicTransportationDB
+		 * @type {string}
+		 * 
+		 */
+		static get calendarAgencyIndex() {
+
+			return _calendar_agency_index;
+
+		}
+
+		/**
 		 * Open the db
 		 * @function
 		 * @public
@@ -163,7 +177,7 @@ appmods.PublicTransportationDB = (function() {
 
 					case 0:
 						agencyStore = 			upgradeDb.createObjectStore(_agency_store, {keyPath: 'id', autoIncrement:true});
-						calendarStore = 		upgradeDb.createObjectStore(_calendar_store, {keyPath: 'service_id'});
+						calendarStore = 		upgradeDb.createObjectStore(_calendar_store, {keyPath: 'id', autoIncrement:true});
 						calendarDatesStore = 	upgradeDb.createObjectStore(_calendar_dates_store, {keyPath: 'id', autoIncrement:true});
 						routeStore = 			upgradeDb.createObjectStore(_routes_store, {keyPath: 'route_id'});
 						stopTimesStore = 		upgradeDb.createObjectStore(_stop_times_store, {keyPath: 'id', autoIncrement:true});
@@ -171,7 +185,8 @@ appmods.PublicTransportationDB = (function() {
 						tripsStore = 			upgradeDb.createObjectStore(_trips_store, {keyPath: 'id', autoIncrement:true});
 						versionStore = 			upgradeDb.createObjectStore(_version_store, {keyPath: 'version'});
 					case 1:
-						routeStore.createIndex("agency_name", "agency_name", { unique: false });
+						routeStore.createIndex(_agency_name_index, _agency_name_index, { unique: false });
+						calendarStore.createIndex(_calendar_agency_index, _agency_name_index, { unique: false });
 
 				}
 				

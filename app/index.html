@@ -81,9 +81,23 @@
 							<!-- Selectable stations go here -->
 							<paper-listbox id="routelist" on-iron-select="routeSelected">
 
-								<template is="dom-repeat" items="[[routes]]">
+								<template is="dom-if" if="[[!routes.length]]">
+									
+									<div class="indent">
 
-									<paper-item value="[[item]]">[[item.name]]</paper-item>
+										No Routes
+
+									</div>
+
+								</template>
+
+								<template is="dom-if" if="[[routes.length]]">
+
+									<template is="dom-repeat" items="[[routes]]">
+
+										<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+									</template>
 
 								</template>
 
@@ -163,7 +177,10 @@
 			<gtfs-feed id="sfmtagtfsfiles" files="[[sfmtaFiles]]" json="{{sfmtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
 
 			<!-- VTA GTFS Files -->
-			<gtfs-feed id="vtagtfsfiles" files="[[vtaFiles]]" json="{{vtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>				
+			<gtfs-feed id="vtagtfsfiles" files="[[vtaFiles]]" json="{{vtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
+	
+			<!-- General File Parser -->
+			<gtfs-feed id="fileParser" files="[[gtfsFile]]" json="{{parsedJson}}" on-error="gtfsErrorFiles"></gtfs-feed>			
 			
 			<!-- Make json data from agency xml -->
 			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
