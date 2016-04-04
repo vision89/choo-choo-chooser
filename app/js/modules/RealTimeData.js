@@ -61,21 +61,21 @@ appmods.RealTimeData = (function(document) {
 					headers: new Headers({
 						'Content-Type': 'text/xml; charset=utf-8'
 					})
-					}).then(function(response) {
+				}).then(function(response) {
 
-						response.text().then(function(data) {
+					response.text().then(function(data) {
 
-							resolve(data);
-
-						});
-
-					}).catch(function(error) {
-
-						reject(error);
+						resolve(data);
 
 					});
 
-		    	});
+				}).catch(function(error) {
+
+					reject(error);
+
+				});
+
+	    	});
 
 
 	    }
@@ -90,7 +90,7 @@ appmods.RealTimeData = (function(document) {
 	    	return new Promise(function(resolve, reject) {
 
 	    		//Get the departure data
-				fetch('http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&routeIDF=' + agency + '~' + routeCode,{
+				fetch('http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&routeIDF=' + agency + '~' + routeCode + '~""',{
 					method: 'GET',
 					mode: 'cors',
 					headers: new Headers({

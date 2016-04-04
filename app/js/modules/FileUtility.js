@@ -328,6 +328,6 @@ appmods.FileUtility = (function(document) {
 
 		}
 
-	}	
+	};	
 
 })();

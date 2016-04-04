@@ -113,9 +113,6 @@
 
 			<google-map disable-default-ui="true" latitude="[[location.latitude]]" longitude="[[location.longitude]]" hidden$="[[!isOnline]]">
 
-				<google-map-marker latitude="[[location.latitude]]" longitude="[[location.longitude]]"
-      				title="You are here!"></google-map-marker>
-
 			</google-map>
 
 		</div>
@@ -222,6 +219,18 @@
 		    		type: Object,
 		    		notify: false,
 		    		value: Object.create(null)
+
+		    	},
+
+		    	/**
+		    	 * Stops for a selected route
+		    	 * @type {Array}
+		    	 */
+		    	stops: {
+
+		    		type: Array,
+		    		notify: false,
+		    		value: []
 
 		    	},
 

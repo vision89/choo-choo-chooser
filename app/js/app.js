@@ -510,6 +510,7 @@
 	  			e.stopPropagation();
 
 	  			app.set('selectedRoute', val.item.value.name);
+	  			app.set('stops', []);
 
 	  			app.$.paperDrawerPanel.closeDrawer();
 	  			_isOpening = false;
@@ -518,7 +519,37 @@
 
   					app.set('stopstext', String(data));
 
-					app.$.gtfsstops.parseXML();
+					app.$.gtfsstops.parseXML().then(function() {
+
+						app.gtfsStopsJson.agencyList.forEach(agency => {
+
+							agency.RouteList.forEach(route => {
+
+								route.Route.forEach(r => {
+
+									r.StopList.forEach(stop => {
+
+										stop.Stop.forEach(s => {
+
+											let stopObj = Object.create(null);
+											stopObj.code = s._attr.StopCode._value;
+											stopObj.name = s._attr.name._value;
+
+											app.push('stops', stopObj);
+
+										});
+
+									});
+
+								});
+
+							});
+
+						});
+
+						console.log('Online Stops: ', app.stops);
+
+					});
 
   				}).catch(function(error) {
 
@@ -582,8 +613,7 @@
 
 									});
 
-									console.log('Stop Times: ', app.stopTimes);
-			  						console.log('Stops: ', app.stops);
+									console.log('Offline Stops: ', app.stops);
 
 			  					});
 
