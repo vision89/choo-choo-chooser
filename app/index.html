@@ -78,30 +78,51 @@
 
 						<template is="dom-if" if="[[!isDeparture]]">
 
-							<!-- Selectable stations go here -->
-							<paper-listbox id="routelist" on-iron-select="routeSelected">
+							<!-- Were not showing the directions list, so show routes -->
+							<template is="dom-if" if="[[!showDirectionsList]]">
 
-								<template is="dom-if" if="[[!routes.length]]">
+								<!-- Selectable routes go here -->
+								<paper-listbox id="routelist" on-iron-select="routeSelected">
 									
-									<div class="indent">
+									<template is="dom-if" if="[[!routes.length]]">
+								
+										<div class="indent">
 
-										No Routes
+											No Routes
 
-									</div>
+										</div>
 
-								</template>
+									</template>
 
-								<template is="dom-if" if="[[routes.length]]">
+									<template is="dom-if" if="[[routes.length]]">
 
-									<template is="dom-repeat" items="[[routes]]">
+										<template is="dom-repeat" items="[[routes]]">
+
+											<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+										</template>
+
+									</template>
+
+								</paper-listbox>
+
+							</template>
+							
+							<!-- Show the directions list -->
+							<template is="dom-if" if="[[showDirectionsList]]">
+
+								<!-- Selectable directions go here -->
+								<paper-listbox id="directionslist" on-iron-select="directionSelected">
+
+									<template is="dom-repeat" items="[[directions]]">
 
 										<paper-item value="[[item]]">[[item.name]]</paper-item>
 
 									</template>
 
-								</template>
+								</paper-listbox>
 
-							</paper-listbox>
+							</template>
 
 						</template>
 
@@ -126,7 +147,11 @@
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
 							
-							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture" departure="{{departure}}" route="{{selectedRoute}}" is-mobile="[[mobile]]" is-online="[[online]]" location="[[loc]]" stops="[[stops]]"></map-page>
+							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture"
+							on-directions-pressed="populateDirections" departure="{{departure}}" 
+							route="{{selectedRoute}}" is-mobile="[[mobile]]" 
+							is-online="[[online]]" location="[[loc]]" stops="[[stops]]" 
+							show-directions="[[showDirections]]"></map-page>
 
 							<schedule-page></schedule-page>
 						    

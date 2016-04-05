@@ -275,6 +275,7 @@
 	  		app.populateDeparture = function() {
 
 	  			_isOpening = !_isOpening;
+	  			app.set('showDirectionsList', false);
 
 	  			if(_isOpening) {
 
@@ -335,6 +336,7 @@
 	  		app.populateRoutes = function() {
 
 	  			_isOpening = !_isOpening;
+	  			app.set('showDirectionsList', false);
 
 	  			if(_isOpening) {
 
@@ -359,9 +361,10 @@
 
   											let routeObj = Object.create(null);
 
-											routeObj.agency = 	agency._attr.Name._value;
-											routeObj.code = 	route._attr.Code._value;
-											routeObj.name = 	route._attr.Name._value;
+											routeObj.agency = 			agency._attr.Name._value;
+											routeObj.code = 			route._attr.Code._value;
+											routeObj.name = 			route._attr.Name._value;
+											routeObj.directionList = 	route.RouteDirectionList || [];
 
 											app.push('routes', routeObj);
 
@@ -435,10 +438,11 @@
 
 						  									let routeObj = Object.create(null);
 
-							  								routeObj.agency = 	route.agency_name;
-							  								routeObj.code = 	route.route_id;
-															routeObj.name = 	route.route_short_name || route.route_long_name;
-															routeObj.tripId =	trip.trip_id;
+							  								routeObj.agency = 			route.agency_name;
+							  								routeObj.code = 			route.route_id;
+															routeObj.name = 			route.route_short_name || route.route_long_name;
+															routeObj.tripId =			trip.trip_id;
+															routeObj.directionList = 	[];
 
 															let index = -1;
 
@@ -485,6 +489,24 @@
 
 	  		};
 
+	  		app.populateDirections = function() {
+
+	  			_isOpening = !_isOpening;
+
+	  			if(_isOpening) {
+
+	  				app.set('showDirectionsList', true);
+
+	  			} else {
+
+	  				app.set('showDirectionsList', false);
+
+	  			}
+
+	  			app.$.paperDrawerPanel.togglePanel();
+
+	  		};
+
 	  		/**
 	  		 * Selected an agency from the map card
 	  		 * @param  {object} e event
@@ -515,27 +537,33 @@
 	  			app.$.paperDrawerPanel.closeDrawer();
 	  			_isOpening = false;
 
-	  			_realTimeData.getStops(app.departure, val.item.value.code).then(function(data) {
+	  			if(val.item.value.directionList.length === 0) {
 
-  					app.set('stopstext', String(data));
+	  				app.set('showDirections', false);
 
-					app.$.gtfsstops.parseXML().then(function() {
+	  				_realTimeData.getStops(app.departure, val.item.value.code).then(function(data) {
 
-						app.gtfsStopsJson.agencyList.forEach(agency => {
+	  					app.set('stopstext', String(data));
 
-							agency.RouteList.forEach(route => {
+						app.$.gtfsstops.parseXML().then(function() {
 
-								route.Route.forEach(r => {
+							app.gtfsStopsJson.agencyList.forEach(agency => {
 
-									r.StopList.forEach(stop => {
+								agency.RouteList.forEach(route => {
 
-										stop.Stop.forEach(s => {
+									route.Route.forEach(r => {
 
-											let stopObj = Object.create(null);
-											stopObj.code = s._attr.StopCode._value;
-											stopObj.name = s._attr.name._value;
+										r.StopList.forEach(stop => {
 
-											app.push('stops', stopObj);
+											stop.Stop.forEach(s => {
+
+												let stopObj = Object.create(null);
+												stopObj.code = s._attr.StopCode._value;
+												stopObj.name = s._attr.name._value;
+
+												app.push('stops', stopObj);
+
+											});
 
 										});
 
@@ -545,85 +573,105 @@
 
 							});
 
+							console.log('Online Stops: ', app.stops);
+
 						});
 
-						console.log('Online Stops: ', app.stops);
+	  				}).catch(function(error) {
 
-					});
+	  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
+						let stops = app.parsedJson;
+						app.set('stopTimes', []);
+						app.set('stops', []);
 
-  				}).catch(function(error) {
+						if(stopTimesFile) {
 
-  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
-					let stops = app.parsedJson;
-					app.set('stopTimes', []);
-					app.set('stops', []);
+							app.set('gtfsFile', [stopTimesFile]);
 
-					if(stopTimesFile) {
+							app.$.fileParser.parseFiles().then(function() {
 
-						app.set('gtfsFile', [stopTimesFile]);
+								app.parsedJson.stop_times.forEach(stopTime => {
 
-						app.$.fileParser.parseFiles().then(function() {
+									if(stopTime.trip_id === val.item.value.tripId) {
 
-							app.parsedJson.stop_times.forEach(stopTime => {
+										app.push('stopTimes', stopTime);
 
-								if(stopTime.trip_id === val.item.value.tripId) {
+									}
 
-									app.push('stopTimes', stopTime);
+								});
 
-								}
+								let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
 
-							});
+			  					if(stopsFile) {
 
-							let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
+			  						app.set('gtfsFile', [stopsFile]);
 
-		  					if(stopsFile) {
+			  						app.$.fileParser.parseFiles().then(function() {
 
-		  						app.set('gtfsFile', [stopsFile]);
+			  							app.stopTimes.forEach(stopTime => {
 
-		  						app.$.fileParser.parseFiles().then(function() {
+											app.parsedJson.stops.forEach(stop => {
 
-		  							app.stopTimes.forEach(stopTime => {
+												if(stopTime.stop_id === stop.stop_id) {
 
-										app.parsedJson.stops.forEach(stop => {
+													let index = -1;
 
-											if(stopTime.stop_id === stop.stop_id) {
+													for(let i = 0;i < app.stops.length; ++i) {
 
-												let index = -1;
+														if(app.stops[i].stop_id === stop.stop_id) {
 
-												for(let i = 0;i < app.stops.length; ++i) {
+															index = i;
+															break;
 
-													if(app.stops[i].stop_id === stop.stop_id) {
+														}
 
-														index = i;
-														break;
+													}
+
+													if(index === -1) {
+
+														app.stops.push(stop);
 
 													}
 
 												}
 
-												if(index === -1) {
-
-													app.stops.push(stop);
-
-												}
-
-											}
+											});
 
 										});
 
-									});
+										console.log('Offline Stops: ', app.stops);
 
-									console.log('Offline Stops: ', app.stops);
+				  					});
 
-			  					});
+			  					}
 
-		  					}
+							});
 
-						});
+						}
 
-					}
+	  				});
 
-  				});
+	  			} else {
+
+	  				app.set('showDirections', true);
+
+	  				app.set('directions', []);
+
+	  				val.item.value.directionList.forEach(direction => {
+
+	  					direction.RouteDirection.forEach(d => {
+
+	  						let directionObj = Object.create(null);
+	  						directionObj.code = d._attr.Code._value;
+	  						directionObj.name = d._attr.Name._value;
+
+	  						app.push('directions', directionObj);
+
+	  					});
+
+	  				});
+
+	  			}
 
 	  		};
 
