@@ -125,14 +125,6 @@
 			</div>
 
 		</paper-card>
-		
-		<div class="flex layout vertical">
-
-			<google-map disable-default-ui="true" latitude="[[location.latitude]]" longitude="[[location.longitude]]" hidden$="[[!isOnline]]">
-
-			</google-map>
-
-		</div>
 
 	</template>    
 
@@ -227,31 +219,6 @@
 		    	},
 
 		    	/**
-		    	 * Are we online?
-		    	 * @type {Boolean}
-		    	 */
-		    	isOnline: {
-
-		    		type: Boolean,
-		    		notify: false,
-		    		value: true,
-		    		observer: '_setStyle'
-
-		    	},
-
-		    	/**
-		    	 * Users location
-		    	 * @type {Object}
-		    	 */
-		    	location: {
-
-		    		type: Object,
-		    		notify: false,
-		    		value: Object.create(null)
-
-		    	},
-
-		    	/**
 		    	 * Stops for a selected route
 		    	 * @type {Array}
 		    	 */
@@ -336,21 +303,10 @@
 		     */
 		    _setStyle: function() {
 
-		    	if(this.isMobile && this.isOnline) {
+		    	if(this.isMobile) {
 
 		    		this._cardClass = 'choosy-card-mobile-online';
 		    		this._image = '';
-
-		    	} else if(this.isMobile && !this.isOnline) {
-
-		    		this._cardClass = 'choosy-card-mobile-offline';
-		    		this._image = imagePath;
-
-		    	} else if(!this.isMobile && this.isOnline) {
-
-		    		this._cardClass = 'choosy-card-wide-online';
-		    		this._image = imagePath;
-
 
 		    	} else {
 

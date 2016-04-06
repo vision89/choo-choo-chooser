@@ -489,6 +489,11 @@
 
 	  		};
 
+	  		/**
+			 * Populate drawer with direction info
+			 * @function populateDirections
+			 *
+			 */
 	  		app.populateDirections = function() {
 
 	  			_isOpening = !_isOpening;
@@ -531,7 +536,7 @@
 
 	  			e.stopPropagation();
 
-	  			app.set('selectedRoute', val.item.value.name);
+	  			app.set('selectedRoute', val.item.value);
 	  			app.set('stops', []);
 
 	  			app.$.paperDrawerPanel.closeDrawer();
@@ -541,7 +546,7 @@
 
 	  				app.set('showDirections', false);
 
-	  				_realTimeData.getStops(app.departure, val.item.value.code).then(function(data) {
+	  				_realTimeData.getStops(app.departure, val.item.value.code, '').then(function(data) {
 
 	  					app.set('stopstext', String(data));
 
@@ -572,8 +577,6 @@
 								});
 
 							});
-
-							console.log('Online Stops: ', app.stops);
 
 						});
 
@@ -639,8 +642,6 @@
 
 										});
 
-										console.log('Offline Stops: ', app.stops);
-
 				  					});
 
 			  					}
@@ -676,20 +677,137 @@
 	  		};
 
 	  		/**
-	  		 * Get the users location
-	  		 * @param  {object} data users location
-	  		 * 
+	  		 * Selected direction from the card
+	  		 * @param  {object} e   event
+	  		 * @param  {object} val selected value
 	  		 */
-	  		appmods.LocationUtility.getLocation().then(function(data) {
+	  		app.directionSelected = function(e, val) {
 
-	  			app.set('loc', data);
+	  			e.stopPropagation();
 
-	  		}).catch(function(error) {
+	  			app.set('selectedDirection', val.item.value);
+	  			app.set('stops', []);
 
-	  			//If we can't get the users location assume we are offline
-	  			app.set('online', false);
+	  			app.$.paperDrawerPanel.closeDrawer();
+	  			_isOpening = false;
 
-	  		});
+	  			app.set('showDirections', false);
+
+	  			_realTimeData.getStops(app.departure, app.selectedRoute.code, app.selectedDirection.code).then(function(data) {
+
+  					app.set('stopstext', String(data));
+
+					app.$.gtfsstops.parseXML().then(function() {
+
+						app.gtfsStopsJson.agencyList.forEach(agency => {
+
+							agency.RouteList.forEach(route => {
+
+								route.Route.forEach(r => {
+
+									r.RouteDirectionList.forEach(direction => {
+
+										direction.RouteDirection.forEach(d => {
+
+											d.StopList.forEach(stop => {
+
+												stop.Stop.forEach(s => {
+
+													let stopObj = Object.create(null);
+													stopObj.code = s._attr.StopCode._value;
+													stopObj.name = s._attr.name._value;
+
+													app.stops.push(stopObj);
+
+												});
+
+											});
+
+										});
+
+									});
+
+								});
+
+							});
+
+						});
+
+					});
+
+  				}).catch(function(error) {
+
+  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
+					let stops = app.parsedJson;
+					app.set('stopTimes', []);
+					app.set('stops', []);
+
+					if(stopTimesFile) {
+
+						app.set('gtfsFile', [stopTimesFile]);
+
+						app.$.fileParser.parseFiles().then(function() {
+
+							app.parsedJson.stop_times.forEach(stopTime => {
+
+								if(stopTime.trip_id === val.item.value.tripId) {
+
+									app.push('stopTimes', stopTime);
+
+								}
+
+							});
+
+							let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
+
+		  					if(stopsFile) {
+
+		  						app.set('gtfsFile', [stopsFile]);
+
+		  						app.$.fileParser.parseFiles().then(function() {
+
+		  							app.stopTimes.forEach(stopTime => {
+
+										app.parsedJson.stops.forEach(stop => {
+
+											if(stopTime.stop_id === stop.stop_id) {
+
+												let index = -1;
+
+												for(let i = 0;i < app.stops.length; ++i) {
+
+													if(app.stops[i].stop_id === stop.stop_id) {
+
+														index = i;
+														break;
+
+													}
+
+												}
+
+												if(index === -1) {
+
+													app.stops.push(stop);
+
+												}
+
+											}
+
+										});
+
+									});
+
+			  					});
+
+		  					}
+
+						});
+
+					}
+
+  				});
+
+	  		};
 
 	  		_db.getAll(appmods.PublicTransportationDB.versionStore).then(function(data) {
 
@@ -782,12 +900,6 @@
 					//If we get a map error we know we are in offline mode
 					switch(event.data) {
 
-						case 'Map Error':
-							app.online = false;
-							break;
-						case 'Map Good':
-							app.online = true;
-							break;
 						case 'skipWaiting':
 							console.log('Calling skipwaiting');
 							navigator.serviceWorker.skipWaiting();

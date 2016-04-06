@@ -85,12 +85,12 @@ appmods.RealTimeData = (function(document) {
 	     * @function
 	     * 
 	     */
-	    getStops(agency, routeCode) {
+	    getStops(agency, routeCode, directionCode) {
 
 	    	return new Promise(function(resolve, reject) {
 
 	    		//Get the departure data
-				fetch('http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&routeIDF=' + agency + '~' + routeCode + '~""',{
+				fetch('http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&routeIDF=' + agency + '~' + routeCode + '~' + directionCode,{
 					method: 'GET',
 					mode: 'cors',
 					headers: new Headers({

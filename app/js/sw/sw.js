@@ -40,10 +40,6 @@
 					'bower_components/paper-item/paper-item.html',
 					'bower_components/paper-spinner/paper-spinner.html',
 					'bower_components/paper-input/paper-input.html',
-					'bower_components/google-map/google-map.html',
-					'bower_components/google-map/google-map-directions.html',
-					'bower_components/google-map/google-map-marker.html',
-					'bower_components/google-map/google-map-point.html',
 					'elements/map-page.html',
 					'elements/schedule-page.html',
 					'elements/shared-styles.html',
@@ -155,43 +151,7 @@
 
 	});
 
-	//https://maps.googleapis.com/maps/api/js?callback=https___maps_googleapis_co…ization_api_loaded&v=3.exp&libraries=drawing,geometry,places,visualization
-	//If this route fails we are not connected to get the map
-
 	self.addEventListener('fetch', function(event) {
-
-		if(event.request.url.indexOf('maps.googleapis.com') > -1) {
-
-			return fetch(event.request).then(function(response) {
-
-				self.clients.matchAll().then((clients) => {
-
-					clients.map((client) => {
-
-						return client.postMessage('Map Good');
-
-					});
-
-				});
-
-				return response;
-
-			}).catch(function() {
-
-				// Broadcast to all open clients
-				self.clients.matchAll().then((clients) => {
-
-					clients.map((client) => {
-
-						return client.postMessage('Map Error');
-
-					});
-
-				});
-
-			});
-
-		}
 
 		event.respondWith(
 

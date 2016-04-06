@@ -149,9 +149,10 @@
 							
 							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture"
 							on-directions-pressed="populateDirections" departure="{{departure}}" 
-							route="{{selectedRoute}}" is-mobile="[[mobile]]" 
-							is-online="[[online]]" location="[[loc]]" stops="[[stops]]" 
-							show-directions="[[showDirections]]"></map-page>
+							route="{{selectedRoute.name}}" is-mobile="[[mobile]]" 
+							location="[[loc]]" stops="[[stops]]" 
+							show-directions="[[showDirections]]" direction="[[selectedDirection.name]]">
+							</map-page>
 
 							<schedule-page></schedule-page>
 						    
