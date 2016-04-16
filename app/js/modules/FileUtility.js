@@ -15,6 +15,63 @@ appmods.FileUtility = (function(document) {
 	const _VTA =				'VTA';
 	const _SRCB =				'Santa Rosa CityBus';
 
+	var _fileNames = [
+
+		{
+		  file: 'agency.txt',
+		  prop: 'agency'
+		},
+		{
+		  file: 'stops.txt',
+		  prop: 'stops'
+		},
+		{
+		  file: 'routes.txt',
+		  prop: 'routes'
+		},
+		{
+		  file: 'trips.txt',
+		  prop: 'trips'
+		},
+		{
+		  file: 'stop_times.txt',
+		  prop: 'stop_times'
+		},
+		{
+		  file: 'calendar.txt',
+		  prop: 'calendar'
+		},
+		{
+		  file: 'calendar_dates.txt',
+		  prop: 'calendar_dates'
+		},
+		{
+		  file: 'fare_attributes.txt',
+		  prop: 'fare_attributes'
+		},
+		{
+		  file: 'fare_rules.txt',
+		  prop: 'fare_rules'
+		},
+		{
+		  file: 'shapes.txt',
+		  prop: 'shapes'
+		},
+		{
+		  file: 'frequencies.txt',
+		  prop: 'frequencies'
+		},
+		{
+		  file: 'transfers.txt',
+		  prop: 'transfers'
+		},
+		{
+		  file: 'feed_info.txt',
+		  prop: 'feed_info'
+		}
+
+	];
+
 	return class FileUtility {
 
 		constructor() {
@@ -325,6 +382,89 @@ appmods.FileUtility = (function(document) {
 			}
 
 			return file;
+
+		}
+
+		static parseFile(files) {
+
+			let tally = 0;
+			let total = files.length;
+			let json = 	Object.create(null);
+
+			return new Promise(function(resolve, reject) {
+
+		        try {
+
+		          files.forEach(function(url) {
+
+		            let prop = '';
+
+		            for(let i = 0; i < _fileNames.length; ++i) {
+
+		              if(url.endsWith(_fileNames[i].file)) {
+
+		                prop = _fileNames[i].prop;
+
+		              }
+
+		            }
+
+		            if(prop) {
+
+		              Papa.parse(url, {
+		              download: true,
+		              header: true,
+		              skipEmptyLines: true,
+		              before: function(url, inputElem)
+		                {
+		                  // executed before parsing each file begins;
+		                  // what you return here controls the flow
+		                },
+		                error: function(err, file, inputElem, reason)
+		                {
+		                  // executed if an error occurs while loading the file,
+		                  // or if before callback aborted for some reason
+
+		                  //Still counts against our files
+		                  ++tally;
+
+		                  //If this is the last file alert the parent
+		                  if(tally === total) {
+
+		                    return reject(err);
+
+		                  }
+
+		                },
+		                complete: function(results)
+		                {
+
+		                  //If this is the last file alert the parent
+		                  ++tally;
+		                  if(tally === total) {
+
+		                    return resolve(results);
+
+		                  }
+
+		                }
+		              });
+
+		            } else {
+
+		              return reject('File does not conform to gtfs standard');
+
+		            }
+
+		          });
+
+		        } catch( err ) {
+
+		          return reject(err);
+
+		        }
+
+	      });
 
 		}
 

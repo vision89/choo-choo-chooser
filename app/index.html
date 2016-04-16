@@ -16,6 +16,9 @@
 
 		<!--Local Styles -->
 		<link rel="stylesheet" href="css/styles.css">
+
+		<!-- Papa Parse -->
+		<script src="bower_components/xmlToJSON.js/lib/xmlToJSON.js"></script>
 		
 		<!-- Elements -->
 		<link rel="import" href="elements/elements.html">
@@ -208,14 +211,11 @@
 			<!-- General File Parser -->
 			<gtfs-feed id="fileParser" files="[[gtfsFile]]" json="{{parsedJson}}" on-error="gtfsErrorFiles"></gtfs-feed>			
 			
-			<!-- Make json data from agency xml -->
+			<!--
 			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
-
-			<!-- Make json data from routes xml -->
 			<gtfs-feed id="gtfsroutes" xml="[[routestext]]" json="{{gtfsRoutesJson}}" on-error="gtfsErrorXML"></gtfs-feed>
-
-			<!-- Make json data from stops xml -->
 			<gtfs-feed id="gtfsstops" xml="[[stopstext]]" json="{{gtfsStopsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
+			-->
 
 		</template>
 
@@ -224,6 +224,9 @@
 
 		<!-- IndexedDB Promised -->
 		<script src="bower_components/indexeddb-promised/lib/idb.js"></script>
+
+		<!-- File Parser -->
+		<script src="bower_components/papaparse/papaparse.min.js"></script>
 
 		<!-- App Logic -->
 		<script src="js/all.js"></script>

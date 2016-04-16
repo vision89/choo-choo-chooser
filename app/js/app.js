@@ -284,41 +284,19 @@
 
 	  				_realTimeData.getAgencies().then(function(data) {
 
-	  					app.set('agencytext', String(data));
+  						app.set('agencyList', []);
 
-  						app.$.gtfsagency.parseXML().then(function() {
+						data.forEach(agency => {
 
-  							app.set('agencyList', []);
+							app.push('agencyList', agency);
 
-  							app.gtfsJson.agencyList.forEach(agency => {
+						});
 
-  								let agencyObj = Object.create(null);
-
-  								agencyObj.agency_name = agency._attr.Name._value;
-
-  								app.push('agencyList', agencyObj);
-
-  							});
-
-  							app.loading = false;
-
-  						});
+						app.loading = false;
 
 	  				}).catch(function(error) {
 
-	  					_db.getAll(appmods.PublicTransportationDB.agencyStore).then(function(agencies) {
-
-	  						app.set('agencyList', []);
-
-	  						agencies.forEach(agency => {
-
-	  							app.push('agencyList', agency);
-
-	  						});
-
-	  						app.loading = false;
-
-	  					});
+	  					console.log('Error: ', error);
 
 	  				});
 
@@ -343,42 +321,17 @@
 	  				app.loading = true;
 	  				app.isDeparture = false;
 
-	  				app.set('routes', []);
-
 	  				_realTimeData.getRoutes(app.departure).then(function(data) {
 
-	  					app.set('routestext', String(data));
+	  					app.set('routes', []);
 
-  						app.$.gtfsroutes.parseXML().then(function() {
+	  					data.forEach(function(route) {
 
-  							app.gtfsRoutesJson.agencyList.forEach(agency => {
+	  						app.push('routes', route);
 
-  								agency.RouteList.forEach(routeList => {
+	  					});
 
-  									routeList.Route.forEach(route => {
-
-  										if(route._attr.Code._value && route._attr.Name._value) {
-
-  											let routeObj = Object.create(null);
-
-											routeObj.agency = 			agency._attr.Name._value;
-											routeObj.code = 			route._attr.Code._value;
-											routeObj.name = 			route._attr.Name._value;
-											routeObj.directionList = 	route.RouteDirectionList || [];
-
-											app.push('routes', routeObj);
-
-  										}
-
-	  								});
-
-  								});
-
-  							});
-
-  							app.loading = false;
-
-  						});
+  						app.loading = false;
 
 	  				}).catch(function(error) {
 
