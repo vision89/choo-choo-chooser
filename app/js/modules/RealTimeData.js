@@ -22,7 +22,7 @@ appmods.RealTimeData = (function(document) {
 
 		});
 
-  	}
+  	};
 
   	let _routesFromDb = function(departure) {
 
@@ -38,6 +38,7 @@ appmods.RealTimeData = (function(document) {
 					let d = new Date();
 					let day = weekdays[d.getDay()];
 					let todaysCalendar;
+					let returnRoutes = [];
 
 					for(let i=0; i < calendars.length; ++i) {
 
@@ -62,9 +63,9 @@ appmods.RealTimeData = (function(document) {
 
 								let trips = [];
 
-			  					appmods.FileUtility.parseFiles([tripFile]).then(function(parsedTrips) {
+			  					appmods.FileUtility.parseFile([tripFile]).then(function(parsedTrips) {
 
-			  						parsedTrips.forEach(trip => {
+			  						parsedTrips.data.forEach(trip => {
 
 			  							if(todaysCalendar.service_id === trip.service_id) {
 
@@ -90,9 +91,9 @@ appmods.RealTimeData = (function(document) {
 
 												let index = -1;
 
-												for(let i = 0; i < routes.length; ++i) {
+												for(let i = 0; i < returnRoutes.length; ++i) {
 
-													if(routes[i].name === routeObj.name) {
+													if(returnRoutes[i].name === routeObj.name) {
 
 														index = i;
 														break;
@@ -103,7 +104,7 @@ appmods.RealTimeData = (function(document) {
 
 												if(index === -1) {
 
-													return resolve(routeObj);
+													returnRoutes.push(routeObj);
 
 												}
 
@@ -112,6 +113,8 @@ appmods.RealTimeData = (function(document) {
 			  							});
 
 			  						});
+
+			  						return resolve(returnRoutes);
 
 			  					});
 
@@ -131,7 +134,7 @@ appmods.RealTimeData = (function(document) {
 
   		});
 
-  	}
+  	};
 
   	return class RealTimeData {
 
@@ -247,7 +250,7 @@ appmods.RealTimeData = (function(document) {
 
 						}, function(error) {
 
-							return reject(error);
+							return _routesFromDb(agency);
 
 						});
 
@@ -255,7 +258,7 @@ appmods.RealTimeData = (function(document) {
 
 				}).catch(function(error) {
 
-					return reject(error);
+					return resolve(_routesFromDb(agency));
 
 				});
 

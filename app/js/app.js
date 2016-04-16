@@ -298,6 +298,8 @@
 
 	  					console.log('Error: ', error);
 
+	  					app.loading = false;
+
 	  				});
 
 	  			}
@@ -335,104 +337,9 @@
 
 	  				}).catch(function(error) {
 
-	  					app.set('routes', []);
+	  					console.log('Error: ', error);
 
-	  					_db.getAllByIndex(appmods.PublicTransportationDB.calendarStore,
-	  						appmods.PublicTransportationDB.calendarAgencyIndex,
-	  						app.departure).then(function(calendars) {
-
-	  							let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'tursday', 'friday', 'saturday'];
-	  							let d = new Date();
-	  							let day = weekdays[d.getDay()];
-	  							let todaysCalendar;
-
-	  							for(let i=0; i < calendars.length; ++i) {
-
-	  								if(calendars[i][day] === "1") {
-
-	  									todaysCalendar = calendars[i];
-	  									break;
-
-	  								}
-
-	  							}
-
-	  							if(todaysCalendar) {
-
-	  								_db.getAllByIndex(appmods.PublicTransportationDB.routesStore, 
-			  						appmods.PublicTransportationDB.agencyNameIndex, 
-			  						app.departure).then(function(routes) {
-
-			  							let tripFile = appmods.FileUtility.getTripFile(app.departure);
-
-			  							if(tripFile) {
-
-			  								app.set('gtfsFile', [tripFile]);
-
-			  								let trips = [];
-
-						  					app.$.fileParser.parseFiles().then(function() {
-
-						  						app.parsedJson.trips.forEach(trip => {
-
-						  							if(todaysCalendar.service_id === trip.service_id) {
-
-						  								trips.push(trip);
-
-						  							}
-
-						  						});
-
-						  						trips.forEach(trip=> {
-
-						  							routes.forEach(route => {
-
-						  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
-
-						  									let routeObj = Object.create(null);
-
-							  								routeObj.agency = 			route.agency_name;
-							  								routeObj.code = 			route.route_id;
-															routeObj.name = 			route.route_short_name || route.route_long_name;
-															routeObj.tripId =			trip.trip_id;
-															routeObj.directionList = 	[];
-
-															let index = -1;
-
-															for(let i = 0; i < app.routes.length; ++i) {
-
-																if(app.routes[i].name === routeObj.name) {
-
-																	index = i;
-																	break;
-
-																}
-
-															}
-
-															if(index === -1) {
-
-																app.push('routes', routeObj);
-
-															}
-
-						  								}
-
-						  							});
-
-						  						});
-
-						  					});
-
-			  							}
-
-			  						});
-
-	  							}
-
-		  					app.loading = false;
-
-	  						});
+	  					app.loading = false;	
 
 	  				});
 	  				
