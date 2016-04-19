@@ -406,42 +406,23 @@
 
 	  				app.set('showDirections', false);
 
-	  				_realTimeData.getStops(app.departure, val.item.value.code, '').then(function(data) {
+	  				_realTimeData.getStops(app.departure, val.item.value.code, '', val.item.value.tripId).then(function(data) {
 
-	  					app.set('stopstext', String(data));
+	  					data.forEach(function(stop) {
 
-						app.$.gtfsstops.parseXML().then(function() {
+	  						let stopObj = Object.create(null);
+							stopObj.code = stop._attr.StopCode._value;
+							stopObj.name = stop._attr.name._value;
 
-							app.gtfsStopsJson.agencyList.forEach(agency => {
+							app.push('stops', stopObj);
 
-								agency.RouteList.forEach(route => {
-
-									route.Route.forEach(r => {
-
-										r.StopList.forEach(stop => {
-
-											stop.Stop.forEach(s => {
-
-												let stopObj = Object.create(null);
-												stopObj.code = s._attr.StopCode._value;
-												stopObj.name = s._attr.name._value;
-
-												app.push('stops', stopObj);
-
-											});
-
-										});
-
-									});
-
-								});
-
-							});
-
-						});
+	  					});
 
 	  				}).catch(function(error) {
 
+	  					console.log('Error: ', error);
+
+	  					/**
 	  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
 						let stops = app.parsedJson;
 						app.set('stopTimes', []);
@@ -509,6 +490,7 @@
 							});
 
 						}
+						**/
 
 	  				});
 
@@ -553,8 +535,26 @@
 
 	  			app.set('showDirections', false);
 
-	  			_realTimeData.getStops(app.departure, app.selectedRoute.code, app.selectedDirection.code).then(function(data) {
+	  			_realTimeData.getStops(app.departure, val.item.value.code, app.selectedDirection.code, val.item.value.tripId).then(function(data) {
 
+  					data.forEach(function(stop) {
+
+  						let stopObj = Object.create(null);
+						stopObj.code = stop._attr.StopCode._value;
+						stopObj.name = stop._attr.name._value;
+
+						app.push('stops', stopObj);
+
+  					});
+
+  				}).catch(function(error) {
+
+  					console.log('Error: ', error);
+
+  				});	
+	  					
+
+	  				/**
   					app.set('stopstext', String(data));
 
 					app.$.gtfsstops.parseXML().then(function() {
@@ -666,6 +666,7 @@
 					}
 
   				});
+  				**/
 
 	  		};
 

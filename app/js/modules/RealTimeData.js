@@ -136,6 +136,87 @@ appmods.RealTimeData = (function(document) {
 
   	};
 
+  	let _stopsFromFile = function(agency, routeCode, directionCode, tripId) {
+
+  		let stopTimesFile = appmods.FileUtility.getStopTimesFile(agency);
+  		let stops = [];
+  		let stopTimes = [];
+
+  		return new Promise(function(resolve, reject) {
+
+  			if(stopTimesFile) {
+
+  				appmods.FileUtility.parseFile([stopTimesFile]).then(function(parsedTimes) {
+
+  					parsedTimes.forEach(function(stopTime) {
+
+  						if(stopTime.trip_id === val.item.tripId) {
+
+							stopTimes.push(stopTime);
+
+						}
+
+  					});
+
+  					let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
+
+  					if(stopsFile) {
+
+  						appmods.FileUtility.parseFile([stopsFile]).then(function(parsedStops) {
+
+  							stopTimes.forEach(function(stopTime) {
+
+  								parsedStops.forEach(function(stop) {
+
+  									if(stopTime.stop_id === stop.stop_id) {
+
+										let index = -1;
+
+										for(let i = 0;i < stops.length; ++i) {
+
+											if(stops[i].stop_id === stop.stop_id) {
+
+												index = i;
+												break;
+
+											}
+
+										}
+
+										if(index === -1) {
+
+											stops.push(stop);
+
+										}
+
+									}
+
+  								});
+
+  							});
+
+  							return resolve(stops);
+
+  						});	
+
+  					} else {
+
+  						return reject('Stop file not found');
+
+  					}
+
+  				});	
+
+  			} else {
+
+  				return reject('Stop time file not found');
+
+  			}
+
+  		});
+
+  	};
+
   	return class RealTimeData {
 
   		constructor() {
@@ -272,7 +353,7 @@ appmods.RealTimeData = (function(document) {
 	     * @function
 	     * 
 	     */
-	    getStops(agency, routeCode, directionCode) {
+	    getStops(agency, routeCode, directionCode, tripId) {
 
 	    	return new Promise(function(resolve, reject) {
 
@@ -285,15 +366,51 @@ appmods.RealTimeData = (function(document) {
 					})
 					}).then(function(response) {
 
+						let stops = [];
+
 						response.text().then(function(data) {
 
 							appmods.ParseHelper.parseXML(data).then(function(parsedData) {
 
-								return resolve(parsedData);
+								parsedData.forEach(function(agency) {
+
+									agency.RouteList.forEach(route => {
+
+										route.Route.forEach(r => {
+
+											r.RouteDirectionList.forEach(direction => {
+
+												direction.RouteDirection.forEach(d => {
+
+													d.StopList.forEach(stop => {
+
+														stop.Stop.forEach(s => {
+
+															let stopObj = Object.create(null);
+															stopObj.code = s._attr.StopCode._value;
+															stopObj.name = s._attr.name._value;
+
+															stops.push(stopObj);
+
+														});
+
+													});
+
+												});
+
+											});
+
+										});
+
+									});
+
+								});
+
+								return resolve(stops);
 
 							}, function(error) {
 
-								return reject(error);
+								return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
 
 							});
 
@@ -301,7 +418,7 @@ appmods.RealTimeData = (function(document) {
 
 					}).catch(function(error) {
 
-						reject(error);
+						return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
 
 					});
 
