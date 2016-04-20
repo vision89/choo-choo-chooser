@@ -10,11 +10,11 @@ appmods.RealTimeData = (function(document) {
 
   		return new Promise(function(resolve, reject) {
 
-			_db.getAll(appmods.PublicTransportationDB.agencyStore).then(function(agencies) {
+			_db.getAll(appmods.PublicTransportationDB.agencyStore).then( agencies => {
 
 				return resolve(agencies);
 
-			}, function(error) {
+			}, error => {
 
 				return reject(error);
 
@@ -55,7 +55,7 @@ appmods.RealTimeData = (function(document) {
 
 						_db.getAllByIndex(appmods.PublicTransportationDB.routesStore, 
 						appmods.PublicTransportationDB.agencyNameIndex, 
-						departure).then(function(routes) {
+						departure).then( routes => {
 
 							let tripFile = appmods.FileUtility.getTripFile(app.departure);
 
@@ -63,9 +63,9 @@ appmods.RealTimeData = (function(document) {
 
 								let trips = [];
 
-			  					appmods.FileUtility.parseFile([tripFile]).then(function(parsedTrips) {
+			  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
 
-			  						parsedTrips.data.forEach(trip => {
+			  						parsedTrips.data.forEach( trip => {
 
 			  							if(todaysCalendar.service_id === trip.service_id) {
 
@@ -75,9 +75,9 @@ appmods.RealTimeData = (function(document) {
 
 			  						});
 
-			  						trips.forEach(trip=> {
+			  						trips.forEach( trip=> {
 
-			  							routes.forEach(route => {
+			  							routes.forEach( route => {
 
 			  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
 
@@ -146,11 +146,11 @@ appmods.RealTimeData = (function(document) {
 
   			if(stopTimesFile) {
 
-  				appmods.FileUtility.parseFile([stopTimesFile]).then(function(parsedTimes) {
+  				appmods.FileUtility.parseFile([stopTimesFile]).then( parsedTimes => {
 
-  					parsedTimes.forEach(function(stopTime) {
+  					parsedTimes.data.forEach(function(stopTime) {
 
-  						if(stopTime.trip_id === val.item.tripId) {
+  						if(stopTime.trip_id === tripId) {
 
 							stopTimes.push(stopTime);
 
@@ -162,11 +162,11 @@ appmods.RealTimeData = (function(document) {
 
   					if(stopsFile) {
 
-  						appmods.FileUtility.parseFile([stopsFile]).then(function(parsedStops) {
+  						appmods.FileUtility.parseFile([stopsFile]).then( parsedStops => {
 
-  							stopTimes.forEach(function(stopTime) {
+  							stopTimes.forEach( stopTime => {
 
-  								parsedStops.forEach(function(stop) {
+  								parsedStops.data.forEach( stop => {
 
   									if(stopTime.stop_id === stop.stop_id) {
 
@@ -185,7 +185,11 @@ appmods.RealTimeData = (function(document) {
 
 										if(index === -1) {
 
-											stops.push(stop);
+											let stopObj = Object.create(null);
+											stopObj.name = stop.stop_name;
+											stopObj.code = stop.stop_id;
+
+											stops.push(stopObj);
 
 										}
 
@@ -217,6 +221,24 @@ appmods.RealTimeData = (function(document) {
 
   	};
 
+  	let _stopLoop = function(container, list) {
+
+  		container.StopList.forEach( stop => {
+
+			stop.Stop.forEach( s => {
+
+				let stopObj = Object.create(null);
+				stopObj.code = s._attr.StopCode._value;
+				stopObj.name = s._attr.name._value;
+
+				list.push(stopObj);
+
+			});
+
+		});
+
+  	};
+
   	return class RealTimeData {
 
   		constructor() {
@@ -239,15 +261,15 @@ appmods.RealTimeData = (function(document) {
 					headers: new Headers({
 						'Content-Type': 'text/xml; charset=utf-8'
 					})
-					}).then(function(response) {
+					}).then( response => {
 
-						response.text().then(function(data) {
+						response.text().then( data => {
 
-							appmods.ParseHelper.parseXML(data).then(function(parsedData) {
+							appmods.ParseHelper.parseXML(data).then( parsedData => {
 
 								let agencyList = [];
 
-								parsedData.forEach(agency => {
+								parsedData.forEach( agency => {
 
 									let agencyObj = Object.create(null);
 
@@ -259,7 +281,7 @@ appmods.RealTimeData = (function(document) {
 
 								return resolve(agencyList);
 
-							}, function(error) {
+							}, error => {
 
 								return resolve(_agenciesFromDb());
 
@@ -267,7 +289,7 @@ appmods.RealTimeData = (function(document) {
 
 						});
 
-					}).catch(function(error) {
+					}).catch( error => {
 
 						return resolve(_agenciesFromDb());
 
@@ -294,19 +316,19 @@ appmods.RealTimeData = (function(document) {
 					headers: new Headers({
 						'Content-Type': 'text/xml; charset=utf-8'
 					})
-				}).then(function(response) {
+				}).then( response => {
 
-					response.text().then(function(data) {
+					response.text().then( data => {
 
 						let routes = [];
 
-						appmods.ParseHelper.parseXML(data).then(function(parsedData) {
+						appmods.ParseHelper.parseXML(data).then( parsedData => {
 
-							parsedData.forEach(agency => {
+							parsedData.forEach( agency => {
 
-  								agency.RouteList.forEach(routeList => {
+  								agency.RouteList.forEach( routeList => {
 
-  									routeList.Route.forEach(route => {
+  									routeList.Route.forEach( route => {
 
   										if(route._attr.Code._value && route._attr.Name._value) {
 
@@ -329,7 +351,7 @@ appmods.RealTimeData = (function(document) {
 
 							return resolve(routes);
 
-						}, function(error) {
+						}, error => {
 
 							return _routesFromDb(agency);
 
@@ -337,7 +359,7 @@ appmods.RealTimeData = (function(document) {
 
 					});
 
-				}).catch(function(error) {
+				}).catch( error => {
 
 					return resolve(_routesFromDb(agency));
 
@@ -364,51 +386,51 @@ appmods.RealTimeData = (function(document) {
 					headers: new Headers({
 						'Content-Type': 'text/xml; charset=utf-8'
 					})
-					}).then(function(response) {
+					}).then( response => {
 
 						let stops = [];
 
-						response.text().then(function(data) {
+						response.text().then( data => {
 
-							appmods.ParseHelper.parseXML(data).then(function(parsedData) {
+							appmods.ParseHelper.parseXML(data).then( parsedData => {
 
-								parsedData.forEach(function(agency) {
+								parsedData.forEach( agency => {
 
-									agency.RouteList.forEach(route => {
+									if(agency.RouteList) {
 
-										route.Route.forEach(r => {
+										agency.RouteList.forEach( route => {
 
-											r.RouteDirectionList.forEach(direction => {
+											route.Route.forEach( r => {
 
-												direction.RouteDirection.forEach(d => {
+												if(r.DirectionList) {
 
-													d.StopList.forEach(stop => {
+													r.RouteDirectionList.forEach( direction => {
 
-														stop.Stop.forEach(s => {
+														direction.RouteDirection.forEach( d => {
 
-															let stopObj = Object.create(null);
-															stopObj.code = s._attr.StopCode._value;
-															stopObj.name = s._attr.name._value;
-
-															stops.push(stopObj);
+															_stopLoop(d, stops);
 
 														});
 
 													});
 
-												});
+												} else if(r.StopList) {
+
+													_stopLoop(r, stops);
+
+												}
 
 											});
 
 										});
 
-									});
+									}
 
 								});
 
 								return resolve(stops);
 
-							}, function(error) {
+							}, error => {
 
 								return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
 
@@ -416,7 +438,7 @@ appmods.RealTimeData = (function(document) {
 
 						});
 
-					}).catch(function(error) {
+					}).catch( error => {
 
 						return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
 
@@ -424,6 +446,59 @@ appmods.RealTimeData = (function(document) {
 
 		    	});
 
+
+	    }
+
+	    /**
+	     * Gets stop times
+	     * @function
+	     * 
+	     */
+	    getStopTimes(departure, tripId) {
+
+	    	let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
+	    	let stopTimes = [];
+
+	    	return new Promise( (resolve, reject) => {
+
+	    		if(stopTimesFile) {
+
+		    		appmods.FileUtility.parseFile([stopTimesFile]).then( parsedTimes => {
+
+		    			parsedTimes.data.forEach( stopTime => {
+
+		    				if(stopTime.trip_id === tripId) {
+
+		    					let timeObj = Object.create(null);
+
+		    					timeObj.arrivalTime = 		stopTime.arrival_time;
+		    					timeObj.departureTime = 	stopTime.departure_time;
+		    					timeObj.dropOffType = 		stopTime.drop_off_type;
+		    					timeObj.pickupType = 		stopTime.pickup_type;
+		    					timeObj.shapeDistTraveled = stopTime.shape_dist_traveled;
+		    					timeObj.stopHeadsign =		stopTime.stop_headsign;
+		    					timeObj.stopId =			stopTime.stop_id;
+		    					timeObj.stopSequence =		stopTime.stop_sequence;
+		    					timeObj.timepoint =			stopTime.timepoint;
+		    					timeObj.tripId =			stopTime.trip_id; 
+
+								stopTimes.push(timeObj);
+
+							}
+
+		    			});
+
+		    			return resolve(stopTimes);
+
+		    		});	
+
+		    	} else {
+
+		    		return reject('Stop time file not found');
+
+		    	}
+
+	    	});
 
 	    }
 

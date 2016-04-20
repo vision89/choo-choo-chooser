@@ -191,20 +191,20 @@
 			 */
 			function putGTFSValues(fileJson, agency_name) {
 
-				fileJson.agency.forEach(a => {
+				fileJson.agency.forEach( a => {
 
 					_db.put(appmods.PublicTransportationDB.agencyStore, a);
 
 				});
 
-				fileJson.routes.forEach(r => {
+				fileJson.routes.forEach( r => {
 
 					r.agency_name = agency_name;	//Not everyone includes the id for some annoying reason
 					_db.put(appmods.PublicTransportationDB.routesStore, r);
 
 				});
 
-				fileJson.calendar.forEach(c => {
+				fileJson.calendar.forEach( c => {
 
 					c.agency_name = agency_name;	//Not everyone includes the id for some annoying reason
 					_db.put(appmods.PublicTransportationDB.calendarStore, c);
@@ -282,11 +282,11 @@
 	  				app.loading = true;
 	  				app.isDeparture = true;
 
-	  				_realTimeData.getAgencies().then(function(data) {
+	  				_realTimeData.getAgencies().then( data => {
 
   						app.set('agencyList', []);
 
-						data.forEach(agency => {
+						data.forEach( agency => {
 
 							app.push('agencyList', agency);
 
@@ -294,7 +294,7 @@
 
 						app.loading = false;
 
-	  				}).catch(function(error) {
+	  				}).catch( error => {
 
 	  					console.log('Error: ', error);
 
@@ -323,11 +323,11 @@
 	  				app.loading = true;
 	  				app.isDeparture = false;
 
-	  				_realTimeData.getRoutes(app.departure).then(function(data) {
+	  				_realTimeData.getRoutes(app.departure).then( data => {
 
 	  					app.set('routes', []);
 
-	  					data.forEach(function(route) {
+	  					data.forEach( route => {
 
 	  						app.push('routes', route);
 
@@ -335,7 +335,7 @@
 
   						app.loading = false;
 
-	  				}).catch(function(error) {
+	  				}).catch( error => {
 
 	  					console.log('Error: ', error);
 
@@ -406,19 +406,25 @@
 
 	  				app.set('showDirections', false);
 
-	  				_realTimeData.getStops(app.departure, val.item.value.code, '', val.item.value.tripId).then(function(data) {
+	  				_realTimeData.getStops(app.departure, val.item.value.code, '', val.item.value.tripId).then( data => {
 
-	  					data.forEach(function(stop) {
+	  					data.forEach( stop => {
 
 	  						let stopObj = Object.create(null);
-							stopObj.code = stop._attr.StopCode._value;
-							stopObj.name = stop._attr.name._value;
+							stopObj.code = stop.code;
+							stopObj.name = stop.name;
 
 							app.push('stops', stopObj);
 
 	  					});
 
-	  				}).catch(function(error) {
+	  					_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
+
+	  						console.log('Stop Times: ', stopTimes);
+
+	  					});
+
+	  				}).catch( error => {
 
 	  					console.log('Error: ', error);
 
@@ -500,9 +506,9 @@
 
 	  				app.set('directions', []);
 
-	  				val.item.value.directionList.forEach(direction => {
+	  				val.item.value.directionList.forEach( direction => {
 
-	  					direction.RouteDirection.forEach(d => {
+	  					direction.RouteDirection.forEach( d => {
 
 	  						let directionObj = Object.create(null);
 	  						directionObj.code = d._attr.Code._value;
@@ -537,17 +543,23 @@
 
 	  			_realTimeData.getStops(app.departure, val.item.value.code, app.selectedDirection.code, val.item.value.tripId).then(function(data) {
 
-  					data.forEach(function(stop) {
+  					data.forEach( stop => {
 
   						let stopObj = Object.create(null);
-						stopObj.code = stop._attr.StopCode._value;
-						stopObj.name = stop._attr.name._value;
+						stopObj.code = stop.code;
+						stopObj.name = stop.name;
 
 						app.push('stops', stopObj);
 
   					});
 
-  				}).catch(function(error) {
+  					_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
+
+  						console.log('Stop Times: ', stopTimes);
+
+  					});
+
+  				}).catch( error => {
 
   					console.log('Error: ', error);
 
@@ -670,7 +682,7 @@
 
 	  		};
 
-	  		_db.getAll(appmods.PublicTransportationDB.versionStore).then(function(data) {
+	  		_db.getAll(appmods.PublicTransportationDB.versionStore).then( data => {
 
 	  			if(data.length === 0) {
 
@@ -700,7 +712,7 @@
 
 	  		if(navigator.serviceWorker) {
 
-				navigator.serviceWorker.register('./sw.js').then(function(reg) {
+				navigator.serviceWorker.register('./sw.js').then( reg => {
 
 				    if (!navigator.serviceWorker.controller) {
 
@@ -750,13 +762,13 @@
 
 				    });
 
-				}).catch(function(err) {
+				}).catch( err => {
 
 					console.log('Service Worker Error', err);
 
 				});
 
-				navigator.serviceWorker.addEventListener('message', (event) => {
+				navigator.serviceWorker.addEventListener('message', event => {
 
 					//If we get a map error we know we are in offline mode
 					switch(event.data) {
