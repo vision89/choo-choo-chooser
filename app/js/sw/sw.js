@@ -42,7 +42,7 @@
 					'bower_components/paper-input/paper-input.html',
 					'bower_components/paper-dropdown-menu/paper-dropdown-menu.html',
 					'bower_components/xmlToJSON.js/lib/xmlToJSON.js',
-					'elements/map-page.html',
+					'elements/agency-card.html',
 					'elements/schedule-page.html',
 					'elements/shared-styles.html',
 					'bower_components/EventListener/EventListener.js',

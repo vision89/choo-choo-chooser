@@ -242,11 +242,11 @@
 	  		};
 
 	  		/**
-			 * Populate drawer with departure info
-			 * @function populateDeparture
+			 * Populate the agency list
+			 * @function populateAgencies
 			 *
 			 */
-	  		app.populateDeparture = function() {
+	  		app.populateAgencies = function() {
 
 	  			_isOpening = !_isOpening;
 	  			app.set('showDirectionsList', false);
@@ -278,9 +278,9 @@
 
 	  			}
 
-	  			app.$.paperDrawerPanel.togglePanel();
-
 	  		};
+
+	  		app.populateAgencies();
 
 	  		/**
 			 * Populate drawer with destination info
@@ -354,10 +354,7 @@
 
 	  			e.stopPropagation();
 
-	  			app.departure = val.item.value.agency_name;
-
-	  			app.$.paperDrawerPanel.closeDrawer();
-	  			_isOpening = false;
+	  			console.log('Agency: ', app.selectedAgency.agency_name);
 
 	  		};
 

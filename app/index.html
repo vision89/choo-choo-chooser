@@ -149,7 +149,10 @@
 					<div>
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
+
+							<agency-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[agencyList]]" selected="{{selectedAgency}}" on-value-selected="agencySelected"></agency-card>
 							
+							<!--
 							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture"
 							on-directions-pressed="populateDirections" departure="{{departure}}" 
 							route="{{selectedRoute.name}}" is-mobile="[[mobile]]" 
@@ -157,6 +160,7 @@
 							show-directions="[[showDirections]]" direction="[[selectedDirection.name]]"
 							image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
 							</map-page>
+							-->
 
 							<schedule-page stops="[[stops]]"></schedule-page>
 						    

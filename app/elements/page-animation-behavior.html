@@ -55,6 +55,10 @@
 
         },
 
+        /**
+         * Path to image
+         * @type {String}
+         */
         imagePath: {
 
           type: String,
@@ -65,7 +69,32 @@
         },
 
         /**
-         * Path the the image for the card
+         * Selected from list
+         * @type {Object}
+         */
+        selected: {
+
+          type: Object,
+          notify: true,
+          value: null,
+          reflectToAttribute: true
+
+        },
+
+        /**
+         * List to select from
+         * @type {Array}
+         */
+        list: {
+
+          type: Array,
+          notify: false,
+          value: []
+
+        },
+
+        /**
+         * Path the the image for the card, used internally
          * @type {String}
          */
         _image: {

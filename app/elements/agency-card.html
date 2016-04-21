@@ -8,9 +8,78 @@
 	      display: block;
 	    }
 
+	    .choosy-card-mobile-online {
+			
+			--paper-card-header-color: #000000;
+	    	@apply(--choosy-card-theme-mobile-online);
+	    	width: 100%;
+
+	    }
+
+	    .choosy-card-mobile-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-mobile-offline);
+
+	    }
+
+	    .choosy-card-wide-online {
+			
+			--paper-card-header-color: #FFFFFF;
+	    	position: absolute;
+			top: 5em;
+			right: 2em;
+			z-index: 1;
+			@apply(--choosy-card-theme-wide-online);
+
+	    }
+
+	    .choosy-card-wide-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-wide-offline);
+
+	    }
+
 	</style>
 	
 	<template>
+
+		<paper-card id="inputcard" heading="Where will you get on?" class$="[[_cardClass]]">
+
+			<div class="card-content">
+
+				<paper-listbox class="dropdown-content" on-iron-select="agencySelected">
+
+					<template is="dom-repeat" items="[[list]]">
+
+						<paper-item value="[[item]]">[[item.agency_name]]</paper-item>
+
+					</template>
+
+				</paper-listbox>
+
+			</div>
+
+			<div class="card-actions">
+
+
+
+			</div>
+
+		</paper-card>
 
 	</template>
 
@@ -25,6 +94,20 @@
 		    properties: {
 
 		    },
+
+		    /**
+	  		 * Selected an agency from the map card
+	  		 * @param  {object} e event
+	  		 */
+	  		agencySelected: function(e, val) {
+
+	  			e.stopPropagation();
+
+	  			this.set('selected', val.item.value);
+
+	  			this.fire('value-selected');
+
+	  		},
 
 		    ready: function() {
 
