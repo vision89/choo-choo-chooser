@@ -131,8 +131,6 @@
 	(function(document) {
 		'use strict';
 
-		var imagePath = '../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg';
-
 		Polymer({
 
 		    is: 'map-page',
@@ -178,19 +176,6 @@
 		    	},
 
 		    	/**
-		    	 * Are we a mobile device?
-		    	 * @type {Boolan}
-		    	 */
-		    	isMobile: {
-
-		    		type: Boolean,
-		    		notify: false,
-		    		value: false,
-		    		observer: '_setStyle'
-
-		    	},
-
-		    	/**
 		    	 * Stops for a selected route
 		    	 * @type {Array}
 		    	 */
@@ -212,31 +197,7 @@
 		    		notify: false,
 		    		value: false
 
-		    	},
-
-		    	/**
-		    	 * Class name to apply to the card
-		    	 * @type {String}
-		    	 */
-		    	_cardClass: {
-
-		    		type: String,
-		    		notify: false,
-		    		value: 'choosy-card-wide-online'
-
-		    	},
-
-		    	/**
-		    	 * Path the the image for the card
-		    	 * @type {String}
-		    	 */
-		    	_image: {
-
-		    		type: String,
-		    		notify: false,
-		    		value: imagePath
-
-		    	}
+		    	}	
 
 		    },
 
@@ -267,28 +228,6 @@
 		    populateDirections: function() {
 
 		    	this.fire('directions-pressed');
-
-		    },
-
-		    /**
-		     * Called when width is set
-		     */
-		    _setStyle: function() {
-
-		    	if(this.isMobile) {
-
-		    		this._cardClass = 'choosy-card-mobile-online';
-		    		this._image = '';
-
-		    	} else {
-
-		    		this._cardClass = 'choosy-card-wide-offline';
-		    		this._image = imagePath;
-
-
-		    	}
-
-		    	this.$.inputcard.updateStyles();
 
 		    },
 

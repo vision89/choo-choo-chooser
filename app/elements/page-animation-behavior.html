@@ -40,7 +40,75 @@
 
           }
 
+        },
+
+        /**
+         * Are we a mobile device?
+         * @type {Boolan}
+         */
+        isMobile: {
+
+          type: Boolean,
+          notify: false,
+          value: false,
+          observer: '_setStyle'
+
+        },
+
+        imagePath: {
+
+          type: String,
+          notify: false,
+          value: '',
+          observer: '_setStyle'
+
+        },
+
+        /**
+         * Path the the image for the card
+         * @type {String}
+         */
+        _image: {
+
+          type: String,
+          notify: false,
+          value: ''
+
+        },
+
+        /**
+         * Class name to apply to the card
+         * @type {String}
+         */
+        _cardClass: {
+
+          type: String,
+          notify: false,
+          value: 'choosy-card-wide-online'
+
         }
+
+      },
+
+      /**
+       * Called when width is set
+       */
+      _setStyle: function() {
+
+        if(this.isMobile) {
+
+          this._cardClass = 'choosy-card-mobile-online';
+          this._image = '';
+
+        } else {
+
+          this._cardClass = 'choosy-card-wide-offline';
+          this._image = this.imagePath;
+
+
+        }
+
+        this.$.inputcard.updateStyles();
 
       }
 

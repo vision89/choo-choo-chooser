@@ -211,32 +211,6 @@
 
 				});
 
-				/**
-				fileJson.calendar_dates.forEach(cd => {
-
-					_db.put(appmods.PublicTransportationDB.calendarDatesStore, cd);
-
-				});
-
-				fileJson.stops.forEach(s => {
-
-					_db.put(appmods.PublicTransportationDB.stopsStore, s);
-
-				});
-
-				fileJson.stop_times.forEach(st => {
-
-					_db.put(appmods.PublicTransportationDB.stopTimesStore, st);
-
-				});
-
-				fileJson.trips.forEach(t => {
-
-					_db.put(appmods.PublicTransportationDB.tripsStore, t);
-
-				});
-				**/
-
 			}
 
 			/**
@@ -406,99 +380,45 @@
 
 	  				app.set('showDirections', false);
 
-	  				_realTimeData.getStops(app.departure, val.item.value.code, '', val.item.value.tripId).then( data => {
+	  				_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
 
-	  					data.forEach( stop => {
+  						_realTimeData.getStops(app.departure, val.item.value.code, '', val.item.value.tripId).then( data => {
 
-	  						let stopObj = Object.create(null);
-							stopObj.code = stop.code;
-							stopObj.name = stop.name;
+		  					data.forEach( stop => {
 
-							app.push('stops', stopObj);
+		  						let stopObj = Object.create(null);
+								stopObj.code = stop.code;
+								stopObj.name = stop.name;
 
-	  					});
+								stop.stopTimes = [];
 
-	  					_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
+	  							stopTimes.forEach( stopTime => {
 
-	  						console.log('Stop Times: ', stopTimes);
+	  								if(stopTime.stopId === stop.code) {
 
-	  					});
+	  									stop.stopTimes.push(stopTime);
 
-	  				}).catch( error => {
+	  								}
 
-	  					console.log('Error: ', error);
+	  							});
 
-	  					/**
-	  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
-						let stops = app.parsedJson;
-						app.set('stopTimes', []);
-						app.set('stops', []);
+								app.push('stops', stopObj);
 
-						if(stopTimesFile) {
+		  					});
 
-							app.set('gtfsFile', [stopTimesFile]);
+		  					if(app.stops.length > 0) {
 
-							app.$.fileParser.parseFiles().then(function() {
+		  						app.viewSchedule();
 
-								app.parsedJson.stop_times.forEach(stopTime => {
+		  					}
 
-									if(stopTime.trip_id === val.item.value.tripId) {
+		  				}).catch( error => {
 
-										app.push('stopTimes', stopTime);
+		  					console.log('Error: ', error);
 
-									}
+		  				});
 
-								});
-
-								let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
-
-			  					if(stopsFile) {
-
-			  						app.set('gtfsFile', [stopsFile]);
-
-			  						app.$.fileParser.parseFiles().then(function() {
-
-			  							app.stopTimes.forEach(stopTime => {
-
-											app.parsedJson.stops.forEach(stop => {
-
-												if(stopTime.stop_id === stop.stop_id) {
-
-													let index = -1;
-
-													for(let i = 0;i < app.stops.length; ++i) {
-
-														if(app.stops[i].stop_id === stop.stop_id) {
-
-															index = i;
-															break;
-
-														}
-
-													}
-
-													if(index === -1) {
-
-														app.stops.push(stop);
-
-													}
-
-												}
-
-											});
-
-										});
-
-				  					});
-
-			  					}
-
-							});
-
-						}
-						**/
-
-	  				});
+  					});
 
 	  			} else {
 
@@ -541,144 +461,45 @@
 
 	  			app.set('showDirections', false);
 
-	  			_realTimeData.getStops(app.departure, val.item.value.code, app.selectedDirection.code, val.item.value.tripId).then(function(data) {
+  				_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
 
-  					data.forEach( stop => {
+					_realTimeData.getStops(app.departure, val.item.value.code, app.selectedDirection.code, val.item.value.tripId).then( data => {
 
-  						let stopObj = Object.create(null);
-						stopObj.code = stop.code;
-						stopObj.name = stop.name;
+	  					data.forEach( stop => {
 
-						app.push('stops', stopObj);
+	  						let stopObj = Object.create(null);
+							stopObj.code = stop.code;
+							stopObj.name = stop.name;
 
-  					});
+							stop.stopTimes = [];
 
-  					_realTimeData.getStopTimes(app.departure, val.item.value.tripId).then( stopTimes => {
+  							stopTimes.forEach( stopTime => {
 
-  						console.log('Stop Times: ', stopTimes);
+  								if(stopTime.stopId === stop.code) {
 
-  					});
+  									stop.stopTimes.push(stopTime);
 
-  				}).catch( error => {
+  								}
 
-  					console.log('Error: ', error);
+  							});
 
-  				});	
-	  					
+							app.push('stops', stopObj);
 
-	  				/**
-  					app.set('stopstext', String(data));
+	  					});
 
-					app.$.gtfsstops.parseXML().then(function() {
+	  					if(app.stops.length > 0) {
 
-						app.gtfsStopsJson.agencyList.forEach(agency => {
+	  						app.viewSchedule();
 
-							agency.RouteList.forEach(route => {
+	  					}
 
-								route.Route.forEach(r => {
+	  				}).catch( error => {
 
-									r.RouteDirectionList.forEach(direction => {
+	  					console.log('Error: ', error);
 
-										direction.RouteDirection.forEach(d => {
+	  				});
 
-											d.StopList.forEach(stop => {
-
-												stop.Stop.forEach(s => {
-
-													let stopObj = Object.create(null);
-													stopObj.code = s._attr.StopCode._value;
-													stopObj.name = s._attr.name._value;
-
-													app.stops.push(stopObj);
-
-												});
-
-											});
-
-										});
-
-									});
-
-								});
-
-							});
-
-						});
-
-					});
-
-  				}).catch(function(error) {
-
-  					let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
-					let stops = app.parsedJson;
-					app.set('stopTimes', []);
-					app.set('stops', []);
-
-					if(stopTimesFile) {
-
-						app.set('gtfsFile', [stopTimesFile]);
-
-						app.$.fileParser.parseFiles().then(function() {
-
-							app.parsedJson.stop_times.forEach(stopTime => {
-
-								if(stopTime.trip_id === val.item.value.tripId) {
-
-									app.push('stopTimes', stopTime);
-
-								}
-
-							});
-
-							let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
-
-		  					if(stopsFile) {
-
-		  						app.set('gtfsFile', [stopsFile]);
-
-		  						app.$.fileParser.parseFiles().then(function() {
-
-		  							app.stopTimes.forEach(stopTime => {
-
-										app.parsedJson.stops.forEach(stop => {
-
-											if(stopTime.stop_id === stop.stop_id) {
-
-												let index = -1;
-
-												for(let i = 0;i < app.stops.length; ++i) {
-
-													if(app.stops[i].stop_id === stop.stop_id) {
-
-														index = i;
-														break;
-
-													}
-
-												}
-
-												if(index === -1) {
-
-													app.stops.push(stop);
-
-												}
-
-											}
-
-										});
-
-									});
-
-			  					});
-
-		  					}
-
-						});
-
-					}
-
-  				});
-  				**/
+				});
 
 	  		};
 

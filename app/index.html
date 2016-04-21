@@ -154,10 +154,11 @@
 							on-directions-pressed="populateDirections" departure="{{departure}}" 
 							route="{{selectedRoute.name}}" is-mobile="[[mobile]]" 
 							location="[[loc]]" stops="[[stops]]" 
-							show-directions="[[showDirections]]" direction="[[selectedDirection.name]]">
+							show-directions="[[showDirections]]" direction="[[selectedDirection.name]]"
+							image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
 							</map-page>
 
-							<schedule-page></schedule-page>
+							<schedule-page stops="[[stops]]"></schedule-page>
 						    
 						</neon-animated-pages>
 					

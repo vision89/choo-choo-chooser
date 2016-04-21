@@ -1,8 +1,4 @@
-<link rel="import" href="../bower_components/polymer/polymer.html">
-<link rel="import" href="../bower_components/neon-animation/neon-animatable-behavior.html">
-<link rel="import" href="../bower_components/neon-animation/animations/slide-from-right-animation.html">
-<link rel="import" href="../bower_components/neon-animation/animations/slide-right-animation.html">
-<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="./page-animation-behavior.html">
 
 <dom-module id="schedule-page">
 
@@ -12,11 +8,82 @@
 	      display: block;
 	    }
 
+	    .choosy-card-mobile-online {
+			
+			--paper-card-header-color: #000000;
+	    	@apply(--choosy-card-theme-mobile-online);
+	    	width: 100%;
+
+	    }
+
+	    .choosy-card-mobile-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-mobile-offline);
+
+	    }
+
+	    .choosy-card-wide-online {
+			
+			--paper-card-header-color: #FFFFFF;
+	    	position: absolute;
+			top: 5em;
+			right: 2em;
+			z-index: 1;
+			@apply(--choosy-card-theme-wide-online);
+
+	    }
+
+	    .choosy-card-wide-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-wide-offline);
+
+	    }
+
 	</style>
 	
 	<template>
 
-		Schedules Page!
+		<paper-card id="inputcard" heading="Where will you get on?" class$="[[_cardClass]]">
+
+			<div class="card-content">
+
+				<paper-dropdown-menu label="Select a departure">
+
+					<paper-listbox class="dropdown-content">
+
+						<template is="dom-repeat" items="[[stops]]">
+
+							<paper-item value="item">[[item.name]]</paper-item>
+
+						</template>
+
+					</paper-listbox>
+
+				</paper-dropdown-menu>
+
+			</div>
+
+			<div class="card-actions">
+
+
+
+			</div>
+
+		</paper-card>
 
 	</template>    
 
@@ -29,28 +96,20 @@
 
 	    is: 'schedule-page',
 
-	    behaviors: [Polymer.NeonAnimatableBehavior],
+	    behaviors: [appmods.PageAnimationBehavior],
 
 	    properties: {
 
-	    	animationConfig: {
-	    		value: function() {
+	    	/**
+	    	 * Stops for a selected route
+	    	 * @type {Array}
+	    	 */
+	    	stops: {
 
-	    			return {
+	    		type: Array,
+	    		notify: false,
+	    		value: []
 
-	    				'entry': {
-	    					name: 'slide-from-right-animation',
-	    					node: this
-	    				},
-
-	    				'exit': {
-	    					name: 'slide-right-animation',
-	    					node: this
-	    				}
-
-	    			}
-
-	    		}
 	    	}
 
 	    },

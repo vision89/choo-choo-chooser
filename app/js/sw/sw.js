@@ -40,6 +40,7 @@
 					'bower_components/paper-item/paper-item.html',
 					'bower_components/paper-spinner/paper-spinner.html',
 					'bower_components/paper-input/paper-input.html',
+					'bower_components/paper-dropdown-menu/paper-dropdown-menu.html',
 					'bower_components/xmlToJSON.js/lib/xmlToJSON.js',
 					'elements/map-page.html',
 					'elements/schedule-page.html',
