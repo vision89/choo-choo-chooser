@@ -54,8 +54,32 @@
 	    }
 
 	</style>
-
+	
 	<template>
+
+		<paper-card id="inputcard" heading="Choo choo choose a destination" class$="[[_cardClass]]" image="[[_image]]">
+
+			<div class="card-content">
+
+				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
+
+					<template is="dom-repeat" items="[[list]]">
+
+						<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+					</template>
+
+				</paper-listbox>
+
+			</div>
+
+			<div class="card-actions">
+
+
+
+			</div>
+
+		</paper-card>
 
 	</template>
 
@@ -69,6 +93,27 @@
 
 		    properties: {
 
+		    	/**
+		    	 * The selected departure
+		    	 * @type {Object}
+		    	 */
+		    	departure: {
+
+					type: Object,
+					notify: false,
+					value: null,
+					observer: '_filterStops'
+
+		    	}
+
+		    },
+
+		    /**
+		     * Filter stops to ensure they are after the selected departure
+		     * @function
+		     */
+		    _filterStops: function() {
+
 		    },
 
 		    ready: function() {
@@ -81,10 +126,10 @@
 
 		    detached: function() {
 
-		    }
+		    }	
 
-		});
+		});	
 
-	</script>
+	</script> 
 
 </dom-module>

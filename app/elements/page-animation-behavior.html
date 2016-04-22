@@ -120,6 +120,20 @@
       },
 
       /**
+       * Selected a value from the list
+       * @param  {object} e event
+       */
+      valueSelected: function(e, val) {
+
+        e.stopPropagation();
+
+        this.set('selected', val.item.value);
+
+        this.fire('value-selected');
+
+      },
+
+      /**
        * Called when width is set
        */
       _setStyle: function() {

@@ -1,6 +1,6 @@
 <link rel="import" href="./page-animation-behavior.html">
 
-<dom-module id="route-selection-card">
+<dom-module id="direction-card">
 
 	<style>
 
@@ -54,8 +54,32 @@
 	    }
 
 	</style>
-
+	
 	<template>
+
+		<paper-card id="inputcard" heading="Choo choo choose an agency" class$="[[_cardClass]]" image="[[_image]]">
+
+			<div class="card-content">
+
+				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
+
+					<template is="dom-repeat" items="[[list]]">
+
+						<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+					</template>
+
+				</paper-listbox>
+
+			</div>
+
+			<div class="card-actions">
+
+
+
+			</div>
+
+		</paper-card>
 
 	</template>
 
@@ -63,7 +87,7 @@
 
 		Polymer({
 
-			is: 'route-selection-card',
+			is: 'direction-card',
 
 		    behaviors: [appmods.PageAnimationBehavior],
 
@@ -81,10 +105,10 @@
 
 		    detached: function() {
 
-		    }
+		    }	
 
-		});
+		});	
 
-	</script>
+	</script> 
 
 </dom-module>

@@ -40,98 +40,6 @@
 		<template id="app" is="dom-bind">
 
 			<paper-drawer-panel id="paperDrawerPanel" force-narrow="true" disable-edge-swipe="true">
-
-				<paper-header-panel drawer>
-
-					<!-- Drawer Toolbar -->
-					<paper-toolbar id="drawerToolbar">
-
-						<span>Menu</span>
-
-					</paper-toolbar>
-					
-					<!-- Were grabbing values -->
-					<template is="dom-if" if="[[loading]]">
-						
-						<div class="horizontal_center vertical_center">
-
-							<paper-spinner active></paper-spinner>
-
-						</div>
-
-					</template>
-
-					<!-- We have the values -->
-					<template is="dom-if" if="[[!loading]]">
-
-						<template is="dom-if" if="[[isDeparture]]"> 
-
-							<!-- Selectable stations go here -->
-							<paper-listbox on-iron-select="agencySelected">
-
-								<template is="dom-repeat" items="[[agencyList]]">
-
-									<paper-item value="[[item]]">[[item.agency_name]]</paper-item>
-
-								</template>
-
-							</paper-listbox>
-
-						</template>
-
-						<template is="dom-if" if="[[!isDeparture]]">
-
-							<!-- Were not showing the directions list, so show routes -->
-							<template is="dom-if" if="[[!showDirectionsList]]">
-
-								<!-- Selectable routes go here -->
-								<paper-listbox id="routelist" on-iron-select="routeSelected">
-									
-									<template is="dom-if" if="[[!routes.length]]">
-								
-										<div class="indent">
-
-											No Routes
-
-										</div>
-
-									</template>
-
-									<template is="dom-if" if="[[routes.length]]">
-
-										<template is="dom-repeat" items="[[routes]]">
-
-											<paper-item value="[[item]]">[[item.name]]</paper-item>
-
-										</template>
-
-									</template>
-
-								</paper-listbox>
-
-							</template>
-							
-							<!-- Show the directions list -->
-							<template is="dom-if" if="[[showDirectionsList]]">
-
-								<!-- Selectable directions go here -->
-								<paper-listbox id="directionslist" on-iron-select="directionSelected">
-
-									<template is="dom-repeat" items="[[directions]]">
-
-										<paper-item value="[[item]]">[[item.name]]</paper-item>
-
-									</template>
-
-								</paper-listbox>
-
-							</template>
-
-						</template>
-
-					</template>
-
-				</paper-header-panel>
 				
 				<!-- Top Header -->
 				<paper-header-panel main>
@@ -151,6 +59,14 @@
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
 							<agency-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[agencyList]]" selected="{{selectedAgency}}" on-value-selected="agencySelected"></agency-card>
+
+							<route-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[routeList]]" selected="{{selectedRoute}}" on-value-selected="routeSelected"></route-card>
+
+							<direction-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedRoute.directionList]]" selected="{{selectedDirection}}" on-value-selected="directionSelected"></direction-card>
+
+							<departure-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" selected="{{selectedDeparture}}" on-value-selected="departureSelected"></departure-card>
+
+							<destination-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" departure="[[selectedDeparture]]" selected="{{selectedDestination}}" on-value-selected="destinationSelected"></destination-card>
 							
 							<!--
 							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture"
@@ -161,8 +77,6 @@
 							image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
 							</map-page>
 							-->
-
-							<schedule-page stops="[[stops]]"></schedule-page>
 						    
 						</neon-animated-pages>
 					

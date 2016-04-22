@@ -54,30 +54,22 @@
 	    }
 
 	</style>
-
+	
 	<template>
 
-		Here 1
-
-		<paper-card id="departure-stop-card" heading="Where will you get on?">
-
-			Here 2
+		<paper-card id="inputcard" heading="Choo choo choose a departure" class$="[[_cardClass]]" image="[[_image]]">
 
 			<div class="card-content">
 
-				<paper-dropdown-menu label="Departures">
+				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
 
-					<paper-listbox class="dropdown-content">
+					<template is="dom-repeat" items="[[list]]">
 
-						<template is="dom-repeat" items="[[stops]]">
+						<paper-item value="[[item]]">[[item.name]]</paper-item>
 
-							<paper-item value="item">[[item.name]]</paper-item>
+					</template>
 
-						</template>
-
-					</paper-listbox>
-
-				</paper-dropdown-menu>
+				</paper-listbox>
 
 			</div>
 
@@ -101,18 +93,6 @@
 
 		    properties: {
 
-		    	/**
-		    	 * Stops for a selected route
-		    	 * @type {Array}
-		    	 */
-		    	stops: {
-
-		    		type: Array,
-		    		notify: false,
-		    		value: []
-
-		    	}
-
 		    },
 
 		    ready: function() {
@@ -125,10 +105,10 @@
 
 		    detached: function() {
 
-		    }
+		    }	
 
-		});
+		});	
 
-	</script>
+	</script> 
 
 </dom-module>

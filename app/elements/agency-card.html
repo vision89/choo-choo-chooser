@@ -57,11 +57,11 @@
 	
 	<template>
 
-		<paper-card id="inputcard" heading="Where will you get on?" class$="[[_cardClass]]">
+		<paper-card id="inputcard" heading="Choo choo choose an agency" class$="[[_cardClass]]" image="[[_image]]">
 
 			<div class="card-content">
 
-				<paper-listbox class="dropdown-content" on-iron-select="agencySelected">
+				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
 
 					<template is="dom-repeat" items="[[list]]">
 
@@ -94,20 +94,6 @@
 		    properties: {
 
 		    },
-
-		    /**
-	  		 * Selected an agency from the map card
-	  		 * @param  {object} e event
-	  		 */
-	  		agencySelected: function(e, val) {
-
-	  			e.stopPropagation();
-
-	  			this.set('selected', val.item.value);
-
-	  			this.fire('value-selected');
-
-	  		},
 
 		    ready: function() {
 

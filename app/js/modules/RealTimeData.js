@@ -34,7 +34,7 @@ appmods.RealTimeData = (function(document) {
 				appmods.PublicTransportationDB.calendarAgencyIndex,
 				departure).then(function(calendars) {
 
-					let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'tursday', 'friday', 'saturday'];
+					let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
 					let d = new Date();
 					let day = weekdays[d.getDay()];
 					let todaysCalendar;
@@ -57,7 +57,7 @@ appmods.RealTimeData = (function(document) {
 						appmods.PublicTransportationDB.agencyNameIndex, 
 						departure).then( routes => {
 
-							let tripFile = appmods.FileUtility.getTripFile(app.departure);
+							let tripFile = appmods.FileUtility.getTripFile(departure);
 
 							if(tripFile) {
 
@@ -158,7 +158,7 @@ appmods.RealTimeData = (function(document) {
 
   					});
 
-  					let stopsFile = appmods.FileUtility.getStopsFile(app.departure);
+  					let stopsFile = appmods.FileUtility.getStopsFile(agency);
 
   					if(stopsFile) {
 
@@ -456,7 +456,7 @@ appmods.RealTimeData = (function(document) {
 	     */
 	    getStopTimes(departure, tripId) {
 
-	    	let stopTimesFile = appmods.FileUtility.getStopTimesFile(app.departure);
+	    	let stopTimesFile = appmods.FileUtility.getStopTimesFile(departure);
 	    	let stopTimes = [];
 
 	    	return new Promise( (resolve, reject) => {
