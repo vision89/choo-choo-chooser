@@ -47,6 +47,8 @@
 					'elements/direction-card.html',
 					'elements/departure-card.html',
 					'elements/destination-card.html',
+					'elements/departure-times-card.html',
+					'elements/destination-times-card.html',
 					'elements/duration-info-card.html',
 					'elements/shared-styles.html',
 					'bower_components/EventListener/EventListener.js',

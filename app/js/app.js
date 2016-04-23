@@ -324,20 +324,24 @@
 		  						let stopObj = Object.create(null);
 								stopObj.code = stop.code;
 								stopObj.name = stop.name;
-
-								stop.stopTimes = [];
+								stopObj.stopTimes = [];
 
 	  							stopTimes.forEach( stopTime => {
 
-	  								if(stopTime.stopId === stop.code) {
+	  								if(stopTime.stopId === stop.code && stopTime.departureTime
+.length > 0) {
 
-	  									stop.stopTimes.push(stopTime);
+	  									stopObj.stopTimes.push(stopTime);	
 
 	  								}
 
 	  							});
 
-								app.push('stopList', stopObj);
+								if(stopObj.stopTimes.length > 0) {
+
+	  								app.push('stopList', stopObj);
+
+	  							}
 
 		  					});
 
@@ -383,20 +387,24 @@
 	  						let stopObj = Object.create(null);
 							stopObj.code = stop.code;
 							stopObj.name = stop.name;
-
-							stop.stopTimes = [];
+							stopObj.stopTimes = [];
 
   							stopTimes.forEach( stopTime => {
 
-  								if(stopTime.stopId === stop.code) {
+  								if(stopTime.stopId === stop.code && stopTime.departureTime
+.length > 0) {
 
-  									stop.stopTimes.push(stopTime);
+  									stopObj.stopTimes.push(stopTime);	
 
   								}
 
   							});
 
-							app.push('stopList', stopObj);
+  							if(stopObj.stopTimes.length > 0) {
+
+  								app.push('stopList', stopObj);
+
+  							}
 
 	  					});
 
@@ -422,6 +430,8 @@
 	  		 * @param  {object} val selected value
 	  		 */
 	  		app.departureSelected = function(e, val) {
+
+	  			console.log('Departure: ', app.selectedDeparture);
 
 	  			app.selected = DESTINATION_CARD;
 

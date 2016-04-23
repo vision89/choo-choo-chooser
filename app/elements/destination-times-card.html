@@ -1,0 +1,115 @@
+<link rel="import" href="./page-animation-behavior.html">
+
+<dom-module id="destination-times-card">
+
+	<style>
+
+	    :host {
+	      display: block;
+	    }
+
+	    .choosy-card-mobile-online {
+			
+			--paper-card-header-color: #000000;
+	    	@apply(--choosy-card-theme-mobile-online);
+	    	width: 100%;
+
+	    }
+
+	    .choosy-card-mobile-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 90%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-mobile-offline);
+
+	    }
+
+	    .choosy-card-wide-online {
+			
+			--paper-card-header-color: #FFFFFF;
+	    	position: absolute;
+			top: 5em;
+			right: 2em;
+			z-index: 1;
+			@apply(--choosy-card-theme-wide-online);
+
+	    }
+
+	    .choosy-card-wide-offline {
+			
+			--paper-card-header-color: #FFFFFF;
+			top: 5em;
+			z-index: 1;
+			width: 50%;
+			margin-left: auto;
+			margin-right: auto;
+			display: block;
+			@apply(--choosy-card-theme-wide-offline);
+
+	    }
+
+	</style>
+	
+	<template>
+
+		<paper-card id="inputcard" heading="Choo choo choose a destination time" class$="[[_cardClass]]" image="[[_image]]">
+
+			<div class="card-content">
+
+				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
+
+					<template is="dom-repeat" items="[[list]]">
+
+						<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+					</template>
+
+				</paper-listbox>
+
+			</div>
+
+			<div class="card-actions">
+
+
+
+			</div>
+
+		</paper-card>
+
+	</template>
+
+	<script>
+
+		Polymer({
+
+			is: 'destination-times-card',
+
+		    behaviors: [appmods.PageAnimationBehavior],
+
+		    properties: {
+
+
+		    },
+
+		    ready: function() {
+
+		    },
+
+		    attached: function() {
+
+		    },
+
+		    detached: function() {
+
+		    }	
+
+		});	
+
+	</script> 
+
+</dom-module>
