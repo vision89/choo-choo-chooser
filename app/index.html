@@ -56,6 +56,8 @@
 
 					<div>
 
+						<paper-fab icon="arrow-back" title="Go back" on-click="goBack" style="position: absolute;bottom:5%;left:2%;"></paper-fab>
+
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
 							<agency-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[agencyList]]" selected="{{selectedAgency}}" on-value-selected="agencySelected"></agency-card>
@@ -67,16 +69,12 @@
 							<departure-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" selected="{{selectedDeparture}}" on-value-selected="departureSelected"></departure-card>
 
 							<destination-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" departure="[[selectedDeparture]]" selected="{{selectedDestination}}" on-value-selected="destinationSelected"></destination-card>
-							
-							<!--
-							<map-page on-routes-pressed="populateRoutes" on-departure-pressed="populateDeparture"
-							on-directions-pressed="populateDirections" departure="{{departure}}" 
-							route="{{selectedRoute.name}}" is-mobile="[[mobile]]" 
-							location="[[loc]]" stops="[[stops]]" 
-							show-directions="[[showDirections]]" direction="[[selectedDirection.name]]"
-							image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg">
-							</map-page>
-							-->
+
+							<departure-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDeparture.stopTimes]]" selected="{{selectedDepartureTime}}" on-value-selected="departureTimeSelected"></departure-times-card>
+
+							<destination-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDestination.stopTimes]]" selected="{{selectedDestinationTime}}" on-value-selected="destinationTimeSelected"></destination-times-card>
+
+							<duration-info-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg"></duration-info-card>
 						    
 						</neon-animated-pages>
 					

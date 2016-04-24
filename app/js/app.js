@@ -7,7 +7,9 @@
 	const DIRECTION_CARD = 2;
 	const DEPARTURE_CARD = 3;
 	const DESTINATION_CARD = 4;
-	const DURATION_INFO_CARD = 5; 
+	const DEPARTURE_TIMES_CARD = 5;
+	const DESTINATION_TIMES_CARD = 6;
+	const DURATION_INFO_CARD = 7; 
 
 	let app = document.querySelector('#app');
 	app.agencytext = '';
@@ -226,6 +228,30 @@
 			 */
 	  		app.selected = AGENCY_CARD;
 
+	  		app.goBack = function() {
+
+	  			switch(app.selected) {
+
+	  				case AGENCY_CARD:
+	  					break;
+	  				case ROUTE_CARD:
+	  					break;
+	  				case DIRECTION_CARD:
+	  					break;
+	  				case DEPARTURE_CARD:
+	  					break;			
+	  				case DESTINATION_CARD:
+	  					break;
+	  				case DEPARTURE_TIMES_CARD:
+	  					break;
+	  				case DESTINATION_TIMES_CARD:
+	  					break;
+	  				case DURATION_INFO_CARD:
+	  					break;			
+	  			}
+
+	  		};
+
 	  		/**
 			 * Populate the agency list
 			 * @function populateAgencies
@@ -433,7 +459,35 @@
 
 	  			console.log('Departure: ', app.selectedDeparture);
 
+	  			app.selected = DEPARTURE_TIMES_CARD;
+
+	  		};
+
+	  		/**
+	  		 * Selected departing time
+	  		 * @param  {object} e   event
+	  		 * @param  {object} val selected value
+	  		 */
+	  		app.departureTimeSelected = function(e, val) {
+
 	  			app.selected = DESTINATION_CARD;
+
+	  		};
+
+	  		/**
+	  		 * Selected destination
+	  		 * @param  {object} e   event
+	  		 * @param  {object} val selected value
+	  		 */
+	  		app.destinationSelected = function(e, val) {
+
+	  			app.selected = DESTINATION_TIMES_CARD;
+
+	  		};
+
+	  		app.destinationTimeSelected = function(e, val) {
+
+	  			app.selected = DURATION_INFO_CARD;
 
 	  		};
 
