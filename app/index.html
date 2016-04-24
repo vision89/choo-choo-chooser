@@ -56,7 +56,7 @@
 
 					<div>
 
-						<paper-fab icon="arrow-back" title="Go back" on-click="goBack" style="position: absolute;bottom:5%;left:2%;"></paper-fab>
+						<paper-fab disabled$="[[allowGoBack(selected)]]" icon="arrow-back" title="Go back" on-click="goBack" style="position: fixed;bottom:5%;left:2%;"></paper-fab>
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
 

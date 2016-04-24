@@ -222,33 +222,54 @@
 
 			}
 
-			/**
-			 * Selected view
-			 * @type {number}
-			 */
-	  		app.selected = AGENCY_CARD;
+			setTimeout(function() {
+
+				app.selected = AGENCY_CARD;
+
+			});
 
 	  		app.goBack = function() {
 
 	  			switch(app.selected) {
 
-	  				case AGENCY_CARD:
-	  					break;
 	  				case ROUTE_CARD:
+	  					app.selected = AGENCY_CARD;
 	  					break;
 	  				case DIRECTION_CARD:
+	  					app.selected = ROUTE_CARD;
 	  					break;
 	  				case DEPARTURE_CARD:
+	  					if(app.selectedDirection) {
+	  						app.selected = DIRECTION_CARD;
+	  					} else {
+	  						app.selected = ROUTE_CARD;
+	  					}
 	  					break;			
 	  				case DESTINATION_CARD:
+	  					app.selected = DEPARTURE_TIMES_CARD;
 	  					break;
 	  				case DEPARTURE_TIMES_CARD:
+	  					app.selected = DEPARTURE_CARD;
 	  					break;
 	  				case DESTINATION_TIMES_CARD:
+	  					app.selected = DESTINATION_CARD;
 	  					break;
 	  				case DURATION_INFO_CARD:
+	  					app.selected = DESTINATION_TIMES_CARD;
 	  					break;			
 	  			}
+
+	  		};
+
+	  		app.allowGoBack = function (selected) {
+
+	  			if(!selected || selected === AGENCY_CARD) {
+
+	  				return true;
+
+	  			}
+
+	  			return false;
 
 	  		};
 
