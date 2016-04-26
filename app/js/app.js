@@ -478,8 +478,6 @@
 	  		 */
 	  		app.departureSelected = function(e, val) {
 
-	  			console.log('Departure: ', app.selectedDeparture);
-
 	  			app.selected = DEPARTURE_TIMES_CARD;
 
 	  		};
@@ -507,6 +505,8 @@
 	  		};
 
 	  		app.destinationTimeSelected = function(e, val) {
+
+	  			console.log('Destination Time: ', app.selectedDestinationTime);
 
 	  			app.selected = DURATION_INFO_CARD;
 

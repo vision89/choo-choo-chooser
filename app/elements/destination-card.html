@@ -61,15 +61,40 @@
 
 			<div class="card-content">
 
-				<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
+				<div class="mdl-grid">
 
-					<template is="dom-repeat" items="[[list]]">
+					<div class="mdl-cell mdl-cell--8-col-phone mdl-cell--8-col mdl-cell--8-col-tablet">
 
-						<paper-item value="[[item]]">[[item.name]]</paper-item>
+						<paper-listbox class="dropdown-content" on-iron-select="valueSelected">
 
-					</template>
+							<template is="dom-repeat" items="[[list]]">
 
-				</paper-listbox>
+								<paper-item value="[[item]]">[[item.name]]</paper-item>
+
+							</template>
+
+						</paper-listbox>
+
+					</div>
+
+					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col mdl-cell--4-col-tablet">
+						
+						<p><strong>Agency:</strong></p>
+						<p>&nbsp;[[agencyName]]</p>
+						<p><strong>Route:</strong></p>
+						<p>&nbsp;[[routeName]]</p>
+						<p><strong>Departure:</strong></p>
+						<p>&nbsp;[[departureName]]</p>
+						<p><strong>Departure Time:</strong></p>
+						<p>&nbsp;[[departureTime]]</p>
+						<p><strong>Destination:</strong></p>
+						<p>&nbsp;[[destinationName]]</p>
+						<p><strong>Arrival Time:</strong></p>
+						<p>&nbsp;[[arrivalTime]]</p>
+
+					</div>
+
+				</div>	
 
 			</div>
 
