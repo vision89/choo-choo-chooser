@@ -63,14 +63,8 @@
 
 				<div class="mdl-grid">
 
-					<div class="mdl-cell mdl-cell--8-col-phone mdl-cell--8-col mdl-cell--8-col-tablet">
+					<div class="mdl-cell mdl-cell--12-col-phone mdl-cell--12-col mdl-cell--12-col-tablet">
 
-						Duration Info
-
-					</div>
-
-					<div class="mdl-cell mdl-cell--4-col-phone mdl-cell--4-col mdl-cell--4-col-tablet">
-						
 						<p><strong>Agency:</strong></p>
 						<p>&nbsp;[[agencyName]]</p>
 						<p><strong>Route:</strong></p>
@@ -83,6 +77,8 @@
 						<p>&nbsp;[[destinationName]]</p>
 						<p><strong>Arrival Time:</strong></p>
 						<p>&nbsp;[[arrivalTime]]</p>
+						<p><strong>Duration:</strong></p>
+						<p>&nbsp;[[calculateDuration(departureTime, arrivalTime)]]</p>
 
 					</div>
 
@@ -109,6 +105,23 @@
 		    behaviors: [appmods.PageAnimationBehavior],
 
 		    properties: {
+
+		    },
+
+		    calculateDuration: function(departureTime, arrivalTime) {
+
+		    	if(departureTime.indexOf(':') > 0 && arrivalTime.indexOf(':') > 0) {
+
+		    		var dhm = departureTime.split(':');
+		    		var ahm = arrivalTime.split(':');
+
+		    		return Number(ahm[0]) - Number(dhm[0]) + ' hours and ' + Math.abs(Number(ahm[1]) - Number(dhm[1])) + ' minutes'; 
+
+		    	} else {
+
+		    		return '';
+
+		    	}
 
 		    },
 
