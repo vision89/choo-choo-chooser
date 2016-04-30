@@ -327,6 +327,12 @@
 
   				_realTimeData.getRoutes(app.selectedAgency.agency_name).then( data => {
 
+  					if(app.selectedAgency.agency_name === "BART") {
+
+	  					app.selectedAgency.agency_name = "Bay Area Rapid Transit";
+
+	  				}
+
   					app.set('routeList', []);
 
   					data.forEach( route => {
@@ -362,6 +368,8 @@
 
 	  			if(app.selectedRoute.directionList.length === 0) {
 
+	  				app.loading = true;
+
 	  				_realTimeData.getStopTimes(app.selectedAgency.agency_name, app.selectedRoute.tripId).then( stopTimes => {
 
   						_realTimeData.getStops(app.selectedAgency.agency_name, app.selectedRoute.code, '', app.selectedRoute.tripId).then( data => {
@@ -392,6 +400,8 @@
 
 		  					});
 
+		  					app.loading = false;
+
 		  					if(app.stopList.length > 0) {
 
 		  						app.selected = DEPARTURE_CARD;
@@ -399,6 +409,8 @@
 		  					}
 
 		  				}).catch( error => {
+
+		  					app.loading = true;
 
 		  					console.log('Error: ', error);
 
@@ -424,6 +436,8 @@
 	  			e.stopPropagation();
 
 	  			app.set('stopList', []);
+
+	  			app.loading = true;
 
   				_realTimeData.getStopTimes(app.selectedAgency.agency_name, app.selectedRoute.tripId).then( stopTimes => {
 
@@ -455,6 +469,8 @@
 
 	  					});
 
+	  					app.loading = false;
+
 	  					if(app.stops.length > 0) {
 
 	  						app.selected = DEPARTURE_CARD;
@@ -462,6 +478,8 @@
 	  					}
 
 	  				}).catch( error => {
+
+	  					app.loading = false;
 
 	  					console.log('Error: ', error);
 
@@ -505,8 +523,6 @@
 	  		};
 
 	  		app.destinationTimeSelected = function(e, val) {
-
-	  			console.log('Destination Time: ', app.selectedDestinationTime);
 
 	  			app.selected = DURATION_INFO_CARD;
 

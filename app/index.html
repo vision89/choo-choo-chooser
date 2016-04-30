@@ -53,8 +53,14 @@
 						</div>
 
 					</paper-toolbar>
+					
+					<template is="dom-if" if="{{loading}}">
 
-					<div>
+						<paper-spinner alt="Loading..." active></paper-spinner>
+
+					</template>
+
+					<template is="dom-if" if="{{!loading}}">
 
 						<paper-fab disabled$="[[allowGoBack(selected)]]" icon="arrow-back" title="Go back" on-click="goBack" style="position: fixed;bottom:5%;left:2%;"></paper-fab>
 
@@ -77,8 +83,8 @@
 							<duration-info-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></duration-info-card>
 						    
 						</neon-animated-pages>
-					
-					</div>
+
+					</template>
 
 				</paper-header-panel>
 
