@@ -11,8 +11,6 @@
 
 			caches.open('public-transportation-static-v1').then(function(cache) {
 
-				console.log('Service Worker Installing');
-
 				return cache.addAll([
 
 					'index.html',

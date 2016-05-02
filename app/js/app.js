@@ -20,126 +20,6 @@
 
 	let _isOpening = false;
 
-	app.bartFiles = [
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/agency.txt',
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/routes.txt',
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/stops.txt',
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/calendar.txt',
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/trips.txt',
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/stop_times.txt'
-		/**
-		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/calendar_dates.txt',
-		**/
-	];
-
-	app.countyConnectionFiles = [
-		'../assets/gtfs-files/county-connection_20160110_0842/agency.txt',
-		'../assets/gtfs-files/county-connection_20160110_0842/routes.txt',
-		'../assets/gtfs-files/county-connection_20160110_0842/stops.txt',
-		'../assets/gtfs-files/county-connection_20160110_0842/calendar.txt',
-		'../assets/gtfs-files/county-connection_20160110_0842/trips.txt',
-		'../assets/gtfs-files/county-connection_20160110_0842/stop_times.txt'
-		/**
-		'../assets/gtfs-files/county-connection_20160110_0842/calendar_dates.txt',
-		**/
-	];
-
-	app.calTrainFiles = [
-		'../assets/gtfs-files/GTFS Caltrain Devs/agency.txt',
-		'../assets/gtfs-files/GTFS Caltrain Devs/routes.txt',
-		'../assets/gtfs-files/GTFS Caltrain Devs/stops.txt',
-		'../assets/gtfs-files/GTFS Caltrain Devs/calendar.txt',
-		'../assets/gtfs-files/GTFS Caltrain Devs/trips.txt',
-		'../assets/gtfs-files/GTFS Caltrain Devs/stop_times.txt'
-		/**
-		'../assets/gtfs-files/GTFS Caltrain Devs/calendar_dates.txt',
-		**/
-	];
-
-	app.acTransitFiles = [
-		'../assets/gtfs-files/gtfsmarch202016b/agency.txt',
-		'../assets/gtfs-files/gtfsmarch202016b/routes.txt',
-		'../assets/gtfs-files/gtfsmarch202016b/stops.txt',
-		'../assets/gtfs-files/gtfsmarch202016b/calendar.txt',
-		'../assets/gtfs-files/gtfsmarch202016b/trips.txt',
-		'../assets/gtfs-files/gtfsmarch202016b/stop_times.txt'
-		/**
-		'../assets/gtfs-files/gtfsmarch202016b/calendar_dates.txt',
-		**/
-	];
-
-	app.lavtaFiles = [
-		'../assets/gtfs-files/LAVTA/agency.txt',
-		'../assets/gtfs-files/LAVTA/routes.txt',
-		'../assets/gtfs-files/LAVTA/stops.txt',
-		'../assets/gtfs-files/LAVTA/calendar.txt',
-		'../assets/gtfs-files/LAVTA/trips.txt',
-		'../assets/gtfs-files/LAVTA/stop_times.txt'
-		/**
-		'../assets/gtfs-files/LAVTA/calendar_dates.txt',
-		**/
-	];
-
-	app.marinFiles = [
-		'../assets/gtfs-files/marin-transit_20160122_0121/agency.txt',
-		'../assets/gtfs-files/marin-transit_20160122_0121/routes.txt',
-		'../assets/gtfs-files/marin-transit_20160122_0121/stops.txt',
-		'../assets/gtfs-files/marin-transit_20160122_0121/calendar.txt',
-		'../assets/gtfs-files/marin-transit_20160122_0121/trips.txt',
-		'../assets/gtfs-files/marin-transit_20160122_0121/stop_times.txt'
-		/**
-		'../assets/gtfs-files/marin-transit_20160122_0121/calendar_dates.txt',
-		**/
-	];
-
-	app.samTransFiles = [
-		'../assets/gtfs-files/SamTrans/agency.txt',
-		'../assets/gtfs-files/SamTrans/routes.txt',
-		'../assets/gtfs-files/SamTrans/stops.txt',
-		'../assets/gtfs-files/SamTrans/calendar.txt',
-		'../assets/gtfs-files/SamTrans/trips.txt',
-		'../assets/gtfs-files/SamTrans/stop_times.txt'
-		/**
-		'../assets/gtfs-files/SamTrans/calendar_dates.txt',
-		**/
-	];
-
-	app.sfmtaFiles = [
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/agency.txt',
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/routes.txt',
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stops.txt',
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/calendar.txt',
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/trips.txt',
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stop_times.txt'
-		/**
-		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/calendar_dates.txt',
-		**/
-	];
-
-	app.srcbFiles = [
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/agency.txt',
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/routes.txt',
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stops.txt',
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/calendar.txt',
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/trips.txt',
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stop_times.txt'
-		/**
-		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/calendar_dates.txt',
-		**/
-	];
-
-	app.vtaFiles = [
-		'../assets/gtfs-files/VTA/agency.txt',
-		'../assets/gtfs-files/VTA/routes.txt',
-		'../assets/gtfs-files/VTA/stops.txt',
-		'../assets/gtfs-files/VTA/calendar.txt',
-		'../assets/gtfs-files/VTA/trips.txt',
-		'../assets/gtfs-files/VTA/stop_times.txt'
-		/**
-		'../assets/gtfs-files/VTA/calendar_dates.txt',
-		**/
-	];
-
 	app.gtfsErrorFiles = function(err) {
 
 		console.log('Error updating json from files: ', err);
@@ -193,34 +73,6 @@
 			let _db = new appmods.PublicTransportationDB();
 
 			_db.open();
-
-			/**
-			 * Handles inserting gtfs data into the db
-			 * @param  {object} fileJson json for gtfs file
-			 */
-			function putGTFSValues(fileJson, agency_name) {
-
-				fileJson.agency.forEach( a => {
-
-					_db.put(appmods.PublicTransportationDB.agencyStore, a);
-
-				});
-
-				fileJson.routes.forEach( r => {
-
-					r.agency_name = agency_name;	//Not everyone includes the id for some annoying reason
-					_db.put(appmods.PublicTransportationDB.routesStore, r);
-
-				});
-
-				fileJson.calendar.forEach( c => {
-
-					c.agency_name = agency_name;	//Not everyone includes the id for some annoying reason
-					_db.put(appmods.PublicTransportationDB.calendarStore, c);
-
-				});
-
-			}
 
 			setTimeout(function() {
 
@@ -325,13 +177,7 @@
 	  			app.loading = true;
   				app.isDeparture = false;
 
-  				_realTimeData.getRoutes(app.selectedAgency.agency_name).then( data => {
-
-  					if(app.selectedAgency.agency_name === "BART") {
-
-	  					app.selectedAgency.agency_name = "Bay Area Rapid Transit";
-
-	  				}
+  				_realTimeData.getRoutes(app.selectedAgency).then( data => {
 
   					app.set('routeList', []);
 
@@ -527,34 +373,6 @@
 	  			app.selected = DURATION_INFO_CARD;
 
 	  		};
-
-	  		_db.getAll(appmods.PublicTransportationDB.versionStore).then( data => {
-
-	  			if(data.length === 0) {
-
-	  				Promise.all([app.$.bartgtfsfiles.parseFiles(), app.$.countyconnectiongtfsfiles.parseFiles(), 
-			  			app.$.calgtfsfiles.parseFiles(), app.$.actransitgtfsfiles.parseFiles(), 
-			  			app.$.lavtagtfsfiles.parseFiles(), app.$.maringtfsfiles.parseFiles(),
-			  			app.$.samtransgtfsfiles.parseFiles(), app.$.sfmtagtfsfiles.parseFiles(), 
-			  			app.$.vtagtfsfiles.parseFiles(), app.$.srcbfiles.parseFiles()]).then(function() {
-
-			  				putGTFSValues(app.acTransitJson, ACTRANSIT);
-			  				putGTFSValues(app.bartJson, BART);
-			  				putGTFSValues(app.countyConnectionJson, COUNTYCONNECTION);
-			  				putGTFSValues(app.calJson, CALTRAIN);
-			  				putGTFSValues(app.lavtaJson, LAVTA);
-			  				putGTFSValues(app.marinJson, MARINTRANSIT);
-			  				putGTFSValues(app.samTransJson, SAMTRANS);
-			  				putGTFSValues(app.sfmtaJson, SFMTA);
-			  				putGTFSValues(app.vtaJson, VTA);
-			  				putGTFSValues(app.srcbJson, SRCB);
-			  				_db.put(appmods.PublicTransportationDB.versionStore, {'version': 1});
-
-			  		});
-
-	  			}
-
-	  		});
 
 	  		if(navigator.serviceWorker) {
 

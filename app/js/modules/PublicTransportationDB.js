@@ -15,6 +15,8 @@ appmods.PublicTransportationDB = (function() {
 	const _version_store =			'public-transportation-version';
 	const _agency_name_index =		'agency_name';
 	const _calendar_agency_index =	'calendar_agency_index';
+	const _trip_route_index =		'trip_route_index';
+	const _route_id_index =			'routeId';
 
 	let _dbPromise;
 
@@ -155,6 +157,32 @@ appmods.PublicTransportationDB = (function() {
 		}
 
 		/**
+		 * Route ID Index
+		 * @return {string} routeIdIndex
+		 * @memberof PublicTransportationDB
+		 * @type {string}
+		 * 
+		 */
+		static get routeIdIndex() {
+
+			return _route_id_index;
+
+		}
+
+		/**
+		 * Trip Route Index
+		 * @return {string} tripRouteIndex
+		 * @memberof PublicTransportationDB
+		 * @type {string}
+		 * 
+		 */
+		static get tripRouteIndex() {
+
+			return _trip_route_index;
+
+		}
+
+		/**
 		 * Open the db
 		 * @function
 		 * @public
@@ -162,7 +190,7 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		open() {
 
-			_dbPromise = idb.open(_dbname, 2, upgradeDb => {
+			_dbPromise = idb.open(_dbname, 3, upgradeDb => {
 
 				let agencyStore;
 				let calendarStore;
@@ -179,7 +207,7 @@ appmods.PublicTransportationDB = (function() {
 						agencyStore = 			upgradeDb.createObjectStore(_agency_store, {keyPath: 'id', autoIncrement:true});
 						calendarStore = 		upgradeDb.createObjectStore(_calendar_store, {keyPath: 'id', autoIncrement:true});
 						calendarDatesStore = 	upgradeDb.createObjectStore(_calendar_dates_store, {keyPath: 'id', autoIncrement:true});
-						routeStore = 			upgradeDb.createObjectStore(_routes_store, {keyPath: 'route_id'});
+						routeStore = 			upgradeDb.createObjectStore(_routes_store, {keyPath: 'id', autoIncrement: true});
 						stopTimesStore = 		upgradeDb.createObjectStore(_stop_times_store, {keyPath: 'id', autoIncrement:true});
 						stopsStore = 			upgradeDb.createObjectStore(_stops_store, {keyPath: 'stop_id'});
 						tripsStore = 			upgradeDb.createObjectStore(_trips_store, {keyPath: 'id', autoIncrement:true});
@@ -187,6 +215,8 @@ appmods.PublicTransportationDB = (function() {
 					case 1:
 						routeStore.createIndex(_agency_name_index, _agency_name_index, { unique: false });
 						calendarStore.createIndex(_calendar_agency_index, _agency_name_index, { unique: false });
+					case 2:
+						tripsStore.createIndex(_trip_route_index, _route_id_index, { unique: false});	
 
 				}
 				
@@ -206,7 +236,7 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		put(storeName, value) {
 
-			return _dbPromise.then(function(db) {
+			return _dbPromise.then(db => {
 
 				if (!db) return;
 
@@ -226,7 +256,7 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		count(storeName) {
 
-			return _dbPromise.then(function(db) {
+			return _dbPromise.then(db => {
 
 				if (!db) return;
 
@@ -246,7 +276,7 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		getAll(storeName) {
 
-			return _dbPromise.then(function(db) {
+			return _dbPromise.then(db => {
 
 				if (!db) return;
 
@@ -268,7 +298,7 @@ appmods.PublicTransportationDB = (function() {
 		 */
 		getAllByIndex(storeName, indexName, value) {
 
-			return _dbPromise.then(function(db) {
+			return _dbPromise.then(db => {
 
 				if (!db) return;
 
@@ -277,6 +307,24 @@ appmods.PublicTransportationDB = (function() {
 				let index = store.index(indexName);
 
 				return index.getAll(value);
+
+			});
+
+		}
+
+		/**
+		 * Removes all values in a store
+		 * @param  {String} storeName Name of the store
+		 * @return {Promise}           Promise
+		 */
+		clear(storeName) {
+
+			return _dbPromise.then(db => {
+
+				let tx = db.transaction(storeName, 'readwrite');
+				let store = tx.objectStore(storeName);
+
+				return store.clear();
 
 			});
 

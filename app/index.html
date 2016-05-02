@@ -66,21 +66,21 @@
 
 						<neon-animated-pages class="flex" selected="[[selected]]">
 
-							<agency-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[agencyList]]" selected="{{selectedAgency}}" on-value-selected="agencySelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></agency-card>
+							<agency-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[agencyList]]" selected="{{selectedAgency}}" on-value-selected="agencySelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></agency-card>
 
-							<route-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[routeList]]" selected="{{selectedRoute}}" on-value-selected="routeSelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></route-card>
+							<route-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[routeList]]" selected="{{selectedRoute}}" on-value-selected="routeSelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></route-card>
 
-							<direction-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedRoute.directionList]]" selected="{{selectedDirection}}" on-value-selected="directionSelected" departure-name="[[selectedDeparture.name]]" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></direction-card>
+							<direction-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedRoute.directionList]]" selected="{{selectedDirection}}" on-value-selected="directionSelected" departure-name="[[selectedDeparture.name]]" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></direction-card>
 
-							<departure-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" selected="{{selectedDeparture}}" on-value-selected="departureSelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></departure-card>
+							<departure-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" selected="{{selectedDeparture}}" on-value-selected="departureSelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></departure-card>
 
-							<destination-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" departure="[[selectedDeparture]]" selected="{{selectedDestination}}" on-value-selected="destinationSelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></destination-card>
+							<destination-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[stopList]]" departure="[[selectedDeparture]]" selected="{{selectedDestination}}" on-value-selected="destinationSelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></destination-card>
 
-							<departure-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDeparture.stopTimes]]" selected="{{selectedDepartureTime}}" on-value-selected="departureTimeSelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></departure-times-card>
+							<departure-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDeparture.stopTimes]]" selected="{{selectedDepartureTime}}" on-value-selected="departureTimeSelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></departure-times-card>
 
-							<destination-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDestination.stopTimes]]" selected="{{selectedDestinationTime}}" on-value-selected="destinationTimeSelected" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></destination-times-card>
+							<destination-times-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" list="[[selectedDestination.stopTimes]]" selected="{{selectedDestinationTime}}" on-value-selected="destinationTimeSelected" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></destination-times-card>
 
-							<duration-info-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" agency-name="[[selectedAgency.agency_name]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></duration-info-card>
+							<duration-info-card is-mobile="[[mobile]]" image-path="../assets/images/stock-photo-46082604-fast-train-with-motion-blur.jpg" agency-name="[[selectedAgency.agencyName]]" route-name="[[selectedRoute.name]]" departure-name="[[selectedDeparture.name]]" departure-time="[[selectedDepartureTime.departureTime]]" destination-name="[[selectedDestination.name]]" arrival-time="[[selectedDestinationTime.arrivalTime]]"></duration-info-card>
 						    
 						</neon-animated-pages>
 
@@ -101,44 +101,8 @@
 
 			<!-- DATA Elements Below -->
 
-			<!-- Bart GTFS File -->
-			<gtfs-feed id="bartgtfsfiles" files="[[bartFiles]]" json="{{bartJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
-
-			<!-- County Connection GTFS File -->
-			<gtfs-feed id="countyconnectiongtfsfiles" files="[[countyConnectionFiles]]" json="{{countyConnectionJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
-
-			<!-- Make caltrain json data from gtfs files -->
-			<gtfs-feed id="calgtfsfiles" files="[[calTrainFiles]]" json="{{calJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
-			
-			<!-- AC Transit GTFS Files -->
-			<gtfs-feed id="actransitgtfsfiles" files="[[acTransitFiles]]" json="{{acTransitJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
-
-			<!-- Lavta GTFS Files -->
-			<gtfs-feed id="lavtagtfsfiles" files="[[lavtaFiles]]" json="{{lavtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
-
-			<!-- Marin GTFS Files -->
-			<gtfs-feed id="maringtfsfiles" files="[[marinFiles]]" json="{{marinJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
-
-			<!-- Sam Trans GTFS Files -->
-			<gtfs-feed id="samtransgtfsfiles" files="[[samTransFiles]]" json="{{samTransJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
-
-			<!-- Santa Rosa CityBus -->
-			<gtfs-feed id="srcbfiles" files="[[srcbFiles]]" json="{{srcbJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
-
-			<!-- SFMTA GTFS Files -->
-			<gtfs-feed id="sfmtagtfsfiles" files="[[sfmtaFiles]]" json="{{sfmtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>	
-
-			<!-- VTA GTFS Files -->
-			<gtfs-feed id="vtagtfsfiles" files="[[vtaFiles]]" json="{{vtaJson}}" on-error="gtfsErrorFiles"></gtfs-feed>
-	
 			<!-- General File Parser -->
 			<gtfs-feed id="fileParser" files="[[gtfsFile]]" json="{{parsedJson}}" on-error="gtfsErrorFiles"></gtfs-feed>			
-			
-			<!--
-			<gtfs-feed id="gtfsagency" xml="[[agencytext]]" json="{{gtfsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
-			<gtfs-feed id="gtfsroutes" xml="[[routestext]]" json="{{gtfsRoutesJson}}" on-error="gtfsErrorXML"></gtfs-feed>
-			<gtfs-feed id="gtfsstops" xml="[[stopstext]]" json="{{gtfsStopsJson}}" on-error="gtfsErrorXML"></gtfs-feed>
-			-->
 
 		</template>
 

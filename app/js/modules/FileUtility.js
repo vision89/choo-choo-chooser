@@ -15,7 +15,7 @@ appmods.FileUtility = (function(document) {
 	const _VTA =				'VTA';
 	const _SRCB =				'Santa Rosa CityBus';
 
-	var _fileNames = [
+	let _fileNames = [
 
 		{
 		  file: 'agency.txt',
@@ -391,11 +391,11 @@ appmods.FileUtility = (function(document) {
 			let total = files.length;
 			let json = 	Object.create(null);
 
-			return new Promise(function(resolve, reject) {
+			return new Promise((resolve, reject) => {
 
 		        try {
 
-		          files.forEach(function(url) {
+		          files.forEach(url => {
 
 		            let prop = '';
 
@@ -415,12 +415,12 @@ appmods.FileUtility = (function(document) {
 		              download: true,
 		              header: true,
 		              skipEmptyLines: true,
-		              before: function(url, inputElem)
+		              before: (url, inputElem) =>
 		                {
 		                  // executed before parsing each file begins;
 		                  // what you return here controls the flow
 		                },
-		                error: function(err, file, inputElem, reason)
+		                error: (err, file, inputElem, reason) =>
 		                {
 		                  // executed if an error occurs while loading the file,
 		                  // or if before callback aborted for some reason
@@ -436,7 +436,7 @@ appmods.FileUtility = (function(document) {
 		                  }
 
 		                },
-		                complete: function(results)
+		                complete: results =>
 		                {
 
 		                  //If this is the last file alert the parent
@@ -465,6 +465,52 @@ appmods.FileUtility = (function(document) {
 		        }
 
 	      });
+
+		}
+
+		static parseFiles(files) {
+
+			let promises = [];
+
+			files.forEach(url => {
+
+				promises.push(
+
+					new Promise((resolve, reject) => {
+
+						Papa.parse(url, {
+							download: true,
+							header: true,
+							skipEmptyLines: true,
+							before: (url, inputElem) =>
+							{
+							  // executed before parsing each file begins;
+							  // what you return here controls the flow
+							},
+							error: (err, file, inputElem, reason) =>
+							{
+							  // executed if an error occurs while loading the file,
+							  // or if before callback aborted for some reason
+
+							  return reject(err);
+
+							},
+							complete: results =>
+							{
+
+							  //If this is the last file alert the parent
+							  return resolve(results);
+
+							}
+						});
+
+					})
+
+				);	
+
+			});
+
+			return Promise.all(promises);
 
 		}
 

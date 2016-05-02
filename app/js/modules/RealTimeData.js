@@ -6,133 +6,303 @@ appmods.RealTimeData = (function(document) {
 
   	let _db = new appmods.PublicTransportationDB();
 
-  	let _agenciesFromDb = function() {
+  	const BARTAGENCYFILE = 		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/agency.txt';
+  	const BARTROUTESFILE =  	'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/routes.txt';
+  	const BARTSTOPSFILE = 		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/stops.txt';
+  	const BARTCALENDARFILE = 	'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/calendar.txt';
+  	const BARTTRIPSFILE = 		'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/trips.txt';
+  	const BARTSTOPTIMESFILE = 	'../assets/gtfs-files/bay-area-rapid-transit_20160122_0103/stop_times.txt';
 
-  		return new Promise(function(resolve, reject) {
+  	const COUNTYAGENCYFILE = 		'../assets/gtfs-files/county-connection_20160110_0842/agency.txt';
+  	const COUNTYROUTESFILE = 		'../assets/gtfs-files/county-connection_20160110_0842/routes.txt';
+  	const COUNTSTOPSFILE = 			'../assets/gtfs-files/county-connection_20160110_0842/stops.txt';
+  	const COUNTYCALENDARFILE = 		'../assets/gtfs-files/county-connection_20160110_0842/calendar.txt';
+  	const COUNTYTRIPSFILE = 		'../assets/gtfs-files/county-connection_20160110_0842/trips.txt';
+  	const COUNTYSTOPTIMESFILE = 	'../assets/gtfs-files/county-connection_20160110_0842/stop_times.txt';
 
-			_db.getAll(appmods.PublicTransportationDB.agencyStore).then( agencies => {
+  	const CALAGENCYFILE = 		'../assets/gtfs-files/GTFS Caltrain Devs/agency.txt';
+  	const CALROUTESFILE = 		'../assets/gtfs-files/GTFS Caltrain Devs/routes.txt';
+  	const CALSTOPSFILE = 		'../assets/gtfs-files/GTFS Caltrain Devs/stops.txt';
+  	const CALCALENDARFILE = 	'../assets/gtfs-files/GTFS Caltrain Devs/calendar.txt';
+  	const CALTRIPSFILE = 		'../assets/gtfs-files/GTFS Caltrain Devs/trips.txt';
+  	const CALSTOPTIMESFILE = 	'../assets/gtfs-files/GTFS Caltrain Devs/stop_times.txt';
 
-				return resolve(agencies);
+  	const ACAGENCYFILE = 		'../assets/gtfs-files/gtfsmarch202016b/agency.txt';
+  	const ACROUTESFILE = 		'../assets/gtfs-files/gtfsmarch202016b/routes.txt';
+  	const ACSTOPSFILE = 		'../assets/gtfs-files/gtfsmarch202016b/stops.txt';
+  	const ACCALENDARFILE = 		'../assets/gtfs-files/gtfsmarch202016b/calendar.txt';
+  	const ACTRIPSFILE = 		'../assets/gtfs-files/gtfsmarch202016b/trips.txt';
+  	const ACSTOPTIMESFILE = 	'../assets/gtfs-files/gtfsmarch202016b/stop_times.txt';
 
-			}, error => {
+  	const LAVTAAGENCYFILE = 	'../assets/gtfs-files/LAVTA/agency.txt';
+  	const LAVTAROUTESFILE = 	'../assets/gtfs-files/LAVTA/routes.txt';
+  	const LAVTASTOPSFILE = 		'../assets/gtfs-files/LAVTA/stops.txt';
+  	const LAVTACALENDARFILE = 	'../assets/gtfs-files/LAVTA/calendar.txt';
+  	const LAVTATRIPSFILE = 		'../assets/gtfs-files/LAVTA/trips.txt';
+  	const LAVTASTOPTIMESFILE = 	'../assets/gtfs-files/LAVTA/stop_times.txt';
 
-				return reject(error);
+  	const MARINAGENCYFILE = 	'../assets/gtfs-files/marin-transit_20160122_0121/agency.txt';
+  	const MARINROUTESFILE = 	'../assets/gtfs-files/marin-transit_20160122_0121/routes.txt';
+  	const MARINSTOPSFILE = 		'../assets/gtfs-files/marin-transit_20160122_0121/stops.txt';
+  	const MARINCALENDARFILE = 	'../assets/gtfs-files/marin-transit_20160122_0121/calendar.txt';
+  	const MARINTRIPSFILE = 		'../assets/gtfs-files/marin-transit_20160122_0121/trips.txt';
+  	const MARINSTOPTIMESFILE = 	'../assets/gtfs-files/marin-transit_20160122_0121/stop_times.txt';
 
-			});	
+  	const SAMAGENCYFILE = 		'../assets/gtfs-files/SamTrans/agency.txt';
+  	const SAMROUTESFILE = 		'../assets/gtfs-files/SamTrans/routes.txt';
+  	const SAMSTOPSFILE = 		'../assets/gtfs-files/SamTrans/stops.txt';
+  	const SAMCALENDARFILE = 	'../assets/gtfs-files/SamTrans/calendar.txt';
+  	const SAMTRIPSFILE = 		'../assets/gtfs-files/SamTrans/trips.txt';
+  	const SAMSTOPTIMESFILE = 	'../assets/gtfs-files/SamTrans/stop_times.txt';
 
-		});
+  	const STMTAAGENCYFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/agency.txt';
+  	const STMTAROUTESFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/routes.txt';
+  	const STMTASTOPSFILE = 		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stops.txt';
+  	const STMTACALENDARFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/calendar.txt';
+  	const STMTATRIPSFILE = 		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/trips.txt';
+  	const STMTASTOPTIMESFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stop_times.txt';
 
-  	};
+  	const SRCBAGENCYFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/agency.txt';
+  	const SRCBROUTESFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/routes.txt';
+  	const SRCBSTOPSFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stops.txt';
+  	const SRCBCALENDARFILE = 	'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/calendar.txt';
+  	const SRCBTRIPSFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/trips.txt';
+  	const SRCBSTOPTIMESFILE = 	'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stop_times.txt';
 
-  	let _routesFromDb = function(departure) {
+  	const VTAAGENCYFILE = 		'../assets/gtfs-files/VTA/agency.txt';
+  	const VTAROUTESFILE = 		'../assets/gtfs-files/VTA/routes.txt';
+  	const VTASTOPSFILE = 		'../assets/gtfs-files/VTA/stops.txt';
+  	const VTACALENDARFILE = 	'../assets/gtfs-files/VTA/calendar.txt';
+  	const VTATRIPSFILE = 		'../assets/gtfs-files/VTA/trips.txt';
+  	const VTASTOPTIMESFILE = 	'../assets/gtfs-files/VTA/stop_times.txt';
 
-  		return new Promise(function(resolve, reject) {
+  	/**
+  	 * Populate agencies in the db
+  	 * @return {Promise} Promise
+  	 */
+  	let _populateAgencies = function() {
+
+  		return new Promise((resolve, reject) => {
 
   			try {
 
-  				_db.getAllByIndex(appmods.PublicTransportationDB.calendarStore,
-				appmods.PublicTransportationDB.calendarAgencyIndex,
-				departure).then(function(calendars) {
+  				appmods.FileUtility.parseFiles([BARTAGENCYFILE, COUNTYAGENCYFILE,
+	  			CALAGENCYFILE, ACAGENCYFILE, LAVTAAGENCYFILE, MARINAGENCYFILE,
+	  			SAMAGENCYFILE, STMTAAGENCYFILE, SRCBAGENCYFILE, VTAAGENCYFILE]).then(data => {
 
-					let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
-					let d = new Date();
-					let day = weekdays[d.getDay()];
-					let todaysCalendar;
-					let returnRoutes = [];
+		  			data.forEach(datum => {
 
-					for(let i=0; i < calendars.length; ++i) {
+		  				datum.data.forEach( d => {
 
-						if(calendars[i][day] === "1") {
+		  					_db.put(appmods.PublicTransportationDB.agencyStore, {
 
-							todaysCalendar = calendars[i];
-							break;
+		  						agencyId: d.agency_id,
+								agencyLang: d.agency_lang,
+								agencyName: d.agency_name,
+								agencyTimezone: d.agency_timezone,
+								agencyUrl: d.agency_url
 
-						}
+		  					});
 
-					}
+		  				});
 
-					if(todaysCalendar) {
+		  			});
 
-						_db.getAllByIndex(appmods.PublicTransportationDB.routesStore, 
-						appmods.PublicTransportationDB.agencyNameIndex, 
-						departure).then( routes => {
+		  			return resolve();
 
-							let tripFile = appmods.FileUtility.getTripFile(departure);
+	  			});
 
-							if(tripFile) {
+  			} catch(err) {
 
-								let trips = [];
-
-			  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
-
-			  						parsedTrips.data.forEach( trip => {
-
-			  							if(todaysCalendar.service_id === trip.service_id) {
-
-			  								trips.push(trip);
-
-			  							}
-
-			  						});
-
-			  						trips.forEach( trip=> {
-
-			  							routes.forEach( route => {
-
-			  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
-
-			  									let routeObj = Object.create(null);
-
-				  								routeObj.agency = 			route.agency_name;
-				  								routeObj.code = 			route.route_id;
-												routeObj.name = 			route.route_short_name || route.route_long_name;
-												routeObj.tripId =			trip.trip_id;
-												routeObj.directionList = 	[];
-
-												let index = -1;
-
-												for(let i = 0; i < returnRoutes.length; ++i) {
-
-													if(returnRoutes[i].name === routeObj.name) {
-
-														index = i;
-														break;
-
-													}
-
-												}
-
-												if(index === -1) {
-
-													returnRoutes.push(routeObj);
-
-												}
-
-			  								}
-
-			  							});
-
-			  						});
-
-			  						return resolve(returnRoutes);
-
-			  					});
-
-							}
-
-						});
-
-					}
-
-				});
-
-  			} catch(error) {
-
-  				return reject(error);
+  				return reject(err);
 
   			}
 
   		});
+
+  	};
+
+  	/**
+  	 * Populate calendar items in the db
+  	 * @param  {Object} agencyName Selected agency name
+  	 * @return {Promise}            Promise
+  	 */
+  	let _populateCalendars = function(agencyName) {
+
+  		try {
+
+	  		let fileRef = '';
+
+	  		switch(agencyName) {
+
+	  			case 'Bay Area Rapid Transit':
+	  				fileRef = BARTCALENDARFILE;
+	  				break;
+	  			case 'County Connection':
+	  				fileRef = COUNTYCALENDARFILE;
+	  				break;
+	  			case 'Caltrain':
+	  				fileRef = CALCALENDARFILE;
+	  				break;
+	  			case 'AC Transit':
+	  				fileRef = ACCALENDARFILE;
+	  				break;
+	  			case 'Wheels Bus':
+	  				fileRef = LAVTACALENDARFILE;
+	  				break;
+	  			case 'Marin Transit':
+	  				fileRef = MARINCALENDARFILE;
+	  				break;
+	  			case 'SamTrans':
+	  				fileRef = SAMCALENDARFILE;
+	  				break;
+	  			case 'San Francisco Municipal Transportation Agency':
+	  				fileRef = STMTACALENDARFILE;
+	  				break;
+	  			case 'Santa Rosa CityBus':
+	  				fileRef = SRCBCALENDARFILE;
+	  				break;
+	  			case 'VTA':
+	  				fileRef = VTACALENDARFILE;
+	  				break;						
+
+	  		}
+
+	  		if(fileRef !== '') {
+
+	  			return new Promise((resolve, reject) => {
+
+	  				appmods.FileUtility.parseFiles([fileRef]).then(data => {
+
+			  			data.forEach(datum => {
+
+			  				datum.data.forEach( d => {
+
+			  					_db.put(appmods.PublicTransportationDB.calendarStore, {
+
+			  						endDate: 	d.end_date,
+									friday: 	d.friday,
+									monday: 	d.monday,
+									saturday: 	d.saturday,
+									serviceId: 	d.service_id,
+									startDate: 	d.start_date,
+									sunday: 	d.sunday,
+									thursday: 	d.thursday,
+									tuesday: 	d.tuesday,
+									wednesday: 	d.wednesday,
+									agency_name: agencyName	
+
+			  					});
+
+			  				});
+
+			  			});
+
+			  			return resolve();
+
+		  			});
+
+	  			});
+
+	  		} else {
+
+	  			return reject();
+
+	  		}
+
+  		} catch(err) {
+
+			return reject(err);
+
+		}
+
+  	};
+
+  	let _populateRoutes = function(agencyName) {
+
+  		try {
+
+	  		let fileRef = '';
+
+	  		switch(agencyName) {
+
+	  			case 'Bay Area Rapid Transit':
+	  				fileRef = BARTROUTESFILE;
+	  				break;
+	  			case 'County Connection':
+	  				fileRef = COUNTYROUTESFILE;
+	  				break;
+	  			case 'Caltrain':
+	  				fileRef = CALROUTESFILE;
+	  				break;
+	  			case 'AC Transit':
+	  				fileRef = ACROUTESFILE;
+	  				break;
+	  			case 'Wheels Bus':
+	  				fileRef = LAVTAROUTESFILE;
+	  				break;
+	  			case 'Marin Transit':
+	  				fileRef = MARINROUTESFILE;
+	  				break;
+	  			case 'SamTrans':
+	  				fileRef = SAMROUTESFILE;
+	  				break;
+	  			case 'San Francisco Municipal Transportation Agency':
+	  				fileRef = STMTAROUTESFILE;
+	  				break;
+	  			case 'Santa Rosa CityBus':
+	  				fileRef = SRCBROUTESFILE;
+	  				break;
+	  			case 'VTA':
+	  				fileRef = VTAROUTESFILE;
+	  				break;						
+
+	  		}
+
+	  		if(fileRef !== '') {
+
+	  			return new Promise((resolve, reject) => {
+
+	  				appmods.FileUtility.parseFiles([fileRef]).then(data => {
+
+			  			data.forEach(datum => {
+
+			  				datum.data.forEach( d => {
+
+			  					_db.put(appmods.PublicTransportationDB.routesStore, {
+
+			  						agencyId: 		d.agency_id,
+									routeColor: 	d.route_color,
+									routeId: 		d.route_id,
+									routeLongName: 	d.route_long_name,
+									routeShortName: d.route_short_name,
+									routeTextColor: d.route_text_color,
+									routeType:    	d.route_type,
+									agency_name:   	agencyName	
+
+			  					});
+
+			  				});
+
+			  			});
+
+			  			return resolve();
+
+		  			});
+
+	  			});
+
+	  		} else {
+
+	  			return reject();
+
+	  		}
+
+  		} catch(err) {
+
+			return reject(err);
+
+		}
 
   	};
 
@@ -252,50 +422,31 @@ appmods.RealTimeData = (function(document) {
 	     */
 	    getAgencies() {
 
+	    	let that = this;
+
 	    	return new Promise(function(resolve, reject) {
 
-	    		//Get the departure data
-				fetch('http://services.my511.org/Transit2.0/GetAgencies.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223',{
-					method: 'GET',
-					mode: 'cors',
-					headers: new Headers({
-						'Content-Type': 'text/xml; charset=utf-8'
-					})
-					}).then( response => {
+				_db.getAll(appmods.PublicTransportationDB.agencyStore).then( agencies => {
 
-						response.text().then( data => {
+					if(agencies.length === 0) {
 
-							appmods.ParseHelper.parseXML(data).then( parsedData => {
+						return _populateAgencies().then(function() {
 
-								let agencyList = [];
+							return resolve(that.getAgencies());
 
-								parsedData.forEach( agency => {
+						});					
 
-									let agencyObj = Object.create(null);
+					}
 
-									agencyObj.agency_name = agency._attr.Name._value;
+					return resolve(agencies);
 
-									agencyList.push(agencyObj);
+				}, error => {
 
-								});
+					return reject(error);
 
-								return resolve(agencyList);
+				});	
 
-							}, error => {
-
-								return resolve(_agenciesFromDb());
-
-							});
-
-						});
-
-					}).catch( error => {
-
-						return resolve(_agenciesFromDb());
-
-					});
-
-		    	});
+			});
 
 
 	    }
@@ -307,65 +458,147 @@ appmods.RealTimeData = (function(document) {
 	     */
 	    getRoutes(agency) {
 
+	    	let that = this;
+
 	    	return new Promise(function(resolve, reject) {
 
-	    		//Get the departure data
-				fetch('http://services.my511.org/Transit2.0/GetRoutesForAgency.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&agencyName=' + agency,{
-					method: 'GET',
-					mode: 'cors',
-					headers: new Headers({
-						'Content-Type': 'text/xml; charset=utf-8'
-					})
-				}).then( response => {
+	  			try {
 
-					response.text().then( data => {
+	  				_db.getAllByIndex(appmods.PublicTransportationDB.calendarStore,
+					appmods.PublicTransportationDB.calendarAgencyIndex,
+					agency.agencyName).then(function(calendars) {
 
-						let routes = [];
+						if(calendars.length ===0) {
 
-						appmods.ParseHelper.parseXML(data).then( parsedData => {
+							_db.clear(appmods.PublicTransportationDB.calendarStore).then(function() {
 
-							parsedData.forEach( agency => {
+								return _populateCalendars(agency.agencyName).then(function() {
 
-  								agency.RouteList.forEach( routeList => {
+									return resolve(that.getRoutes(agency));
 
-  									routeList.Route.forEach( route => {
+								});
 
-  										if(route._attr.Code._value && route._attr.Name._value) {
+							});
 
-  											let routeObj = Object.create(null);
+						} else {
 
-											routeObj.agency = 			agency._attr.Name._value;
-											routeObj.code = 			route._attr.Code._value;
-											routeObj.name = 			route._attr.Name._value;
-											routeObj.directionList = 	route.RouteDirectionList || [];
+							let weekdays = ['sunday', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday'];
+							let d = new Date();
+							let day = weekdays[d.getDay()];
+							let todaysCalendar;
+							let returnRoutes = [];
 
-											routes.push(routeObj);
+							for(let i=0; i < calendars.length; ++i) {
 
-  										}
+								if(calendars[i][day] === "1") {
 
-	  								});
+									todaysCalendar = calendars[i];
+									break;
 
-  								});
+								}
 
-  							});
+							}
 
-							return resolve(routes);
+							if(todaysCalendar) {
 
-						}, error => {
+								_db.getAllByIndex(appmods.PublicTransportationDB.routesStore, 
+								appmods.PublicTransportationDB.agencyNameIndex, 
+								agency.agencyName).then( routes => {
 
-							return _routesFromDb(agency);
+									if(routes.length === 0) {
 
-						});
+										return _db.clear(appmods.PublicTransportationDB.routesStore).then(function() {
+
+											return _populateRoutes(agency.agencyName).then(function() {
+
+												return resolve(that.getRoutes(agency));
+
+											});
+
+										});
+
+									} else {
+
+										let tripFile = appmods.FileUtility.getTripFile(agency.agencyName);
+
+										if(tripFile) {
+
+											let trips = [];
+
+						  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
+
+						  						parsedTrips.data.forEach( trip => {
+
+						  							if(todaysCalendar.service_id === trip.service_id) {
+
+						  								trips.push(trip);
+
+						  							}
+
+						  						});
+
+						  						trips.forEach( trip=> {
+
+						  							routes.forEach( route => {
+
+						  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
+
+						  									let routeObj = Object.create(null);
+
+							  								routeObj.agency = 			route.agency_name;
+							  								routeObj.code = 			route.route_id;
+															routeObj.name = 			route.route_short_name || route.route_long_name;
+															routeObj.tripId =			trip.trip_id;
+															routeObj.directionList = 	[];
+
+															let index = -1;
+
+															for(let i = 0; i < returnRoutes.length; ++i) {
+
+																if(returnRoutes[i].name === routeObj.name) {
+
+																	index = i;
+																	break;
+
+																}
+
+															}
+
+															if(index === -1) {
+
+																returnRoutes.push(routeObj);
+
+															}
+
+						  								}
+
+						  							});
+
+						  						});
+
+						  						return resolve(returnRoutes);
+
+						  					});
+
+										}
+
+									}
+
+								});
+
+							}
+
+						}
 
 					});
 
-				}).catch( error => {
+	  			} catch(error) {
 
-					return resolve(_routesFromDb(agency));
+	  				return reject(error);
 
-				});
+	  			}
 
-	    	});
+	  		});
 
 
 	    }
@@ -379,72 +612,9 @@ appmods.RealTimeData = (function(document) {
 
 	    	return new Promise(function(resolve, reject) {
 
-	    		//Get the departure data
-				fetch('http://services.my511.org/Transit2.0/GetStopsForRoute.aspx?token=9506841f-7aad-4b10-b015-8eb38a2d6223&routeIDF=' + agency + '~' + routeCode + '~' + directionCode,{
-					method: 'GET',
-					mode: 'cors',
-					headers: new Headers({
-						'Content-Type': 'text/xml; charset=utf-8'
-					})
-					}).then( response => {
+	    		return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
 
-						let stops = [];
-
-						response.text().then( data => {
-
-							appmods.ParseHelper.parseXML(data).then( parsedData => {
-
-								parsedData.forEach( agency => {
-
-									if(agency.RouteList) {
-
-										agency.RouteList.forEach( route => {
-
-											route.Route.forEach( r => {
-
-												if(r.DirectionList) {
-
-													r.RouteDirectionList.forEach( direction => {
-
-														direction.RouteDirection.forEach( d => {
-
-															_stopLoop(d, stops);
-
-														});
-
-													});
-
-												} else if(r.StopList) {
-
-													_stopLoop(r, stops);
-
-												}
-
-											});
-
-										});
-
-									}
-
-								});
-
-								return resolve(stops);
-
-							}, error => {
-
-								return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
-
-							});
-
-						});
-
-					}).catch( error => {
-
-						return resolve(_stopsFromFile(agency, routeCode, directionCode, tripId));
-
-					});
-
-		    	});
+		    });
 
 
 	    }
