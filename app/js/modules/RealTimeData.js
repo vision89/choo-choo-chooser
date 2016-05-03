@@ -308,6 +308,91 @@ appmods.RealTimeData = (function(document) {
 
   	let _populateTrips = function(agencyName) {
 
+  		try {
+
+	  		let fileRef = '';
+
+	  		switch(agencyName) {
+
+	  			case 'Bay Area Rapid Transit':
+	  				fileRef = BARTTRIPSFILE;
+	  				break;
+	  			case 'County Connection':
+	  				fileRef = COUNTYTRIPSFILE;
+	  				break;
+	  			case 'Caltrain':
+	  				fileRef = CALTRIPSFILE;
+	  				break;
+	  			case 'AC Transit':
+	  				fileRef = ACTRIPSFILE;
+	  				break;
+	  			case 'Wheels Bus':
+	  				fileRef = LAVTATRIPSFILE;
+	  				break;
+	  			case 'Marin Transit':
+	  				fileRef = MARINTRIPSFILE;
+	  				break;
+	  			case 'SamTrans':
+	  				fileRef = SAMTRIPSFILE;
+	  				break;
+	  			case 'San Francisco Municipal Transportation Agency':
+	  				fileRef = STMTATRIPSFILE;
+	  				break;
+	  			case 'Santa Rosa CityBus':
+	  				fileRef = SRCBTRIPSFILE;
+	  				break;
+	  			case 'VTA':
+	  				fileRef = VTATRIPSFILE;
+	  				break;						
+
+	  		}
+
+	  		if(fileRef !== '') {
+
+	  			return new Promise((resolve, reject) => {
+
+	  				appmods.FileUtility.parseFiles([fileRef]).then(data => {
+
+			  			data.forEach(datum => {
+
+			  				datum.data.forEach( d => {
+
+			  					_db.put(appmods.PublicTransportationDB.tripsStore, {
+
+			  						blockId: 		d.block_id,
+									directionId: 	d.direction_id,
+									routeId: 		d.route_id,
+									serviceId: 		d.service_id,
+									shapeId: 		d.shape_id,
+									tripHeadsign: 	d.trip_headsign,
+									tripId: 		d.trip_id,
+									tripShortName: 	d.trip_short_name,
+									agency_name: 	agencyName	
+
+			  					});
+
+			  				});
+
+			  			});
+
+			  			return resolve();
+
+		  			});
+
+	  			});
+
+	  		} else {
+
+	  			return reject();
+
+	  		}
+
+  		} catch(err) {
+
+			return reject(err);
+
+		}
+
   	};
 
   	let _stopsFromFile = function(agency, routeCode, directionCode, tripId) {
@@ -541,75 +626,52 @@ appmods.RealTimeData = (function(document) {
 
 												} else {
 
+													let trips = [];
 
+													trips.forEach( trip => {
 
+														if(todaysCalendar.service_id === trip.service_id) {
 
+							  								trips.push(trip);
 
+							  							}
 
+													});
 
+													trips.forEach( trip=> {
 
-													let tripFile = appmods.FileUtility.getTripFile(agency.agencyName);
+							  							routes.forEach( route => {
 
-													if(tripFile) {
+							  								if(route.agency_name && route.routeId && route.routeId === trip.routeId) {
 
-														let trips = [];
+							  									route.name = route.routeShortName || route.routeLongName;
 
-									  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
+							  									let index = -1;
 
-									  						parsedTrips.data.forEach( trip => {
+																for(let i = 0; i < returnRoutes.length; ++i) {
 
-									  							if(todaysCalendar.service_id === trip.service_id) {
+																	if(returnRoutes[i].name === route.name) {
 
-									  								trips.push(trip);
+																		index = i;
+																		break;
 
-									  							}
+																	}
 
-									  						});
+																}
 
-									  						trips.forEach( trip=> {
+																if(index === -1) {
 
-									  							routes.forEach( route => {
+																	returnRoutes.push(routeObj);
 
-									  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
+																}
 
-									  									let routeObj = Object.create(null);
+							  								}
 
-										  								routeObj.agency = 			route.agency_name;
-										  								routeObj.code = 			route.route_id;
-																		routeObj.name = 			route.route_short_name || route.route_long_name;
-																		routeObj.tripId =			trip.trip_id;
-																		routeObj.directionList = 	[];
+							  							});
 
-																		let index = -1;
+							  						});
 
-																		for(let i = 0; i < returnRoutes.length; ++i) {
-
-																			if(returnRoutes[i].name === routeObj.name) {
-
-																				index = i;
-																				break;
-
-																			}
-
-																		}
-
-																		if(index === -1) {
-
-																			returnRoutes.push(routeObj);
-
-																		}
-
-									  								}
-
-									  							});
-
-									  						});
-
-									  						return resolve(returnRoutes);
-
-									  					});
-
-													}
+							  						return resolve(returnRoutes);
 
 												}
 
