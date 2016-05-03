@@ -306,6 +306,10 @@ appmods.RealTimeData = (function(document) {
 
   	};
 
+  	let _populateTrips = function(agencyName) {
+
+  	};
+
   	let _stopsFromFile = function(agency, routeCode, directionCode, tripId) {
 
   		let stopTimesFile = appmods.FileUtility.getStopTimesFile(agency);
@@ -519,68 +523,98 @@ appmods.RealTimeData = (function(document) {
 
 									} else {
 
-										let tripFile = appmods.FileUtility.getTripFile(agency.agencyName);
+										_db.getAllByIndex(appmods.PublicTransportationDB.tripsStore,
+											appmods.PublicTransportationDB.tripRouteIndex,
+											agency.agencyName).then( trips => {
 
-										if(tripFile) {
+												if(trips.length === 0) {
 
-											let trips = [];
+													return _db.clear(appmods.PublicTransportationDB.tripsStore).then(function() {
 
-						  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
+														return _populateTrips(agency.agencyName).then(function() {
 
-						  						parsedTrips.data.forEach( trip => {
+															return resolve(that.getRoutes(agency));
 
-						  							if(todaysCalendar.service_id === trip.service_id) {
+														});
 
-						  								trips.push(trip);
+													});
 
-						  							}
+												} else {
 
-						  						});
 
-						  						trips.forEach( trip=> {
 
-						  							routes.forEach( route => {
 
-						  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
 
-						  									let routeObj = Object.create(null);
 
-							  								routeObj.agency = 			route.agency_name;
-							  								routeObj.code = 			route.route_id;
-															routeObj.name = 			route.route_short_name || route.route_long_name;
-															routeObj.tripId =			trip.trip_id;
-															routeObj.directionList = 	[];
 
-															let index = -1;
 
-															for(let i = 0; i < returnRoutes.length; ++i) {
+													let tripFile = appmods.FileUtility.getTripFile(agency.agencyName);
 
-																if(returnRoutes[i].name === routeObj.name) {
+													if(tripFile) {
 
-																	index = i;
-																	break;
+														let trips = [];
 
-																}
+									  					appmods.FileUtility.parseFile([tripFile]).then( parsedTrips => {
 
-															}
+									  						parsedTrips.data.forEach( trip => {
 
-															if(index === -1) {
+									  							if(todaysCalendar.service_id === trip.service_id) {
 
-																returnRoutes.push(routeObj);
+									  								trips.push(trip);
 
-															}
+									  							}
 
-						  								}
+									  						});
 
-						  							});
+									  						trips.forEach( trip=> {
 
-						  						});
+									  							routes.forEach( route => {
 
-						  						return resolve(returnRoutes);
+									  								if(route.agency_name && route.route_id && route.route_id === trip.route_id) {
 
-						  					});
+									  									let routeObj = Object.create(null);
 
-										}
+										  								routeObj.agency = 			route.agency_name;
+										  								routeObj.code = 			route.route_id;
+																		routeObj.name = 			route.route_short_name || route.route_long_name;
+																		routeObj.tripId =			trip.trip_id;
+																		routeObj.directionList = 	[];
+
+																		let index = -1;
+
+																		for(let i = 0; i < returnRoutes.length; ++i) {
+
+																			if(returnRoutes[i].name === routeObj.name) {
+
+																				index = i;
+																				break;
+
+																			}
+
+																		}
+
+																		if(index === -1) {
+
+																			returnRoutes.push(routeObj);
+
+																		}
+
+									  								}
+
+									  							});
+
+									  						});
+
+									  						return resolve(returnRoutes);
+
+									  					});
+
+													}
+
+												}
+
+											});
+
 
 									}
 

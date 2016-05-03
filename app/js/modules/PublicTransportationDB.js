@@ -216,7 +216,7 @@ appmods.PublicTransportationDB = (function() {
 						routeStore.createIndex(_agency_name_index, _agency_name_index, { unique: false });
 						calendarStore.createIndex(_calendar_agency_index, _agency_name_index, { unique: false });
 					case 2:
-						tripsStore.createIndex(_trip_route_index, _route_id_index, { unique: false});	
+						tripsStore.createIndex(_trip_route_index, _agency_name_index, { unique: false});	
 
 				}
 				
