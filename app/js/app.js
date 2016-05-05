@@ -4,12 +4,11 @@
 
 	const AGENCY_CARD = 0;
 	const ROUTE_CARD = 1;
-	const DIRECTION_CARD = 2;
-	const DEPARTURE_CARD = 3;
-	const DESTINATION_CARD = 4;
-	const DEPARTURE_TIMES_CARD = 5;
-	const DESTINATION_TIMES_CARD = 6;
-	const DURATION_INFO_CARD = 7; 
+	const DEPARTURE_CARD = 2;
+	const DESTINATION_CARD = 3;
+	const DEPARTURE_TIMES_CARD = 4;
+	const DESTINATION_TIMES_CARD = 5;
+	const DURATION_INFO_CARD = 6; 
 
 	let app = document.querySelector('#app');
 	app.agencytext = '';
@@ -87,15 +86,8 @@
 	  				case ROUTE_CARD:
 	  					app.selected = AGENCY_CARD;
 	  					break;
-	  				case DIRECTION_CARD:
-	  					app.selected = ROUTE_CARD;
-	  					break;
 	  				case DEPARTURE_CARD:
-	  					if(app.selectedDirection) {
-	  						app.selected = DIRECTION_CARD;
-	  					} else {
-	  						app.selected = ROUTE_CARD;
-	  					}
+	  					app.selected = ROUTE_CARD;
 	  					break;			
 	  				case DESTINATION_CARD:
 	  					app.selected = DEPARTURE_TIMES_CARD;
@@ -212,82 +204,11 @@
 
 	  			app.set('stopList', []);
 
-	  			if(app.selectedRoute.directionList.length === 0) {
-
-	  				app.loading = true;
-
-	  				_realTimeData.getStopTimes(app.selectedAgency.agency_name, app.selectedRoute.tripId).then( stopTimes => {
-
-  						_realTimeData.getStops(app.selectedAgency.agency_name, app.selectedRoute.code, '', app.selectedRoute.tripId).then( data => {
-
-		  					data.forEach( stop => {
-
-		  						let stopObj = Object.create(null);
-								stopObj.code = stop.code;
-								stopObj.name = stop.name;
-								stopObj.stopTimes = [];
-
-	  							stopTimes.forEach( stopTime => {
-
-	  								if(stopTime.stopId === stop.code && stopTime.departureTime
-.length > 0) {
-
-	  									stopObj.stopTimes.push(stopTime);	
-
-	  								}
-
-	  							});
-
-								if(stopObj.stopTimes.length > 0) {
-
-	  								app.push('stopList', stopObj);
-
-	  							}
-
-		  					});
-
-		  					app.loading = false;
-
-		  					if(app.stopList.length > 0) {
-
-		  						app.selected = DEPARTURE_CARD;
-
-		  					}
-
-		  				}).catch( error => {
-
-		  					app.loading = true;
-
-		  					console.log('Error: ', error);
-
-		  				});
-
-  					});
-
-	  			} else {
-
-	  				app.selected = DIRECTION_CARD;
-
-	  			}
-
-	  		};
-
-	  		/**
-	  		 * Selected direction from the card
-	  		 * @param  {object} e   event
-	  		 * @param  {object} val selected value
-	  		 */
-	  		app.directionSelected = function(e, val) {
-
-	  			e.stopPropagation();
-
-	  			app.set('stopList', []);
-
 	  			app.loading = true;
 
-  				_realTimeData.getStopTimes(app.selectedAgency.agency_name, app.selectedRoute.tripId).then( stopTimes => {
+  				_realTimeData.getStopTimes(app.selectedAgency.agencyName, app.selectedRoute.tripId).then( stopTimes => {
 
-					_realTimeData.getStops(app.selectedAgency.agency_name, app.selectedRoute.code, app.selectedDirection.code, app.selectedRoute.tripId).then( data => {
+						_realTimeData.getStops(app.selectedAgency.agencyName, app.selectedRoute.code, '', app.selectedRoute.tripId).then( data => {
 
 	  					data.forEach( stop => {
 
@@ -307,7 +228,7 @@
 
   							});
 
-  							if(stopObj.stopTimes.length > 0) {
+							if(stopObj.stopTimes.length > 0) {
 
   								app.push('stopList', stopObj);
 
@@ -317,7 +238,7 @@
 
 	  					app.loading = false;
 
-	  					if(app.stops.length > 0) {
+	  					if(app.stopList.length > 0) {
 
 	  						app.selected = DEPARTURE_CARD;
 
@@ -325,13 +246,13 @@
 
 	  				}).catch( error => {
 
-	  					app.loading = false;
+	  					app.loading = true;
 
 	  					console.log('Error: ', error);
 
 	  				});
 
-				});
+					});
 
 	  		};
 

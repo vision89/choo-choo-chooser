@@ -27,13 +27,6 @@ appmods.RealTimeData = (function(document) {
   	const CALTRIPSFILE = 		'../assets/gtfs-files/GTFS Caltrain Devs/trips.txt';
   	const CALSTOPTIMESFILE = 	'../assets/gtfs-files/GTFS Caltrain Devs/stop_times.txt';
 
-  	const ACAGENCYFILE = 		'../assets/gtfs-files/gtfsmarch202016b/agency.txt';
-  	const ACROUTESFILE = 		'../assets/gtfs-files/gtfsmarch202016b/routes.txt';
-  	const ACSTOPSFILE = 		'../assets/gtfs-files/gtfsmarch202016b/stops.txt';
-  	const ACCALENDARFILE = 		'../assets/gtfs-files/gtfsmarch202016b/calendar.txt';
-  	const ACTRIPSFILE = 		'../assets/gtfs-files/gtfsmarch202016b/trips.txt';
-  	const ACSTOPTIMESFILE = 	'../assets/gtfs-files/gtfsmarch202016b/stop_times.txt';
-
   	const LAVTAAGENCYFILE = 	'../assets/gtfs-files/LAVTA/agency.txt';
   	const LAVTAROUTESFILE = 	'../assets/gtfs-files/LAVTA/routes.txt';
   	const LAVTASTOPSFILE = 		'../assets/gtfs-files/LAVTA/stops.txt';
@@ -55,26 +48,12 @@ appmods.RealTimeData = (function(document) {
   	const SAMTRIPSFILE = 		'../assets/gtfs-files/SamTrans/trips.txt';
   	const SAMSTOPTIMESFILE = 	'../assets/gtfs-files/SamTrans/stop_times.txt';
 
-  	const STMTAAGENCYFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/agency.txt';
-  	const STMTAROUTESFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/routes.txt';
-  	const STMTASTOPSFILE = 		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stops.txt';
-  	const STMTACALENDARFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/calendar.txt';
-  	const STMTATRIPSFILE = 		'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/trips.txt';
-  	const STMTASTOPTIMESFILE = 	'../assets/gtfs-files/san-francisco-municipal-transportation-agency_20160202_0116/stop_times.txt';
-
   	const SRCBAGENCYFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/agency.txt';
   	const SRCBROUTESFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/routes.txt';
   	const SRCBSTOPSFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stops.txt';
   	const SRCBCALENDARFILE = 	'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/calendar.txt';
   	const SRCBTRIPSFILE = 		'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/trips.txt';
   	const SRCBSTOPTIMESFILE = 	'../assets/gtfs-files/santa-rosa-citybus_20130423_1906/stop_times.txt';
-
-  	const VTAAGENCYFILE = 		'../assets/gtfs-files/VTA/agency.txt';
-  	const VTAROUTESFILE = 		'../assets/gtfs-files/VTA/routes.txt';
-  	const VTASTOPSFILE = 		'../assets/gtfs-files/VTA/stops.txt';
-  	const VTACALENDARFILE = 	'../assets/gtfs-files/VTA/calendar.txt';
-  	const VTATRIPSFILE = 		'../assets/gtfs-files/VTA/trips.txt';
-  	const VTASTOPTIMESFILE = 	'../assets/gtfs-files/VTA/stop_times.txt';
 
   	/**
   	 * Populate agencies in the db
@@ -87,8 +66,8 @@ appmods.RealTimeData = (function(document) {
   			try {
 
   				appmods.FileUtility.parseFiles([BARTAGENCYFILE, COUNTYAGENCYFILE,
-	  			CALAGENCYFILE, ACAGENCYFILE, LAVTAAGENCYFILE, MARINAGENCYFILE,
-	  			SAMAGENCYFILE, STMTAAGENCYFILE, SRCBAGENCYFILE, VTAAGENCYFILE]).then(data => {
+	  			CALAGENCYFILE, LAVTAAGENCYFILE, MARINAGENCYFILE,
+	  			SAMAGENCYFILE, SRCBAGENCYFILE]).then(data => {
 
 		  			data.forEach(datum => {
 
@@ -144,9 +123,6 @@ appmods.RealTimeData = (function(document) {
 	  			case 'Caltrain':
 	  				fileRef = CALCALENDARFILE;
 	  				break;
-	  			case 'AC Transit':
-	  				fileRef = ACCALENDARFILE;
-	  				break;
 	  			case 'Wheels Bus':
 	  				fileRef = LAVTACALENDARFILE;
 	  				break;
@@ -156,15 +132,9 @@ appmods.RealTimeData = (function(document) {
 	  			case 'SamTrans':
 	  				fileRef = SAMCALENDARFILE;
 	  				break;
-	  			case 'San Francisco Municipal Transportation Agency':
-	  				fileRef = STMTACALENDARFILE;
-	  				break;
 	  			case 'Santa Rosa CityBus':
 	  				fileRef = SRCBCALENDARFILE;
-	  				break;
-	  			case 'VTA':
-	  				fileRef = VTACALENDARFILE;
-	  				break;						
+	  				break;					
 
 	  		}
 
@@ -235,9 +205,6 @@ appmods.RealTimeData = (function(document) {
 	  			case 'Caltrain':
 	  				fileRef = CALROUTESFILE;
 	  				break;
-	  			case 'AC Transit':
-	  				fileRef = ACROUTESFILE;
-	  				break;
 	  			case 'Wheels Bus':
 	  				fileRef = LAVTAROUTESFILE;
 	  				break;
@@ -247,15 +214,9 @@ appmods.RealTimeData = (function(document) {
 	  			case 'SamTrans':
 	  				fileRef = SAMROUTESFILE;
 	  				break;
-	  			case 'San Francisco Municipal Transportation Agency':
-	  				fileRef = STMTAROUTESFILE;
-	  				break;
 	  			case 'Santa Rosa CityBus':
 	  				fileRef = SRCBROUTESFILE;
-	  				break;
-	  			case 'VTA':
-	  				fileRef = VTAROUTESFILE;
-	  				break;						
+	  				break;					
 
 	  		}
 
@@ -323,9 +284,6 @@ appmods.RealTimeData = (function(document) {
 	  			case 'Caltrain':
 	  				fileRef = CALTRIPSFILE;
 	  				break;
-	  			case 'AC Transit':
-	  				fileRef = ACTRIPSFILE;
-	  				break;
 	  			case 'Wheels Bus':
 	  				fileRef = LAVTATRIPSFILE;
 	  				break;
@@ -335,15 +293,9 @@ appmods.RealTimeData = (function(document) {
 	  			case 'SamTrans':
 	  				fileRef = SAMTRIPSFILE;
 	  				break;
-	  			case 'San Francisco Municipal Transportation Agency':
-	  				fileRef = STMTATRIPSFILE;
-	  				break;
 	  			case 'Santa Rosa CityBus':
 	  				fileRef = SRCBTRIPSFILE;
-	  				break;
-	  			case 'VTA':
-	  				fileRef = VTATRIPSFILE;
-	  				break;						
+	  				break;					
 
 	  		}
 
@@ -626,25 +578,27 @@ appmods.RealTimeData = (function(document) {
 
 												} else {
 
-													let trips = [];
+													let foundTrips = [];
 
 													trips.forEach( trip => {
 
 														if(todaysCalendar.service_id === trip.service_id) {
 
-							  								trips.push(trip);
+							  								foundTrips.push(trip);
 
 							  							}
 
 													});
 
-													trips.forEach( trip=> {
+													foundTrips.forEach( trip=> {
 
 							  							routes.forEach( route => {
 
 							  								if(route.agency_name && route.routeId && route.routeId === trip.routeId) {
 
 							  									route.name = route.routeShortName || route.routeLongName;
+
+																route.tripId = trip.tripId;
 
 							  									let index = -1;
 
@@ -661,7 +615,7 @@ appmods.RealTimeData = (function(document) {
 
 																if(index === -1) {
 
-																	returnRoutes.push(routeObj);
+																	returnRoutes.push(route);
 
 																}
 
